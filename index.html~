@@ -109,14 +109,21 @@
                     <h3>Etape 2 : "The Internet Of People"</h3>
                     <h4>Un réseau social unifié et décentralisé</h4>
                     <p>Parce que nous voulons partager autre chose que nos photos, par exemple, des informations sur nous, ce que nous faisons, ce qui nous intéresse, ce qui nous plaît, parce que nous voulons communiquer sans qu'une entreprise n'utilise toutes ces informations, nous prévoyons de créer un réseau social décentralisé, à partir du cloud Let's CO (voir ci-dessus). Il ne sera ni personnel, ni professionnel, ni public, ni privé, il sera ce que vous en ferez ! Chaque personne pourra avoir plusieurs profils et pour chacun partager les informations qu'elle voudra (parcours professionnel, goûts personnels, activité en cours, etc.).
-                    <p>Ceux qui risquent de ne pas aimer : Facebook, Twitter, LinkedIn, Viadéo, etc.</p>
+                    <p>Ils ne vont probablement pas nous sponsoriser : Facebook, Twitter, LinkedIn, Viadéo, etc.</p>
                     <p><a class="btn" href="#">En savoir plus &raquo;</a></p>
                 </div>
             </div>
             <div class="row">
                 <div class="span8">
                     <h3>Etape 3 : "The Web By People"</h3>
-                    <p>Un Web décentralisé (concurrent : le Web actuel !)</p>
+                    <h4>Un Web décentralisé</h4>
+                    <p></p>
+                    <p>Ils risquent de ne pas apprécier : 
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul></p>
                     <p><a class="btn" href="#">En savoir plus &raquo;</a></p>
                 </div>
                 <div class="span4">
@@ -127,7 +134,8 @@
             <div class="row">
                 <div class="span8">
                     <h3>Financé par vous, la foule !</h3>
-                    <p>("crowdfunding", ou financement participatif) ; mais votre implication va au-delà de l'aspect économique : que diriez-vous de participer à l'évolution d'un logiciel, au choix des nouvelles fonctionnalités</p>
+                    <p>Peut-être avez-vous déjà entendu parlé du "crowdfunding" (financement par la foule) ou, en Français, du financement participatif. Il s'agit d'une idée simple et probablement vieille comme le monde mais qui est en train de revenir à la mode et par là même de révolutionner l'économie : permettre à chacun de participer financièrement à un projet et c'est le nombre de contributeur qui le rendra économique possible.  </p>
+                    <p>Que diriez-vous de participer à l'évolution d'un logiciel, au choix des nouvelles fonctionnalités
                     <p><a class="btn" href="#">En savoir plus &raquo;</a></p>
                 </div>
                 <div class="span4">
