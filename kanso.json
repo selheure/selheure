@@ -1,0 +1,13 @@
+{
+	"name": "selheure",
+	"version": "0.0.1",
+	"description": "SEL'heure CouchApp",
+	"load": "lib/app",
+	"modules": ["lib"],
+	"attachments": ["static", "partials"],
+	"dependencies": {
+		"properties": null,
+		"modules": null,
+		"attachments": null
+	}
+}

@@ -1,0 +1,35 @@
+
+	
+<div class="row-fluid">
+	<div class="span4">
+		<h2>{{ content.whyTitle }}</h2>
+		<p>{{ content.whyParagraph }}</p>
+	</div>
+	<div class="span4">
+		<h2>{{ content.openSourceTitle }}</h2>
+		<p>{{ content.openSourceParagraph }}</p>
+	</div>
+	<div class="span4">
+		<h2>{{ content.crowdfundingTitle }}</h2>
+		<p>{{ content.crowdfundingParagraph }}</p>
+	</div>
+</div>
+
+<div ng-controller="WhatCtrl" >
+<h2>{{ content.title }}</h2>
+<div class="row" ng-repeat="row in content.rows">
+	<div class="span{{ $index + 7 }}">
+		<h3>{{ row.title }}</h3>
+		<h4>{{ row.subtitle }}</h4>
+		<p ng-repeat="p in row.paragraphs">[{{ $index / 2 }}]{{ p }}</p>
+		<p><a class="btn" href="#">+</a>
+			<div class="hidden">
+				
+			</div>
+		</p>
+	</div>
+	<div class="span4">
+		<p>{{ row.image }}</p>
+	</div>
+</div>
+</div>

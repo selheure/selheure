@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html ng-app class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html ng-app class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html ng-app class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html ng-app="selheure" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body ng-controller="MainCtrl" ng-cloak>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+					<div class="pull-right">
+						<ul class="nav">
+							<li ng-show="login.user.id"><a href="{{ url.userPage(login.user.id) }}">{{ login.user.id }}</a></li>
+							<li ng-show="login.user.id"><a href="" ng-click="login.logout()">{{ content.logout }}</a></li>
+						</ul>
+						<form class="navbar-form" name="loginForm" ng-submit="loginSubmit()" ng-show="!login.user.id">
+							<input ng-model="username" class="span2" type="text" placeholder="{{ content.usernamePlaceholder }}" />
+							<input ng-model="password" class="span2" type="password" placeholder="{{ content.passwordPlaceholder }}" />
+							<button type="submit" class="btn">{{ content.login }}</button>
+							<button class="btn" ng-click="signup()">{{ content.signup }}</button>
+						</form>
+					</div>
+                    <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" type="button">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="#">{{ content.projectName }}</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="active"><a href="#">{{ content.menuHome }}</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ content.menuAnnounces }}<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ url.announceList }}">{{ content.menuAnnounceList }}</a></li>
+                                    <li><a href="{{ url.announceNew }}">{{ content.menuAnnounceNew }}</a></li>
+                                </ul>
+                            </li>
+							<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ content.menuDeclare }}<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ url.newTransaction }}">{{ content.menuNewTransaction }}</a></li>
+									<li><a href="{{ url.collectiveWork }}">{{ content.menuCollectiveWork }}</a></li>
+                                </ul>
+                            </li>
+							<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ content.collectifName }}<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">{{ content.collectiveTime }}</a></li>
+									<li><a href="#">{{ content.collectiveValidations }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+					
+		<div class="container">
+			<div class="row" style="padding-top: 20px;">
+				<div class="span10 offset1">
+					<!--<div class="hero-unit">
+						
+						<div class="row-fluid">
+							<div class="span4">
+							<h1>Pic'sel</h1>
+							<p></p>
+							</div>
+						</div>
+						<p></p>
+					</div>-->
+					<pre>Debug : {{debug}}</pre>
+					<div id="alert-box" ng-show="alert.level" class="alert alert-{{alert.level}}">{{ alert.message }}</div>
+					<div ng-view ng-cloak></div>
+				<footer style="padding-top: 40px;">
+					<p>Licence : GPL</p>
+				</footer>
+				</div>
+			</div>
+		</div>
+			
+		<div id="signUpModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="signUpLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="signUpLabel">{{ content.signUp }}</h3>
+			</div>
+			<div class="modal-body">
+				<form class="form form-horizontal" ng-submit="signUpSubmit()">
+					<div class="control-group">
+						<label class="control-label" for="">Identifiant</label>
+						<div class="controls">
+							<input name="title" type="text" ng-model="user.id" required/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="">Mot de passe</label>
+						<div class="controls">
+							<input name="title" type="password" ng-model="user.password" required/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="">Email</label>
+						<div class="controls">
+							<input name="title" type="email" ng-model="user.email" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="">Tel</label>
+						<div class="controls">
+							<input name="title" type="text" ng-model="user.tel"  placeholder="ex : 01 23 45 67 89" ng-pattern="patternTel"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="">Date de naissance</label>
+						<div class="controls">
+							<input name="title" type="text" ng-model="user.birthday" placeholder="ex : 01/01/1960"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<button class="btn btn-primary" type="submit">Valider</button>
+							<button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>-->
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/angular.min.js"></script>
+		<script src="js/vendor/ui-bootstrap-tpls-0.1.0.min.js"></script>
+		<script src="js/vendor/ui-bootstrap-0.1.0.min.js"></script>
+		<script src="js/vendor/jquery.couch.js"></script>
+		<script src="js/vendor/modal-popups.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main-fr.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,114 @@
+﻿<div>
+	<h3>{{ user.id }}</h3>
+	<hr>
+	<p ng-show="user.tel">{{content.telephone}} : {{user.tel}}</p>
+	<p ng-show="user.email">{{content.emailAddress}} : {{user.email}}</p>
+	<p ng-show="!user.tel && !user.email">{{content.warningNoContactInformation}}</p>
+	<p ng-show="user.birthday">{{content.birthday}} : {{user.birthday | date:"dd/MM:YYYY"}}</p>
+	<p>{{content.balanceLabel}} : {{balance}} {{balance.unity}}</p>
+	<hr/>
+	<div>
+		<h4>{{content.nonValidatedTransactions}}</h4>
+		<ul class="nav nav-tabs">
+			<li class="active">
+				<a href="#tab-by-user" data-toggle="tab">{{content.toBeValidatedByUser}}</a>
+			</li>
+			<li><a href="#tab-for-user" data-toggle="tab">{{content.toBeValidatedForOtherUser}}</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active:{{$first}}" ng-repeat="(tab, filterValue) in {'tab-by-user': user.id, 'tab-for-user': '!'+user.id}" id="{{tab}}">
+				<table class="table table-hover">
+					<tr>
+						<th>{{content.from}}</th>
+						<th>{{content.to}}</th>
+						<th>{{content.amount}}</th>
+						<th>{{content.date}}</th>
+						<th>{{content.reason}}</th>
+						<th></th>
+					</tr>
+					<tr ng-repeat="(key, transaction) in transactionList | filter:{validated: '!true', validator: filterValue}">
+						<td><user name="transaction.from"/></td>
+						<td><user name="transaction.to"/></td>
+						<td>{{ transaction.amount }}</td>
+						<td>{{ transaction.execution_date | date:content.dateFormat }}</td>
+						<td>{{ transaction.reason.text }}</td>
+						<td><!--<button ng-click="validateTransaction(transaction)" class="btn" ng-show="login.user.id==user.id">Valider</button>-->
+							<ng-confirm title="Valider échange" action-text="Etes-vous sûr de vouloir valider cet échange ?" action-button-text="Oui" action-function="validateTransaction(transaction)" cancel-button-text="Non" cancel-function="close()">
+								<button class="btn" ng-show="transaction.validator==login.user.id">{{content.submit}}</button>
+							</ng-confirm>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+		</div>
+	</div>
+	
+	<hr/>
+	<h4>Annonces</h4>
+	<div ng-repeat="(type, label) in announceTypes">
+		<h5>{{ label }}s</h5>
+		<table class="table table-hover" ng-init="selected.announce_type=type">
+			<tr>
+				<th>Titre</th>
+				<th>Lieu</th>
+				<th>Date</th>
+				<th ng-show="login.user.id == user.id">Actions</th>
+			</tr>
+			<tr ng-repeat="(key, announce) in user_announces | filter:selected">
+				<td><a href="" ng-popup="/partials/announces_edit.html">{{ announce.title }}</a></td>
+				<td>{{ announce.place }}</td>
+				<td>{{ announce.created_at | date:content.dateFormat }}</td>
+				<td>
+					<!--<button class="btn" ng-show="login.user.id == user.id" ng-click="editAnnounce(announce)">Editer</button>{{ url.announceEdit(announce.id) }}-->
+					<button class="btn" ng-show="login.user.id == user.id" ng-popup="/partials/announces_edit.html">Editer </button>
+					<button class="btn" ng-show="login.user.id == user.id" ng-click="deleteAnnounce(key)">x</button>
+				</td>
+			</tr>
+		</table>
+		<!--<span ng-hide="user_announces | filter:selected">Aucune {{ content.types[type] }}</span>-->
+	</div>
+	<hr/>
+	<h4>Echanges réalisés</h4>
+	<table class="table table-hover">
+		<tr>
+			<th>Emetteur</th>
+			<th>Destinataire</th>
+			<th>Montant</th>
+			<th>Date</th>
+			<th>Motif</th>
+			<th>Statut</th>
+			<th>Actions</th>
+		</tr>
+		<tr ng-repeat="(key, transaction) in transactionList">
+			<td><user name="transaction.from"/></td>
+			<td><user name="transaction.to"/></td>
+			<td>{{ transaction.amount }}</td>
+			<td>{{ transaction.execution_date | date:content.dateFormat }}</td>
+			<td>{{ transaction.reason.text || "Toto" }}</td>
+			<td ng-show="transaction.validated">Validé</td>
+			<td ng-show="!transaction.validated">Non validé</td>
+			<td ng-show="!transaction.validated">
+				<button class="btn" ng-show="login.user.id == user.id" ng-click="editTransaction(transaction)">Editer</button>
+				<ng-confirm title="Valider échange" action-text="Etes-vous sûr de vouloir valider cet échange ?" action-button-text="Oui" action-function="validateTransaction(transaction)" cancel-button-text="Non" cancel-function="close()">
+					<button class="btn" ng-show="transaction.validator==login.user.id">{{content.submit}}</button>
+				</ng-confirm>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+<div id="confirmModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="confirmModalLabel">{{ confirm.label }}</h3>
+	</div>
+	<div class="modal-body">
+		{{ confirm.question }}		
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="confirm.ok()">Oui</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true" ng-click="confirm.cancel()">Non</button>
+	</div>
+</div>

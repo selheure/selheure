@@ -1,0 +1,95 @@
+
+ # liste annonces
+  * pagination
+  # lien vers la page de l'utilisateur
+ # nouvelle annonce
+  # envoi à la db
+ * validations côté db pour chaque écriture
+  * création/modif compte
+  * création/modif annonce
+  * création/modif transaction
+  # gestion des erreurs côté client
+  * gérer les erreurs renvoyées par la db côté client
+ # mode connecté
+  # login
+  # logout
+  # bloquer les comptes sans données utilisateur
+  * gérer timeout (code retour si utilisateur non connecté ?)
+  * local timeout
+ # utilisateur
+  # page publique utilisateur avec contact (tel ou mail)
+   * photo, infos
+   * cas : user not found
+  # page privée de gestion de son compte
+  # page de gestion de ses annonces
+   # possibilité de suppression
+   # possibilité de maj
+   # séparer propositions et demandes
+  * compta utilisateur
+   ** solde
+   * historique des transaction de l'ut
+ * ne pas afficher les infos personnelles aux non membres
+  * blocage en base (application d'un rôle ?)
+  * "blocage" dans l'appli
+ # auto-création de compte
+  * autorisation par un admin (application d'un rôle)
+ * transactions
+  # page "enregistrer une transaction"
+   ** enregistrement comptable de la transaction
+  * page historique des transactions
+ * page accueil
+  * historique des dernières transactions
+  * dernières annonces
+ * page utilisateurs ? (carnet d'adresses)
+ # transformer en couchapp
+ # mettre en ligne
+ * installer serveur CRIC
+
+* page d'admin
+ * ajout du groupe
+ * liste des rubriques / sous-rubriques
+ * modification de transaction
+ * traçabilité des actions des admins (de tous ?)
+* super-admin ?
+ * configuration du site
+ 
+* statistiques
+ * globales
+ * pour l'ut
+ * richesse générée
+
+ * page à propos
+ * page contact ?
+ * page CRIC ?
+ * log work CRIC ?
+ 
+ * config récupéré depuis la db
+ * majuscule & pluriel pour les mots traduits
+ * scrollbar pour la modal
+ * transformer main en header
+ # transformer categories & subCategories en directive
+  # vider subCat si cat est modifiée
+ 
+ * bugs
+  * _asynCall non généralisable
+  * patternTel : regexp dans doc de traduction
+  * affichage dates
+  * class="active:$first"
+  * collectif en anglais
+  * vider "notification" à chaque changement de page & timeout
+  * typeahead non angular -> AngularStrap
+ 
+ * tout de suite
+  * transaction possible dans les 2 sens avec validation de l'autre personne
+  # 2x validation de toutes les transactions
+  * déclaration de travail au CRIC dans l'interface (heures participatives)
+   * validation par une personne ayant le groupe CRIC
+  * un groupe CRIC pour Melun et Amap
+   * attribution du groupe par un admin et par celui qui a le groupe (transmission de relais)
+ * plus tard
+  * interface admin
+  * localisation géographique
+  * compte de solidarité -> à réfléchir
+  * extraction du catalogue
+   * extraction depuis une date : nouvelles annonces + modifs existantes (??)
+  

@@ -1,0 +1,30 @@
+﻿
+<div>
+	<h2>{{ content.titleList }}</h2>
+	<div>{{ content.category }} : <category options="categories" model="selected.category"/>
+	</div>
+	<div>{{ content.subCategory }} : <sub-category options="subCategories" model="selected.subCategory" parent="selected.category"/>
+	</div>
+	<pre>{{ selected }}</pre>
+	<div class="row" ng-repeat="(type, typeLabel) in announceTypes">
+		<div class="span8 offset1">
+			<h3>{{ typeLabel }}</h3>
+			<div class="accordion" id="announce-accordion">
+				<div class="accordion-group" ng-repeat="announce in announceList | selectFilter:'category':selected.category | selectFilter:'sub_category':selected.subCategory | filter:{announce_type: type}">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="announce-accordion" ng-href="#{{type}}-{{$index}}">
+							{{announce.title}} {{content.by}} {{announce.author}} ({{announce.created_at | date:content.dateFormat}})
+						</a>
+					</div>
+					<div class="accordion-body collapse" id="{{type}}-{{$index}}">
+						<p>{{ announce.message }}</p>
+						<p ng-show="announce.place">{{ content.place }} : {{ announce.place }}</p>
+						<p>{{ content.author }} : <a ng-href="{{ url.userPage(announce.author) }}">{{ announce.author }}</a></p>
+						<p>{{ content.date }} : {{ announce.created_at | date:content.dateFormat }}</p>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>

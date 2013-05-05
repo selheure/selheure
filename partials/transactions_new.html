@@ -1,0 +1,28 @@
+﻿
+
+<div>
+	<h3>Nouvel échange</h3>
+	<hr>
+	<span ng-hide="login.user.id">Vous devez être connecté pour accéder à cette page</span>
+	<div ng-show="login.user.id">
+		<p>Vous pouvez déclarer un échange en faveur de votre compte à destination de n'importe quel autre compte ou l'inverse.</p>
+		<form name="newTransaction" ng-submit="newTransactionSubmit()">
+			<pre>{{ transaction }}</pre>
+			<p>Compte de départ : <select ng-model="transaction.from" ng-show="!transaction.from || transaction.from == '' || transaction.from == login.user.id">
+				<option value="{{ login.user.id }}">le mien</option>
+				<option value="">celui de...</option>
+			</select>
+			<input ng-show="transaction.from != login.user.id" type="text" name="to" class="typeahead" autocomplete="off" ng-model="transaction.from" placeholder="Prénom Nom" required /></p>
+			<p>Compte d'arrivée : <input ng-hide="transaction.from != login.user.id" type="text" name="to" class="typeahead" autocomplete="off" ng-model="transaction.to" placeholder="Prénom Nom" required /><span ng-show="transaction.from != login.user.id">Le mien</span></p>
+			<p>Montant : <input type="number" min="0" name="amount" class="span1" ng-model="transaction.amount" placeholder="ex : 60" required /> minutes</p>
+			<p>Motif : <br/>
+			annonce <select ng-options="value._id as value.title group by value.author for (id, value) in userAnnounces" ng-model="transaction.reason.announce"></select><br/>
+			ou<br/>
+			<textarea name="reason" class="span8" ng-model="transaction.reason.text" />
+			</p>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary">{{ content.submit }}</button>
+			</div>
+		</form>
+	</div>
+</div>
