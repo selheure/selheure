@@ -6,11 +6,80 @@
 
 
 
+#last-announces div {
+	min-height: 400px;
+	background-color: white;
+}
+
+#last-transactions {
+}
+#last-transactions div {
+	min-height: 400px;
+	background-color: white;
+}
 
 
 
 
+.navbar-inverse .navbar-inner {
+	background-color: rgb(27, 27, 27);
+	background-image: linear-gradient(to bottom, rgb(34, 34, 34), rgb(17, 17, 17));
+	background-repeat: repeat-x;
+	border-color: rgb(37, 37, 37);
+}
 
+
+
+body {
+	margin: 0px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	color: rgb(51, 51, 51);
+	/*background-color: rgb(255, 255, 255);*/
+	background-color: #5D9A38,
+	/* #80A979, #93CF3F, #80B339,     rgb(59, 122, 48)*/
+	/*background-image: linear-gradient(to bottom, #5D9A38, #4E8C34);*/
+}
+
+
+div.hero-unit div {
+	background-color: rgb(255,255,255);
+	padding: 20px;
+	border-radius: 20px;
+}
+
+
+div.hero-unit {
+	padding: 13px;
+	background-color: rgb(233,133,33);
+	border-radius: 30px;
+}
+
+div.sh-block {
+	padding: 7px;
+	background-color: rgb(233,133,33);
+	border-radius: 35px;
+}
+
+div.sh-block > div {
+	padding: 20px;
+	background-color: rgb(255,255,255);
+	border-radius: 30px;
+	min-height: 200px;
+}
+
+a {
+	color: rgb(0,127,0);
+	text-decoration: none;
+	font-weight: bold;
+}
+
+
+
+div#new-transaction-table {
+	text-align: center;
+}
 
 
 

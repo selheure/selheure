@@ -1,4 +1,3 @@
-
  # liste annonces
   * pagination
   # lien vers la page de l'utilisateur
@@ -7,7 +6,7 @@
  * validations côté db pour chaque écriture
   * création/modif compte
   * création/modif annonce
-  * création/modif transaction
+  # création/modif transaction
   # gestion des erreurs côté client
   * gérer les erreurs renvoyées par la db côté client
  # mode connecté
@@ -19,27 +18,24 @@
  # utilisateur
   # page publique utilisateur avec contact (tel ou mail)
    * photo, infos
-   * cas : user not found
+   # cas : user not found
   # page privée de gestion de son compte
   # page de gestion de ses annonces
    # possibilité de suppression
    # possibilité de maj
    # séparer propositions et demandes
-  * compta utilisateur
-   ** solde
+  # compta utilisateur
+   # solde
    * historique des transaction de l'ut
  * ne pas afficher les infos personnelles aux non membres
   * blocage en base (application d'un rôle ?)
   * "blocage" dans l'appli
  # auto-création de compte
   * autorisation par un admin (application d'un rôle)
- * transactions
+ # transactions
   # page "enregistrer une transaction"
-   ** enregistrement comptable de la transaction
+   # enregistrement comptable de la transaction
   * page historique des transactions
- * page accueil
-  * historique des dernières transactions
-  * dernières annonces
  * page utilisateurs ? (carnet d'adresses)
  # transformer en couchapp
  # mettre en ligne
@@ -48,7 +44,7 @@
 * page d'admin
  * ajout du groupe
  * liste des rubriques / sous-rubriques
- * modification de transaction
+ * modification de transaction ? 
  * traçabilité des actions des admins (de tous ?)
 * super-admin ?
  * configuration du site
@@ -70,26 +66,76 @@
  # transformer categories & subCategories en directive
   # vider subCat si cat est modifiée
  
- * bugs
-  * _asynCall non généralisable
-  * patternTel : regexp dans doc de traduction
-  * affichage dates
-  * class="active:$first"
-  * collectif en anglais
-  * vider "notification" à chaque changement de page & timeout
-  * typeahead non angular -> AngularStrap
- 
+
  * tout de suite
-  * transaction possible dans les 2 sens avec validation de l'autre personne
+  # transaction possible dans les 2 sens avec validation de l'autre personne
   # 2x validation de toutes les transactions
-  * déclaration de travail au CRIC dans l'interface (heures participatives)
-   * validation par une personne ayant le groupe CRIC
-  * un groupe CRIC pour Melun et Amap
-   * attribution du groupe par un admin et par celui qui a le groupe (transmission de relais)
+  # déclaration de travail au CRIC dans l'interface (heures participatives)
+   # validation par une personne ayant le groupe CRIC
+  * échanges initiés par le CRIC
+   * Melun-Amap/Ateliers (Yoga)
+   * initialisation des comptes
+   * afficher le nom de la personne qui a déclaré l'échange entre parenthèses
+  * "mon compte"
+   * editer info contact
+  # en attente de validation
+   # label
+   # un tableau validé
+   # colonne "à valider par"
+  # user_page : enlever action
+  * nouvel échange : limiter motif (60 car)
+  # localisation géographique basique
+  # page accueil
+   # historique des dernières transactions
+   # dernières annonces
+   * ateliers collectifs
+    * ajouter "annonce CRIC"
+  * preparation beta
+   * indépendant du nom de la base de données
+  * champ confirmation mdp
+  * récupération mdp ?
+  # "créditeur"/"débiteur" pour les échanges
+  * nouvelle annonce
+   # réfléchir aux intitulés
+   # bouton pour type
+  # nouvel échange
+   # départ -> compte à débiter ; arrivée -> compte à créditer
+   # bug "celui de"
+   # bloquer "le mien" + "celui de... moi"
+  * voir les annonces : "Annonces du catalogue"
+   * réparer
+   * texte présentation
+  # user
+   # temps dispo : Solde compte temps
+  * select date
+  * bugs
+   # affichage dates
+   * balance non mise à jour après validation transaction
+   * capturer les erreurs et afficher un message dans chaque page
+   * page utilisateur : bouton editer pour "en attente de validation"
+   * clic sur une annonce dans page utilisateur
+
  * plus tard
+  * gestion mdp (perte & changement)
+  * supprimer compte adhérent
+  * chargement progressif du site
   * interface admin
-  * localisation géographique
+   * attribution du groupe par un admin et par celui qui a le groupe (transmission de relais)
   * compte de solidarité -> à réfléchir
   * extraction du catalogue
    * extraction depuis une date : nouvelles annonces + modifs existantes (??)
-  
+  * pagination des tables
+  * migrer content dans une factory
+  * hors compta / partage
+  * carte
+  * bugs
+   * _asynCall non généralisable
+   * patternTel : regexp dans doc de traduction
+   * collectif en anglais
+
+ * améliorations génériques
+  * plus de modules
+  * "/" dans les views
+  * modules partagés avec Colib
+  * tout le contenu traduisible en base
+   * traduisible dans l'interface d'admin
