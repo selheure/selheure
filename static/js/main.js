@@ -1,4 +1,3 @@
-
 angular.module('selheure.announces', ['dbConnector', 'user']).
 	factory('announces', ['$q', 'db', function($q, db) {
 		return {
@@ -36,7 +35,7 @@ angular.module('selheure.announces', ['dbConnector', 'user']).
 			restrict: 'EA',
 			scope: {number: '@'},
 			replace: true,
-			templateUrl: '/partials/announce_table.html',
+			templateUrl: 'partials/announce_table.html',
 			controller: function($scope) {
 				$scope.login = login;
 				//$scope.content = "Loading...";
@@ -115,7 +114,7 @@ angular.module('selheure.transactions', ['dbConnector', 'user']).
 			restrict: 'EA',
 			scope: {number: '@', user: '=', status: '@'},
 			replace: true,
-			templateUrl: '/partials/transaction_table.html',
+			templateUrl: 'partials/transaction_table.html',
 			link: function(scope, elm, attrs) {
 				scope.validateTransaction = function(transaction) {
 					console.log("validate trans", transaction);
@@ -218,7 +217,7 @@ angular.module('selheure.transactions', ['dbConnector', 'user']).
 		return {
 			announceList: config.urlPrefix + '/annonces/liste',
 			announceNew: config.urlPrefix + '/annonces/nouvelle',
-			announceEdit: function(id) { 
+			announceEdit: function(id) {
 				return config.urlPrefix + '/annonce/' + id + '/modifier'
 			},
 			about: config.urlPrefix + '/apropos',
@@ -249,8 +248,8 @@ angular.module('selheure.transactions', ['dbConnector', 'user']).
 			info: function(message) { this.alert('info', message) },
 			success: function(message) { this.alert('success', message) },
 			clear: function() {
-				var _this = this; 
-				_this.level = ''; 
+				var _this = this;
+				_this.level = '';
 				_this.message = '';
 			}
 		};
@@ -320,12 +319,13 @@ var app = angular.module('selheure', ['selheure.service', 'selheure.directive', 
 		otherwise({redirectTo: '/'});
 }]).
 	run(function($location, $http, config) {
-		//$http.get('/init').then(function(result) {
-		//	config.db = result[0];
-		//})
-		// host: toto.selheure.org
-		var host = $location.host().split('.');
-		config.db = 'selheure-' + host[0];
+    if($location.absUrl().indexOf('_rewrite')) {
+      config.db = $location.absUrl().split('/')[3];
+    } else {
+      // vhost
+      // host: dev.lupolibero.org -> db: /lupolibero-dev
+      config.db = '/lupolibero-' + $location.host().split('.')[0];
+    }
 	})
 
 
@@ -348,7 +348,7 @@ function MainCtrl($scope, url, login, uiLang, config, notification){
 	*/
 	$scope.couch = $.couch;
 	//$scope.couch.urlPrefix = "http://127.0.0.1:8080/db";
-	
+
 	$scope.url = url;
 	$scope.alert = notification;
 
@@ -364,7 +364,7 @@ function MainCtrl($scope, url, login, uiLang, config, notification){
 			});
 		}
 	};
-	
+
 	login.getUserSession();
 	$scope.login = login;
 
@@ -380,12 +380,12 @@ function MainCtrl($scope, url, login, uiLang, config, notification){
 		});
 	}
 	getConfig();
-	
+
 	$scope.patternTel = /\d\d \d\d \d\d \d\d \d\d/;
 	$scope.signup = function() {
 		$('#signUpModal').modal();
 	}
-	
+
 	$scope.signUpSubmit = function() {
 		$('#signUpModal').modal('hide');
 		//var newUser = {name: $scope.user.id};
@@ -399,7 +399,7 @@ function MainCtrl($scope, url, login, uiLang, config, notification){
 
 
 function HomeCtrl($scope, url) {
-	
+
 }
 
 
@@ -448,7 +448,7 @@ function AnnounceEditCtrl($scope, $routeParams, $location, url, config, db, logi
 			console.log($scope.announce);
 		});
 	}
-	
+
 	$scope.announceSubmit = function() {
 		var id;
 		if(login.loginRequired()) {
@@ -501,7 +501,7 @@ function UserPageCtrl($scope, $routeParams, url, config, db, login, notification
 	console.log($scope.content)
 	$scope.announceTypes = config.announceTypes;
 	$scope.close = PopupService.close;
-	
+
 	$scope.editAnnounceSubmit = function() {
 		if(login.loginRequired()) {
 			var doc = angular.copy($scope.announce);
@@ -513,15 +513,15 @@ function UserPageCtrl($scope, $routeParams, url, config, db, login, notification
 					$scope.announce = {};
 					$scope.announceToEdit = {};
 					$scope.$apply();
-				}, 
+				},
 				error: function(status, error) {
 					console.error(status, error);
 				}
 			});
 		}
 	}
-	
-	
+
+
 	$scope.deleteAnnounce = function(key) {
 		if(login.loginRequired()) {
 			$scope.announceKeyToDelete = key;
@@ -541,7 +541,7 @@ function UserPageCtrl($scope, $routeParams, url, config, db, login, notification
 			PopupService.alert('Vous n\'êtes pas connecté(e)', 'Vous devez vous connecter pour effectuer cette action', 'Ok', 'close()');
 		}
 	}
-	
+
 	$scope.validateTransaction = function(transaction) {
 		console.log("validate trans", transaction);
 		if(login.loginRequired()) {
@@ -570,7 +570,7 @@ function UserPageCtrl($scope, $routeParams, url, config, db, login, notification
 			$('#editModal').modal();
 		}
 	}
-	
+
 	function getUserBalance(user_name) {
 		return db.getView('selheure', 'balances', ['key', user_name]);
 	}
@@ -615,7 +615,7 @@ function UserPageCtrl($scope, $routeParams, url, config, db, login, notification
 	/*}*/
 	$scope.$watch('transactionTable', function(newVal, oldVal) {
 		if(newVal) {
-			$http.get('/partials/transaction_table.html').success(function (data) {
+			$http.get('partials/transaction_table.html').success(function (data) {
 				$('#transaction-table').html($compile(data)($scope));
 			});
 		}
@@ -623,9 +623,9 @@ function UserPageCtrl($scope, $routeParams, url, config, db, login, notification
 }
 
 function UserPageTransactionTableCtrl($scope) {
-	
-	
-	
+
+
+
 }
 
 function NewTransactionCtrl($scope, $q, $filter, db, login, notification) {
@@ -708,7 +708,7 @@ function NewTransactionCtrl($scope, $q, $filter, db, login, notification) {
 	$scope.$watch("transaction.fromButton", function(newVal, oldVal){
 		if(newVal !== undefined){
 			console.log($filter('filter')(login.user.proxyFor, newVal))
-			if(newVal == login.user.id || 
+			if(newVal == login.user.id ||
 					login.user.proxyFor && $filter('filter')(login.user.proxyFor, newVal).length){
 				$scope.transaction.toButton = false;
 				$scope.transaction.from = $scope.transaction.fromButton;
@@ -721,7 +721,7 @@ function NewTransactionCtrl($scope, $q, $filter, db, login, notification) {
 	});
 	$scope.$watch("transaction.toButton", function(newVal, oldVal){
 		if(newVal !== undefined){
-			if(newVal == login.user.id || 
+			if(newVal == login.user.id ||
 					login.user.proxyFor && $filter('filter')(login.user.proxyFor, newVal).length){
 				$scope.transaction.to = $scope.transaction.toButton;
 			} else
@@ -746,7 +746,7 @@ function CollectiveWorkCtrl($scope, config, db, login, notification) {
 		from: config.collectifName,
 		//to: login.user.id,
 	};
-	
+
 	$scope.newTransactionSubmit = function() {
 		if(login.loginRequired()) {
 			console.log($scope.transaction);
@@ -765,7 +765,7 @@ function CollectiveWorkCtrl($scope, config, db, login, notification) {
     $scope.updateBudgets = function(b, b_total) {
         $scope.budget_finance;
     }
-	
+
 	.directive('contenteditable', function() {
     return {
         require: 'ngModel',

@@ -110,7 +110,7 @@ function WhoCtrl($scope){
 		title: "Who",
 		rows : []
 	};
-	
+
 	$scope.contributors = [
 		{
 			firstname: 'Sylvain',
@@ -125,7 +125,7 @@ function WhoCtrl($scope){
 				website: 'http://sylvainduchesne.com',
 				//facebook: '',
 			}
-		}	
+		}
 	];
 }
 
