@@ -1,0 +1,52 @@
+
+<div class="sh-block">
+<div ng-controller="AnnounceEditCtrl">
+	<h2 ng-show="announce._id">{{ content.titleEdit }}</h2>
+	<h2 ng-hide="announce._id">{{ content.titleNew }}</h2>
+	<span ng-hide="login.user.id">Vous devez être connecté pour accéder à cette page</span>
+	<div ng-show="login.user.id">
+		<div class="row-fluid">
+			<div class="span8 offset1" ng-init="selectedType.type=type">
+				<h3>{{ content.typeTitles[selectedType.type] }}</h3>
+				<form name="announceForm" ng-submit="announceSubmit()">
+					<div class="row-fluid">
+						<div class="span10 offset2">
+							<div class="btn-group">
+								<button type="button" class="btn" ng-model="announce.announce_type" ng-repeat="(key, label) in announceTypes" btn-radio="key">{{label}}</button>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="row-fluid">
+						<div class="span2" style="text-align:right">{{ content.category }} : </div>
+						<div class="span10"><!--<select ng-model="announce.category" required ng-options="id as name for (id, name) in categories"></select>--><category options="categories" model="announce.category"/>
+						<span class="error" ng-show="announce.category.$error.required">*</span></div>
+					</div>
+					<div class="row-fluid">
+						<div class="span2" style="text-align:right">{{ content.subCategory }} : </div>
+						<div class="span10"><!--<select ng-model="announce.sub_category" required ng-options="id as name for (id, name) in subCategories[announce.category]"></select>--><sub-category options="subCategories" model="announce.sub_category" parent="announce.category"/>
+						<span class="error" ng-show="announce.sub_category.$error.required">*</span></div>
+					</div>
+					<div class="row-fluid">
+						<div class="span2" style="text-align:right">{{ content.title }} : </div>
+						<div class="span10"><input type="text" name="title" ng-model="announce.title" required/>
+						<span class="error" ng-show="announce.title.$error.required">*</span></div>
+					</div>
+					<div class="row-fluid">
+						<div class="span2" style="text-align:right">{{ content.place }} :</div>
+						<div class="span10"><input type="text" name="place" ng-model="announce.place"/></div>
+					</div>
+					<div class="row-fluid">
+						<div class="span2" style="text-align:right">{{ content.description }} :</div>
+						<div class="span10"><textarea name="message" class="span8" ng-model="announce.message" required/>
+						<span class="error" ng-show="announce.message.$error.required">*</span></div>
+					</div>
+					<div class="row-fluid">
+						<div class="span10 offset2"><button type="submit" class="btn btn-primary">{{ content.submit }}</button></div>
+					</div>
+				</form>
+			</div>
+		</div>
+	
+</div>
+</div>
