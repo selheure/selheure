@@ -1,13 +1,17 @@
 {
-	"name": "selheure-base",
-	"version": "0.0.1",
-	"description": "SEL'heure CouchApp",
-	"load": "lib/app",
-	"modules": ["lib"],
-	"attachments": ["static", "partials"],
-	"dependencies": {
-		"properties": null,
-		"attachments": null,
-		"modules": null
-	}
+  "name": "selheure-base",
+  "version": "0.0.1",
+  "description": "SEL'heure CouchApp",
+  "load": "lib/app",
+  "modules": ["lib"],
+  "attachments": ["static", "partials"],
+  "shell": [
+    "grunt concat"
+  ],
+  "dependencies": {
+    "properties": null,
+    "attachments": null,
+    "modules": null,
+    "blocking-multi-shell": null
+  }
 }

@@ -1,0 +1,27 @@
+{
+  "name": "selheure-base",
+  "version": "0.0.1",
+  "description": "SEL'heure\r ========",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/selheure/selheure-base.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/selheure/selheure-base/issues"
+  },
+  "homepage": "https://github.com/selheure/selheure-base",
+  "dependencies": {
+    "grunt": "~0.4.3",
+    "grunt-concat": "~0.1.6",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-shell": "~0.6.4",
+    "load-grunt-tasks": "~0.4.0"
+  }
+}
