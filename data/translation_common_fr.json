@@ -1,0 +1,7 @@
+{
+   "_id": "translation_common_fr",
+   "type": "translation",
+   "dateFormat": "dd/MM",
+   "patternTel": "/\\d\\d \\d\\d \\d\\d \\d\\d \\d\\d/",
+   "submit": "valider"
+}

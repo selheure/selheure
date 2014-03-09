@@ -1,0 +1,20 @@
+{
+   "_id": "translation_header_fr",
+   "menuHome": "Accueil",
+   "menuAnnounces": "Catalogue",
+   "login": "Connexion",
+   "logout": "Déconnexion",
+   "signup": "S'enregistrer",
+   "menuAnnounceList": "Voir les annonces",
+   "menuAnnounceNew": "Créer une annonce",
+   "menuTransactions": "Echanges",
+   "menuNewTransaction": "Un échange SEL",
+   "menuAbout": "A propos",
+   "menuContact": "Contact",
+   "usernamePlaceholder": "Identifiant",
+   "passwordPlaceholder": "Mot de passe",
+   "type": "translation",
+   "collectiveTime": "temps collectif",
+   "menuDeclare": "Déclarer",
+   "menuCollectiveWork": "Une participation CRIC"
+}

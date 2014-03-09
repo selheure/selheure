@@ -1,0 +1,20 @@
+{
+   "_id": "translation_userpage_fr",
+   "type": "translation",
+   "telephone": "tel",
+   "emailAddress": "adresse e-mail",
+   "warningNoContactInformation": "Attention : pas d'information de contact",
+   "birthday": "date de naissance",
+   "balanceLabel": "Solde compte temps",
+   "balanceUnity": "minute",
+   "nonValidatedTransactions": "Echanges en attente de validation",
+   "toBeValidatedByUser": "A valider",
+   "toBeValidatedForOtherUser": "En attente de validation",
+   "amount": "montant",
+   "from": "émetteur",
+   "to": "destinataire",
+   "date": "date",
+   "reason": "motif",
+   "toBeValidatedBy": "A valider par",
+   "localization": "localisation"
+}
