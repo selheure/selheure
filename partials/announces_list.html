@@ -1,6 +1,5 @@
 ﻿
 <div class="sh-block">
-{{announceList}}
 <div>
 	<h2>{{ content.titleList }}</h2>
 	<div>{{ content.category }} : <category options="categories" model="selected.category"/>
@@ -11,7 +10,8 @@
 		<div class="span8 offset1">
 			<h3>{{ typeLabel }}</h3>
 			<div class="accordion" id="announce-accordion">
-				<div class="accordion-group" ng-repeat="(key, announce) in announceList | selectFilter:'category':selected.category | selectFilter:'sub_category':selected.subCategory | filter:{announce_type: type}">
+				<div class="accordion-group" ng-repeat="(key, announce) in announceList | filter:{type: type}">
+				<!-- selectFilter:'category':selected.category | selectFilter:'sub_category':selected.subCategory | -->
 					<div class="accordion-heading">
 						<a class="accordion-toggle" data-toggle="collapse" data-parent="announce-accordion" ng-href="#{{type}}-{{$index}}">
 							{{announce.title}} {{content.by}} {{announce.author}} ({{announce.created_at | date:content.dateFormat}})

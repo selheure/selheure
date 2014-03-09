@@ -121,7 +121,7 @@ angular.module('selheure.transactions', ['dbConnector', 'user']).
 					console.log("validate trans", transaction);
 					if(login.loginRequired()) {
 						PopupService.close();
-						db.update('validate', {_id: transaction._id}).
+						db.update('selheure/validate', {_id: transaction._id}).
 						then(function(result) {
 							transaction.validated = true;
 							notification.success("Echange validé avec succès !");
@@ -369,7 +369,7 @@ function MainCtrl($scope, url, login, uiLang, config, notification){
 	$scope.login = login;
 
 	function getConfig() {
-		$scope.couch.db('selheure').openDoc("selheure-config", {
+		$scope.couch.db(config.db).openDoc("selheure-config", {
 			success: function(doc) {
 				//console.log(doc);
 				$scope.categories = doc.categories;
@@ -436,6 +436,7 @@ function AnnounceDetailCtrl($scope) {
 function AnnounceEditCtrl($scope, $routeParams, $location, url, config, db, login, uiLang, notification) {
 	var id = $routeParams['id_announce'];
 	$scope.content = {};
+	$scope.login = login;
 	uiLang.getTranslations('announces').then(function(result){
 		angular.extend($scope.content, result);
 	});
@@ -457,24 +458,24 @@ function AnnounceEditCtrl($scope, $routeParams, $location, url, config, db, logi
 			}
 			function creationLoop(announce, errbackLoop) {
 				console.log(announce);
-				var def = db.update('announce_edit', announce);
+				var def = db.update('selheure/announce_edit', announce);
 				if(errbackLoop){
 					return def.then(onSuccessRedirect, errbackLoop);
 				}
 			}
 			if($scope.announce._id){
-				db.update('announce_edit', $scope.announce).then(function(result) {
+				db.update('selheure/announce_edit', $scope.announce).then(function(result) {
 					onSuccessRedirect(result, true);
 				});
 			} else {
 				db.getView('selheure', 'announce_ids').then(function(result){
 					var announce = angular.copy($scope.announce);
-					announce.id = result.max ? parseInt(result.max) + 1 : 1;
-					console.log(result.max, announce);
+					announce.id = result[0].max ? parseInt(result[0].max) + 1 : 1;
+					console.log(announce.id);
 					creationLoop(announce, function(error){
 						console.log(error);
 						if(error[0] == '409'){
-							doc.id += 1;
+							annonce.id += 1;
 							creationLoop(announce, this);
 						} else {
 							notification.error('Une erreur est survenue lors de la création/modification de cette annonce (' + error[0] + ', ' + error[1] + ')');
@@ -545,7 +546,7 @@ function UserPageCtrl($scope, $routeParams, url, config, db, login, notification
 		console.log("validate trans", transaction);
 		if(login.loginRequired()) {
 			PopupService.close();
-			db.update('validate', {_id: transaction._id}).
+			db.update('selheure/validate', {_id: transaction._id}).
 			then(function(result) {
 				transaction.validated = true;
 				notification.success("Echange validé avec succès !");
@@ -684,7 +685,7 @@ function NewTransactionCtrl($scope, $q, $filter, db, login, notification) {
 			// datepicker
 			transaction.execution_date = new Date(date[2], parseInt(date[1]) - 1, date[0], '01').toISOString();
 			console.log(transaction);
-			db.update('transaction_edit', transaction).then(function(result) {
+			db.update('selheure/transaction_edit', transaction).then(function(result) {
 				console.log("success!!", result);
 				notification.success("Déclaration sauvegardée avec succès !");
 				$scope.transaction = {};
@@ -749,7 +750,7 @@ function CollectiveWorkCtrl($scope, config, db, login, notification) {
 	$scope.newTransactionSubmit = function() {
 		if(login.loginRequired()) {
 			console.log($scope.transaction);
-			db.update('transaction_edit', $scope.transaction).then(function(result) {
+			db.update('selheure/transaction_edit', $scope.transaction).then(function(result) {
 				console.log("success!!", result);
 				notification.success("Déclaration sauvegardée avec succès !");
 				$scope.transaction = {};
