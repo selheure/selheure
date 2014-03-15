@@ -1,184 +1,184 @@
 {
-   "_id": "selheure-config",
-   "categories": {
-       "10": "EDUCATION / LANGUES / CULTURE",
-       "11": "ARTISANAT",
-       "12": "ARTS",
-       "13": "PHOTO / VIDEO / SON",
-       "14": "INFORMATIQUE / INTERNET",
-       "15": "ANIMAUX",
-       "16": "SPORTS",
-       "17": "JEUX / LOISIRS / SORTIES",
-       "18": "FETES / EVENEMENTS",
-       "19": "OBJETS DIVERS",
-       "20": "ATELIERS COLLECTIFS AU CRIC",
-       "01": "PLANTES ET JARDINS",
-       "02": "HABITAT /TRAVAUX",
-       "03": "VEHICULES / MECANIQUE",
-       "04": "TRANSPORT / COVOITURAGE",
-       "05": "ALIMENTATION",
-       "06": "HABILLEMENT / COUTURE",
-       "07": "BEAUTE / BIEN ETRE",
-       "08": "AIDE AUX PERSONNES",
-       "09": "ADMINISTRATION / EMPLOI / ENTREPRISE"
-   },
-   "sub_categories": {
-       "10": {
-           "10-01": "Soutien scolaire et enseignement général",
-           "10-02": "Rédaction, relecture",
-           "10-03": "Français langue étrangère",
-           "10-04": "Langues européennes latines",
-           "10-05": "Langues européennes autres ( anglo-saxonnes, slaves)",
-           "10-06": "Langues de l'Asie",
-           "10-07": "Langues de l'Afrique",
-           "10-08": "Livres / Lecture",
-           "10-99": "Autres langues et autres domaines."
-       },
-       "11": {
-           "11-01": "Fil et textile",
-           "11-02": "Papier et carton",
-           "11-03": "Fibres végétales et bois",
-           "11-04": "Terre et matériaux à modeler",
-           "11-05": "Verre et plexiglas",
-           "11-06": "Métal",
-           "11-99": "Autres"
-       },
-       "12": {
-           "12-01": "Arts du spectacle",
-           "12-02": "Beaux-arts",
-           "12-03": "Musique",
-           "12-04": "Ecriture, littérature"
-       },
-       "13": {
-           "13-01": "Photo",
-           "13-02": "VIdéo",
-           "13-03": "Son"
-       },
-       "14": {
-           "14-01": "Ordinateurs Mac et PC",
-           "14-02": "Périphériques et services",
-           "14-03": "Traitements de textes, tableurs",
-           "14-04": "PAO, image et son",
-           "14-05": "Autres logiciels",
-           "14-06": "Utilisation Internet",
-           "14-07": "Pages web et sites",
-           "14-08": "Programmation",
-           "14-99": "Autres"
-       },
-       "15": {
-           "15-01": "Matériel et documentation",
-           "15-02": "Animaux et services"
-       },
-       "16": {
-           "16-01": "Sports individuels",
-           "16-02": "Sports collectifs",
-           "16-03": "Yoga et arts martiaux",
-           "16-04": "Danses de salon",
-           "16-05": "Danses folks",
-           "16-06": "Autres danses",
-           "16-99": "Autres"
-       },
-       "17": {
-           "17-01": "Jeux de société",
-           "17-02": "Jeux de construction",
-           "17-03": "Jeux de plein air",
-           "17-04": "Jeux vidéo et informatique",
-           "17-05": "Sorties culturelles, soirées",
-           "17-06": "Excursions, randonnées, promenades"
-       },
-       "18": {
-           "18-01": "Locaux",
-           "18-02": "Organisation",
-           "18-03": "Animation"
-       },
-       "19": {
-           "19-01": "Matériaux",
-           "19-02": "Gros équipement maison",
-           "19-03": "Petit équipement maison",
-           "19-04": "Luminaires",
-           "19-05": "Objets décoratifs",
-           "19-99": "Autres"
-       },
-       "20": {
-       },
-       "01": {
-           "01-01": "Ustensiles et outils",
-           "01-02": "Graines, plants et bouture",
-           "01-03": "Petit entretien, arrosage",
-           "01-04": "Aménagements, gros travaux",
-           "01-99": "Autres"
-       },
-       "02": {
-           "02-01": "Maisons et locaux",
-           "02-02": "Manutention",
-           "02-03": "Bricolages divers",
-           "02-04": "Gros travaux",
-           "02-05": "Plomberie",
-           "02-06": "Electricité",
-           "02-07": "Peintures, papiers peints...",
-           "02-08": "Sols, carrelages...",
-           "02-09": "Aménagement intérieur / Décoration",
-           "02-99": "Autres"
-       },
-       "03": {
-           "03-01": "Vélos",
-           "03-02": "Motos / Vélomoteurs",
-           "03-03": "Autos",
-           "03-99": "Autres"
-       },
-       "04": {
-           "04-01": "Petites distances",
-           "04-02": "Moyennes, longues distances",
-           "04-03": "Transport pour déménagement",
-           "04-99": "Autres"
-       },
-       "05": {
-           "05-01": "Ingrédients et ustensiles",
-           "05-02": "Cuisine en général / Buffets / Repas",
-           "05-03": "Pâtisserie / Boulange",
-           "05-04": "Cuisine française",
-           "05-05": "Cuisine d'Inde et d'Asie",
-           "05-06": "Cuisine des Amériques et des Antilles",
-           "05-07": "Cuisine du Maghreb et du Moyen-Orient",
-           "05-08": "Cuisine Africaine",
-           "05-09": "Autres cuisines",
-           "05-99": "Autres"
-       },
-       "06": {
-           "06-01": "Vêtements enfants",
-           "06-02": "Vêtements femmes",
-           "06-03": "Vêtements hommes",
-           "06-04": "Chaussures",
-           "06-05": "Accessoires",
-           "06-06": "Couture",
-           "06-07": "Tricot, crochet",
-           "06-99": "Autres"
-       },
-       "07": {
-           "07-01": "Soins esthétiques, maquillage",
-           "07-02": "Coiffure",
-           "07-03": "Manucure, pédicure",
-           "07-04": "Massages",
-           "07-99": "Autres"
-       },
-       "08": {
-           "08-01": "Garde d'enfants",
-           "08-02": "Ménage / Rangement",
-           "08-03": "Repassage",
-           "08-04": "Courses",
-           "08-99": "Autres"
-       },
-       "09": {
-           "09-01": "Démarches administratives",
-           "09-02": "Recherche d'emploi",
-           "09-03": "Comptabilité / Gestion",
-           "09-04": "Conseils juridiques",
-           "09-05": "Entreprises",
-           "09-99": "Autres"
-       }
-   },
-   "announceTypes": {
-       "demand": "demande",
-       "proposal": "proposition"
-   }
+  "_id": "selheure-config",
+  "categories": {
+      "10": "EDUCATION / LANGUES / CULTURE",
+      "11": "ARTISANAT",
+      "12": "ARTS",
+      "13": "PHOTO / VIDEO / SON",
+      "14": "INFORMATIQUE / INTERNET",
+      "15": "ANIMAUX",
+      "16": "SPORTS",
+      "17": "JEUX / LOISIRS / SORTIES",
+      "18": "FETES / EVENEMENTS",
+      "19": "OBJETS DIVERS",
+      "20": "ATELIERS COLLECTIFS AU CRIC",
+      "01": "PLANTES ET JARDINS",
+      "02": "HABITAT /TRAVAUX",
+      "03": "VEHICULES / MECANIQUE",
+      "04": "TRANSPORT / COVOITURAGE",
+      "05": "ALIMENTATION",
+      "06": "HABILLEMENT / COUTURE",
+      "07": "BEAUTE / BIEN ETRE",
+      "08": "AIDE AUX PERSONNES",
+      "09": "ADMINISTRATION / EMPLOI / ENTREPRISE"
+  },
+  "sub_categories": {
+      "10": {
+          "10-01": "Soutien scolaire et enseignement général",
+          "10-02": "Rédaction, relecture",
+          "10-03": "Français langue étrangère",
+          "10-04": "Langues européennes latines",
+          "10-05": "Langues européennes autres ( anglo-saxonnes, slaves)",
+          "10-06": "Langues de l'Asie",
+          "10-07": "Langues de l'Afrique",
+          "10-08": "Livres / Lecture",
+          "10-99": "Autres langues et autres domaines."
+      },
+      "11": {
+          "11-01": "Fil et textile",
+          "11-02": "Papier et carton",
+          "11-03": "Fibres végétales et bois",
+          "11-04": "Terre et matériaux à modeler",
+          "11-05": "Verre et plexiglas",
+          "11-06": "Métal",
+          "11-99": "Autres"
+      },
+      "12": {
+          "12-01": "Arts du spectacle",
+          "12-02": "Beaux-arts",
+          "12-03": "Musique",
+          "12-04": "Ecriture, littérature"
+      },
+      "13": {
+          "13-01": "Photo",
+          "13-02": "VIdéo",
+          "13-03": "Son"
+      },
+      "14": {
+          "14-01": "Ordinateurs Mac et PC",
+          "14-02": "Périphériques et services",
+          "14-03": "Traitements de textes, tableurs",
+          "14-04": "PAO, image et son",
+          "14-05": "Autres logiciels",
+          "14-06": "Utilisation Internet",
+          "14-07": "Pages web et sites",
+          "14-08": "Programmation",
+          "14-99": "Autres"
+      },
+      "15": {
+          "15-01": "Matériel et documentation",
+          "15-02": "Animaux et services"
+      },
+      "16": {
+          "16-01": "Sports individuels",
+          "16-02": "Sports collectifs",
+          "16-03": "Yoga et arts martiaux",
+          "16-04": "Danses de salon",
+          "16-05": "Danses folks",
+          "16-06": "Autres danses",
+          "16-99": "Autres"
+      },
+      "17": {
+          "17-01": "Jeux de société",
+          "17-02": "Jeux de construction",
+          "17-03": "Jeux de plein air",
+          "17-04": "Jeux vidéo et informatique",
+          "17-05": "Sorties culturelles, soirées",
+          "17-06": "Excursions, randonnées, promenades"
+      },
+      "18": {
+          "18-01": "Locaux",
+          "18-02": "Organisation",
+          "18-03": "Animation"
+      },
+      "19": {
+          "19-01": "Matériaux",
+          "19-02": "Gros équipement maison",
+          "19-03": "Petit équipement maison",
+          "19-04": "Luminaires",
+          "19-05": "Objets décoratifs",
+          "19-99": "Autres"
+      },
+      "20": {
+      },
+      "01": {
+          "01-01": "Ustensiles et outils",
+          "01-02": "Graines, plants et bouture",
+          "01-03": "Petit entretien, arrosage",
+          "01-04": "Aménagements, gros travaux",
+          "01-99": "Autres"
+      },
+      "02": {
+          "02-01": "Maisons et locaux",
+          "02-02": "Manutention",
+          "02-03": "Bricolages divers",
+          "02-04": "Gros travaux",
+          "02-05": "Plomberie",
+          "02-06": "Electricité",
+          "02-07": "Peintures, papiers peints...",
+          "02-08": "Sols, carrelages...",
+          "02-09": "Aménagement intérieur / Décoration",
+          "02-99": "Autres"
+      },
+      "03": {
+          "03-01": "Vélos",
+          "03-02": "Motos / Vélomoteurs",
+          "03-03": "Autos",
+          "03-99": "Autres"
+      },
+      "04": {
+          "04-01": "Petites distances",
+          "04-02": "Moyennes, longues distances",
+          "04-03": "Transport pour déménagement",
+          "04-99": "Autres"
+      },
+      "05": {
+          "05-01": "Ingrédients et ustensiles",
+          "05-02": "Cuisine en général / Buffets / Repas",
+          "05-03": "Pâtisserie / Boulange",
+          "05-04": "Cuisine française",
+          "05-05": "Cuisine d'Inde et d'Asie",
+          "05-06": "Cuisine des Amériques et des Antilles",
+          "05-07": "Cuisine du Maghreb et du Moyen-Orient",
+          "05-08": "Cuisine Africaine",
+          "05-09": "Autres cuisines",
+          "05-99": "Autres"
+      },
+      "06": {
+          "06-01": "Vêtements enfants",
+          "06-02": "Vêtements femmes",
+          "06-03": "Vêtements hommes",
+          "06-04": "Chaussures",
+          "06-05": "Accessoires",
+          "06-06": "Couture",
+          "06-07": "Tricot, crochet",
+          "06-99": "Autres"
+      },
+      "07": {
+          "07-01": "Soins esthétiques, maquillage",
+          "07-02": "Coiffure",
+          "07-03": "Manucure, pédicure",
+          "07-04": "Massages",
+          "07-99": "Autres"
+      },
+      "08": {
+          "08-01": "Garde d'enfants",
+          "08-02": "Ménage / Rangement",
+          "08-03": "Repassage",
+          "08-04": "Courses",
+          "08-99": "Autres"
+      },
+      "09": {
+          "09-01": "Démarches administratives",
+          "09-02": "Recherche d'emploi",
+          "09-03": "Comptabilité / Gestion",
+          "09-04": "Conseils juridiques",
+          "09-05": "Entreprises",
+          "09-99": "Autres"
+      }
+  },
+  "announceTypes": {
+    "demand": "demande",
+    "proposal": "proposition"
+  }
 }
