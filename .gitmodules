@@ -2,3 +2,6 @@
 	path = src/dbSelect
 	url = https://github.com/LupoLibero/couch-ng-dbSelect.git
 	branch = master
+[submodule "src/Url"]
+	path = src/Url
+	url = https://github.com/LupoLibero/couch-ng-Url
