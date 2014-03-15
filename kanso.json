@@ -6,7 +6,7 @@
   "modules": ["lib"],
   "attachments": ["static", "partials"],
   "shell": [
-    "grunt concat"
+    "grunt compile"
   ],
   "dependencies": {
     "properties": null,

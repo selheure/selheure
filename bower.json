@@ -19,6 +19,7 @@
     "jquery.couch": "*",
     "angular-route": "~1.2.14",
     "angular-sanitize": "~1.2.14",
-    "angular-bootstrap": "~0.10.0"
+    "angular-bootstrap": "~0.10.0",
+    "angular-couch": "LupoLibero/ngCouch"
   }
 }
