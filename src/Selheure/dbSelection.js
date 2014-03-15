@@ -1,4 +1,5 @@
-ng.run(function($location, $http, config) {
+angular.module('selheure').
+run(function($location, $http, config) {
   if($location.absUrl().indexOf('_rewrite')) {
     config.db = $location.absUrl().split('/')[3];
   } else {

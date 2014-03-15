@@ -1,3 +1,4 @@
+angular.module('category').
 directive('subCategory', function() {
   return {
     restrict: 'E',

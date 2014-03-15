@@ -1,4 +1,5 @@
-ng.directive('announceLink', function(url, announces) {
+angular.module('announce').
+directive('announceLink', function(url, announces) {
   return {
     restrict: 'AE',
     scope: {id: '='},

@@ -1,4 +1,5 @@
-ng.controller('UserPageCtrl', function($scope, $routeParams, url, config, db, login, notification, uiLang, PopupService){
+angular.module('user', []).
+controller('UserPageCtrl', function($scope, $routeParams, url, config, db, login, notification, uiLang, PopupService){
   var user_name = $routeParams['user_name'];
   $scope.url = url;
   $scope.content = {};
@@ -15,7 +16,6 @@ ng.controller('UserPageCtrl', function($scope, $routeParams, url, config, db, lo
   $scope.editAnnounceSubmit = function() {
     if(login.loginRequired()) {
       var doc = angular.copy($scope.announce);
-      //$('#editModal').modal('hide');
       $scope.couch.db('selheure').saveDoc(doc, {
         success: function(data) {
           notification.success("Modification sauvegardée avec succès !");

@@ -1,4 +1,5 @@
-﻿ng.factory('uiLang', function($q, config, db) {
+﻿angular.module('translation').
+factory('uiLang', function($q, config, db) {
   return {
     translations: {},
     returnCommonAndRequested: function(requested) {

@@ -1,4 +1,5 @@
-ng.factory('announces', function($q, db) {
+angular.module('announce').
+factory('announces', function($q, db) {
   return {
     getLastAnnounces: function(nb) {
       var options = {descending: true};

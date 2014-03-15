@@ -1,4 +1,5 @@
-ng.factory('url', function(config){
+angular.module('url').
+factory('url', function(config){
   return {
     announceList: config.urlPrefix + '/annonces/liste',
     announceNew: config.urlPrefix + '/annonces/nouvelle',

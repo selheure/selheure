@@ -1,4 +1,5 @@
-﻿ng.directive('lastTransactions', function(transactions, db, notification, login, PopupService) {
+﻿angular.module('transaction').
+directive('lastTransactions', function(transactions, db, notification, login, PopupService) {
   return {
     restrict: 'EA',
     scope: {number: '@', user: '=', status: '@'},

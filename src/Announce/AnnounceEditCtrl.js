@@ -1,4 +1,5 @@
-ng.controller('AnnounceEditCtrl', function($scope, $routeParams, $location, url, config, db, login, uiLang, notification) {
+angular.module('announce').
+controller('AnnounceEditCtrl', function($scope, $routeParams, $location, url, config, db, login, uiLang, notification) {
   var id = $routeParams['id_announce'];
   $scope.content = {};
   $scope.login = login;

@@ -1,8 +1,8 @@
-ng.config(function($routeProvider){
+angular.module('selheure').
+config(function($routeProvider){
   $routeProvider.
     when('/', {
       templateUrl: 'partials/home.html',
-      controller:  'HomeCtrl',
     }).
     when('/annonces/liste', {
       templateUrl: 'partials/announces_list.html',
@@ -27,6 +27,5 @@ ng.config(function($routeProvider){
       templateUrl: 'partials/collective_work.html',
       controller:  'CollectiveWorkCtrl',
     }).
-    when('/logout', {redirectTo: '/'}).
     otherwise({redirectTo: '/'});
 });

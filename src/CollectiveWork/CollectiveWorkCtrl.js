@@ -1,4 +1,5 @@
-ng.controller('CollectiveWorkCtrl', function($scope, config, db, login, notification) {
+angular.module('collectiveWork').
+controller('CollectiveWorkCtrl', function($scope, config, db, login, notification) {
   $scope.login = login;
   $scope.transaction = {
     from: config.collectifName,

@@ -1,4 +1,5 @@
-ng.factory('notification', function($timeout) {
+angular.module('notification').
+factory('notification', function($timeout) {
   //TODO: add timeout
   return {
     level: '',

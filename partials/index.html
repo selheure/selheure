@@ -7,73 +7,79 @@
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width"/>
 
-    <style>
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-    </style>
-    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css      "/>
-    <link rel="stylesheet" href="css/main.css                                 "/>
-
+    <!-- Link -->
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css"      />
+    <link rel="stylesheet" href="css/main.css"                                 />
   </head>
+
   <body ng-controller="MainCtrl">
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <div class="pull-right">
-            <ul class="nav">
-              <li ng-show="login.user.id" class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ login.user.id }}</a>
-                <ul class="dropdown-menu">
-                  <li><a href="{{ url.userPage(login.user.id) }}">Mon compte</a></li>
-                  <li ng-repeat="(key, role) in login.user.roles">
-                    <a ng-href="{{url.userPage(key)}}">{{key}}</a>
-                  </li>
-                </ul>
-              </li>
-              <li ng-show="login.user.id"><a href="" ng-click="login.logout()">{{ content.logout }}</a></li>
-            </ul>
-            <form class="navbar-form" name="loginForm" ng-submit="loginSubmit()" ng-show="!login.user.id">
-              <input ng-model="username" class="span2" type="text" placeholder="{{ content.usernamePlaceholder }}" />
-              <input ng-model="password" class="span2" type="password" placeholder="{{ content.passwordPlaceholder }}" />
-              <button type="submit" class="btn">{{ content.login }}</button>
-              <button class="btn" ng-click="signup()">{{ content.signup }}</button>
-            </form>
-          </div>
-                    <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" type="button">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="brand" href="#">{{ content.projectName }} <small>(bêta)</small></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="active"><a href="#">{{ content.menuHome }}</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ content.menuAnnounces }}<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{{ url.announceList }}">{{ content.menuAnnounceList }}</a></li>
-                                    <li><a href="{{ url.announceNew }}">{{ content.menuAnnounceNew }}</a></li>
-                                </ul>
-                            </li>
-              <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ content.menuDeclare }}<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{{ url.newTransaction }}">{{ content.menuNewTransaction }}</a></li>
-                  <li><a href="{{ url.collectiveWork }}">{{ content.menuCollectiveWork }}</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
+    <!-- NavBar -->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+
+        <!-- Brand -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Selheure <small>(beta)</small></a>
         </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+          <!-- Link -->
+          <ul class="nav navbar-nav">
+            <li><a href="#">Acceuil</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalogue <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Voir les annonces</a></li>
+                <li><a href="#">Crée une annonce</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Déclaré <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Un échange SEL</a></li>
+                <li><a href="#">Une participation CRIC </a></li>
+              </ul>
+            </li>
+          </ul>
+          <!-- End link -->
+
+          <!-- Account -->
+          <ul class="nav navbar-nav navbar-right" ng-show="login">
+              <li><a href="#">Pseudo</a></li>
+              <li><button class="btn btn-default navbar-btn" ng-click="login.signOut()">Logout</button></li>
+          </ul>
+
+          <!-- Form connection -->
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Identifiant">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Mot de Pass">
+            </div>
+            <button type="submit" class="btn btn-default">Connexion</button>
+            <button type="submit" class="btn btn-default">S'enregistrer</button>
+          </form>
+
+        </div><!-- /.navbar-collapse -->
+
+      </div>
+    </nav>
+    <!-- End NavBar -->
 
     <div class="container">
       <div class="row" style="padding-top: 20px;">
         <div class="span12">
           <div id="alert-box" ng-show="alert.level" class="alert alert-{{alert.level}}">{{ alert.message }}</div>
-          <div ng-view ng-cloak></div>
+          <div ng-view></div>
         <footer style="padding-top: 40px;">
           <p>Licence : GPL</p>
         </footer>
@@ -81,60 +87,15 @@
       </div>
     </div>
 
-    <div id="signUpModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="signUpLabel" aria-hidden="true">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="signUpLabel">{{ content.signUp }}</h3>
-      </div>
-      <div class="modal-body">
-        <form class="form form-horizontal" ng-submit="signUpSubmit()">
-          <div class="control-group">
-            <label class="control-label" for="">Identifiant</label>
-            <div class="controls">
-              <input name="name" type="text" ng-model="user.id" required/>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="">Mot de passe</label>
-            <div class="controls">
-              <input name="password" type="password" ng-model="user.password" required/>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="">Email</label>
-            <div class="controls">
-              <input name="email" type="email" ng-model="user.email" />
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="">Tel</label>
-            <div class="controls">
-              <input name="title" type="text" ng-model="user.tel"  placeholder="ex : 01 23 45 67 89" ng-pattern="patternTel"/>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="">Localisation</label>
-            <div class="controls">
-              <input name="localization" type="text" ng-model="user.localization" placeholder="Quartier, rue, adresse précise..."/>
-            </div>
-          </div>
-          <div class="control-group">
-            <div class="controls">
-              <button class="btn btn-primary" type="submit">Valider</button>
-              <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-
     <script src="vendor/jquery/dist/jquery.js                                              "></script>
-    <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js                         "></script>
+    <script src="vendor/bootstrap/dist/js/bootstrap.js                                     "></script>
+    <!-- Angular -->
     <script src="vendor/angular/angular.js                                                 "></script>
     <script src="vendor/angular-route/angular-route.js                                     "></script>
     <script src="vendor/angular-sanitize/angular-sanitize.js                               "></script>
+    <!-- Module -->
+    <script src="vendor/angular-couch/couch.js                                             "></script>
+    <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js                         "></script>
     <script src="js/main.js                                                                "></script>
   </body>
 </html>

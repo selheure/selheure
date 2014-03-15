@@ -1,4 +1,5 @@
-ng.directive('category', function() {
+angular.module('category').
+directive('category', function() {
   return {
     restrict: 'E',
     scope: {options: '=', 'model': '='},

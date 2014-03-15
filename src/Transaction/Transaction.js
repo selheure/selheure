@@ -1,4 +1,5 @@
-﻿ng.factory('transactions', function(db) {
+﻿angular.module('transaction').
+factory('transactions', function(db) {
   return {
     getLastTransactions: function(nb) {
       return db.getView('selheure', 'transaction_list', [], false, {
