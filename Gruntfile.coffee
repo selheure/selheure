@@ -23,6 +23,15 @@ module.exports = (grunt) ->
           'temp/*/*.js'
         ]
         dest: 'static/js/main.js'
+        options:
+          process: (content, src) ->
+            src = src.split('/') # Split on slash
+            src = src[src.length-1] # Get file name
+            src = src[0] # Get the first letter
+            if (src.toUpperCase() == src)
+              return content
+            else
+              return ''
       }
     }
     coffee: {
