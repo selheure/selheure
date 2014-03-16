@@ -1,4 +1,4 @@
-angular.module('selheure', ['ngRoute', 'url', 'user', 'dbSelect']).
+angular.module('selheure', ['ngRoute', 'url', 'dbSelect', 'notification']).
 value('db', {
   url:  '',
   name: 'selheure',

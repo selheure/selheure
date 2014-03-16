@@ -20,5 +20,8 @@
     "angular-sanitize": "~1.2.14",
     "angular-bootstrap": "~0.10.0",
     "angular-couch": "LupoLibero/ngCouch"
+  },
+  "resolutions": {
+    "angular": "~1.2.14"
   }
 }
