@@ -14,3 +14,6 @@
 [submodule "src/Notification"]
 	path = src/Notification
 	url = https://github.com/LupoLibero/couch-ng-Notification.git
+[submodule "src/Directive"]
+	path = src/Directive
+	url = https://github.com/LupoLibero/directives.git
