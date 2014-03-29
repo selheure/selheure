@@ -1,13 +1,16 @@
 ﻿angular.module('transaction').
 directive('lastTransactions', function(transactions, db, notification, login, PopupService) {
   return {
-    restrict: 'EA',
-    scope: {number: '@', user: '=', status: '@'},
+    restrict: 'E',
+    scope: {
+      number: '@',
+      user:   '=',
+      status: '@',
+    },
     replace: true,
-    templateUrl: 'partials/transaction_table.html',
-    link: function(scope, elm, attrs) {
+    templateUrl: 'partials/transaction/table.html',
+    link: function(scope, element, attrs) {
       scope.validateTransaction = function(transaction) {
-        console.log("validate trans", transaction);
         if(login.loginRequired()) {
           PopupService.close();
           db.update('selheure/validate', {_id: transaction._id}).

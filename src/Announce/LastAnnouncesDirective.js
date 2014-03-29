@@ -1,21 +1,29 @@
 angular.module('announce').
-directive('lastAnnounces', function(announces, config, login) {
+directive('lastAnnounces', function(Selheure, Announce, $route) {
   return {
-    restrict: 'EA',
+    restrict: 'E',
     scope: {
-      number: '@'
+      number: '@',
     },
     replace: true,
-    templateUrl: 'partials/announce_table.html',
-    controller: function($scope) {
-      $scope.login = login;
-      $scope.announceTypes = config.announceTypes;
-      $scope.announceList = [];
-      announces.getLastAnnounces($scope.number).then(
-        function(result){
-          $scope.announceList = result;
-        },function(error) {
-      })
+    templateUrl: 'partials/Announces/table.html',
+    link: function(scope, element, attrs) {
+      config = Selheure.getDoc({
+        id: 'config',
+      }).then(
+        function(config) {
+          scope.announceTypes = config.announceTypes;
+        }
+      );
+
+      Announce.all({
+        descending: true,
+        limit:      parseInt(scope.number),
+      }).then(
+        function(data) {
+          scope.announceList = data;
+        }
+      );
     }
   }
 });

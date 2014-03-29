@@ -1,22 +1,17 @@
 <div>
-	<table class="table table-hover" ng-init="selected.announce_type=type">
-		<tr>
-			<th>Date</th>
-			<th>Type</th>
-			<th>Auteur</th>
-			<th>Titre</th>
-			<!--<th></th>-->
-		</tr>
-		<tr ng-repeat="(key, announce) in announceList">
-			<td>{{ announce.created_at | date:"dd/MM" }}</td>
-			<td>{{announceTypes[announce.announce_type]}}</td>
-			<td><user-link name="announce.author"/></td>
-			<td>{{ announce.title }}</td>
-			<!--<td>
-				<a ng-href="{{ url.announceEdit(announce.id) }}"><button class="btn" ng-show="login.isAuthorized(user.id)">Editer</button></a>
-				<button class="btn" ng-show="login.isAuthorized(user.id)" ng-click="deleteAnnounce(key)">x</button>
-			</td>-->
-		</tr>
-	</table>
-	<!--<span ng-hide="user_announces | filter:selected">Aucune {{ content.types[type] }}</span>-->
+  <table class="table table-hover" ng-init="selected.announce_type=type">
+    <tr>
+      <th>Date</th>
+      <th>Type</th>
+      <th>Auteur</th>
+      <th>Titre</th>
+    </tr>
+    <tr ng-repeat="announce in announceList">
+      <td>{{ announce.created_at | date:"dd/MM" }}</td>
+      <td>{{announceTypes[announce.announce_type]}}</td>
+      <td><user-link name="announce.author"/></td>
+      <td>{{ announce.title }}</td>
+      </td>
+    </tr>
+  </table>
 </div>

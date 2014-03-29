@@ -3,17 +3,7 @@ config(function($routeProvider){
   $routeProvider.
     when('/', {
       templateUrl: 'partials/home.html',
-    }).
-    when('/annonces/liste', {
-      templateUrl: 'partials/announces_list.html',
-      controller:  'AnnounceListCtrl',
-    }).
-    when('/annonces/nouvelle', {
-      templateUrl: 'partials/announces_edit.html',
-    }).
-    when('/annonce/:id_announce/modifier', {
-      templateUrl: 'partials/announces_edit.html',
-      controller:  'AnnounceEditCtrl',
+      name:        'home',
     }).
     when('/utilisateurs/:user_name', {
       templateUrl: 'partials/user_page.html',

@@ -33,12 +33,12 @@
 
           <!-- Link -->
           <ul class="nav navbar-nav">
-            <li><a href="#">Acceuil</a></li>
+            <li actual-link><a goto="home">Acceuil</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalogue <b class="caret"></b></a>
+              <a class="dropdown-toggle" data-toggle="dropdown">Catalogue <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Voir les annonces</a></li>
-                <li><a href="#">Crée une annonce</a></li>
+                <li actual-link><a goto="announce.list">Voir les annonces</a></li>
+                <li actual-link><a goto="announce.new">Crée une annonce</a></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -65,8 +65,8 @@
             <div class="form-group">
               <input type="password" class="form-control" placeholder="Mot de Pass">
             </div>
-            <button type="submit" class="btn btn-default">Connexion</button>
-            <button type="submit" class="btn btn-default">S'enregistrer</button>
+            <button type="submit" ng-click="signIn()" class="btn btn-default">Connexion</button>
+            <button type="submit" ng-click="signOut()" class="btn btn-primary">S'enregistrer</button>
           </form>
 
         </div><!-- /.navbar-collapse -->
@@ -78,6 +78,7 @@
     <div class="container">
       <div class="row" style="padding-top: 20px;">
         <div class="span12">
+          <breadcrumb></breadcrumb>
           <notification></notification>
           <div ng-view></div>
         <footer style="padding-top: 40px;">
@@ -89,13 +90,17 @@
 
     <script src="vendor/jquery/dist/jquery.js                                              "></script>
     <script src="vendor/bootstrap/dist/js/bootstrap.js                                     "></script>
+    <script src="vendor/spin.js/spin.js                                                    "></script>
     <!-- Angular -->
     <script src="vendor/angular/angular.js                                                 "></script>
     <script src="vendor/angular-route/angular-route.js                                     "></script>
     <script src="vendor/angular-sanitize/angular-sanitize.js                               "></script>
+    <script src="vendor/angular-resource/angular-resource.js                               "></script>
     <!-- Module -->
     <script src="vendor/angular-couch/couch.js                                             "></script>
-    <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js                         "></script>
+    <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js                             "></script>
+    <script src="vendor/angular-gettext/dist/angular-gettext.js                            "></script>
+    <script src="vendor/angular-spinner/angular-spinner.js                                 "></script>
     <script src="js/main.js                                                                "></script>
   </body>
 </html>

@@ -19,9 +19,12 @@
     "angular-route": "~1.2.14",
     "angular-sanitize": "~1.2.14",
     "angular-bootstrap": "~0.10.0",
-    "angular-couch": "LupoLibero/ngCouch"
+    "angular-couch": "LupoLibero/ngCouch",
+    "angular-spinner": "~0.4.0",
+    "angular-resource": "~1.2.15",
+    "angular-gettext": "~0.2.8"
   },
   "resolutions": {
-    "angular": "~1.2.14"
+    "angular": "1.2.15"
   }
 }
