@@ -50,16 +50,16 @@ module.exports = (grunt) ->
       options:
         stdout: true
       kansoDelete:{
-        command: 'kanso deletedb http://admin:admin@127.0.0.1:5984/shelheure-base'
+        command: 'kanso deletedb http://admin:admin@127.0.0.1:5984/selheure-base'
       }
       kansoCreate:{
-        command: 'kanso createdb http://admin:admin@127.0.0.1:5984/shelheure-base'
+        command: 'kanso createdb http://admin:admin@127.0.0.1:5984/selheure-base'
       }
       kansoInit:{
-        command: 'kanso upload ./data http://admin:admin@127.0.0.1:5984/shelheure-base'
+        command: 'kanso upload ./data http://admin:admin@127.0.0.1:5984/selheure-base'
       }
       kansoPush:{
-        command: 'kanso push http://admin:admin@127.0.0.1:5984/shelheure-base'
+        command: 'kanso push http://admin:admin@127.0.0.1:5984/selheure-base'
       }
     }
     copy: {
