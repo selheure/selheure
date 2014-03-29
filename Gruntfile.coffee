@@ -3,6 +3,8 @@ module.exports = (grunt) ->
 
   grunt.initConfig {
     watch: {
+      options:
+        livereload: true
       all: {
         files: [
           './partials/{,*/}*.html'
