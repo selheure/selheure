@@ -1,7 +1,7 @@
 module.exports = (grunt) ->
   require('load-grunt-tasks')(grunt)
 
-  grunt.initConfig {
+  grunt.initConfig({
     watch: {
       options:
         livereload: true
@@ -22,6 +22,7 @@ module.exports = (grunt) ->
           'temp/*/__init__.js'
           'temp/*/config.js'
           'temp/*/routes.js'
+          'temp/*/run.js'
           'temp/*/*.js'
         ]
         dest: 'static/js/main.js'
@@ -44,22 +45,6 @@ module.exports = (grunt) ->
         src: '*/*.coffee'
         dest: 'temp/'
         ext: '.js'
-      },
-    }
-    shell:{
-      options:
-        stdout: true
-      kansoDelete:{
-        command: 'kanso deletedb http://admin:admin@127.0.0.1:5984/selheure-base'
-      }
-      kansoCreate:{
-        command: 'kanso createdb http://admin:admin@127.0.0.1:5984/selheure-base'
-      }
-      kansoInit:{
-        command: 'kanso upload ./data http://admin:admin@127.0.0.1:5984/selheure-base'
-      }
-      kansoPush:{
-        command: 'kanso push http://admin:admin@127.0.0.1:5984/selheure-base'
       }
     }
     copy: {
@@ -80,7 +65,32 @@ module.exports = (grunt) ->
         ]
       }
     }
-  }
+    # Kanso
+    shell:{
+      options:
+        stdout: true
+      kansoDelete:{
+        command: ->
+          name = grunt.option('db') || 'default'
+          return "kanso deletedb #{name}"
+      }
+      kansoCreate:{
+        command: ->
+          name = grunt.option('db') || 'default'
+          return "kanso createdb #{name}"
+      }
+      kansoInit:{
+        command: ->
+          name = grunt.option('db') || 'default'
+          return "kanso upload ./data #{name}"
+      }
+      kansoPush:{
+        command: ->
+          name = grunt.option('db') || 'default'
+          return "kanso push #{name}"
+      }
+    }
+  })
 
 
   grunt.registerTask('default', [
