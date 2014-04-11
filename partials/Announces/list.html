@@ -15,9 +15,10 @@
       <th>Titre</th>
     </tr>
     <tr ng-repeat="(key, announce) in announces">
+      {{ announce }}
       <td>{{ announce.created_at | date:"dd/MM" }}</td>
       <td>{{ announceTypes[announce.announce_type ]}}</td>
-      <td><user-link name="announce.author"/></td>
+      <td>{{ announce.author }}</td>
       <td>{{ announce.title }}</td>
     </tr>
   </table>

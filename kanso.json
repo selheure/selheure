@@ -12,6 +12,8 @@
     "properties": null,
     "attachments": null,
     "modules": null,
+    "session": null,
+    "users": null,
     "blocking-multi-shell": null
   }
 }

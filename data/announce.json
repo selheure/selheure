@@ -1,0 +1,24 @@
+[
+  {
+    "_id": "announce:1",
+    "id": "1",
+    "type": "announce",
+    "announce_type": "demand",
+    "author": "user",
+    "title": "test",
+    "place": "test",
+    "created_at": "1024790249785",
+    "message": "un petit test"
+  },
+  {
+    "_id": "announce:2",
+    "id": "2",
+    "type": "announce",
+    "announce_type": "demand",
+    "author": "user",
+    "title": "test",
+    "place": "test",
+    "created_at": "1024790249785",
+    "message": "un petit test"
+  }
+]

@@ -30,7 +30,7 @@ module.exports = (grunt) ->
           process: (content, src) ->
             src = src.split('/') # Split on slash
             src = src[src.length-1] # Get file name
-            if (src[0].toUpperCase() == src[0] || src == 'config.js' || src == 'routes.js')
+            if (src[0].toUpperCase() == src[0] || src == 'config.js' || src == 'routes.js' || src == 'run.js')
               return content
             else
               return ''

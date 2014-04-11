@@ -3,43 +3,43 @@
   <h2 ng-if="announce._id">Editer une annonce</h2>
   <h2 ng-if="!announce._id">Nouvelle annonce</h2>
   <div class="row-fluid">
-    <div>
-      <h3>{{ content.typeTitles[selectedType.type] }}</h3>
-      <form name="announceForm" ng-submit="announceSubmit()">
-        <div class="row-fluid">
-          <div class="span10 offset2">
-            <div class="btn-group">
-              <button type="button" class="btn" ng-model="announce.type" ng-repeat="(key, label) in announceTypes" btn-radio="key">{{label}}</button>
-            </div>
-          </div>
-        </div>
-        <br/>
-        <div class="row-fluid">
-          <div class="span2" style="text-align:right">Rubrique : </div>
-          <span class="error" ng-show="announce.category.$error.required">*</span></div>
-        </div>
-        <div class="row-fluid">
-          <div class="span2" style="text-align:right">Sous Rubrique : </div>
-          <span class="error" ng-show="announce.sub_category.$error.required">*</span></div>
-        </div>
-        <div class="row-fluid">
-          <div class="span2" style="text-align:right">Titre : </div>
-          <div class="span10"><input type="text" name="title" ng-model="announce.title" required/>
-          <span class="error" ng-show="announce.title.$error.required">*</span></div>
-        </div>
-        <div class="row-fluid">
-          <div class="span2" style="text-align:right">Lieu :</div>
-          <div class="span10"><input type="text" name="place" ng-model="announce.place"/></div>
-        </div>
-        <div class="row-fluid">
-          <div class="span2" style="text-align:right">Description :</div>
-          <div class="span10"><textarea name="message" class="span8" ng-model="announce.message" required/>
-          <span class="error" ng-show="announce.message.$error.required">*</span></div>
-        </div>
-        <div class="row-fluid">
-          <div class="span10 offset2"><button type="submit" class="btn btn-primary">{{ content.submit }}</button></div>
-        </div>
-      </form>
-    </div>
+    <h3>{{ content.typeTitles[selectedType.type] }}</h3>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-default" ng-model="announce.announceType" ng-repeat="(key, label) in announceTypes" btn-radio="key">{{label}}</button>
+      </div>
+
+    <form name="announceForm" ng-submit="announceSubmit()">
+      <p>
+        <span>Rubrique : </span>
+        <category options="categories" model="announce.category"/>
+        <span class="error" ng-show="announce.category.$error.required">*</span>
+      </p>
+
+      <p ng-show="announce.category">
+        <span>Sous Rubrique : </span>
+        <sub-category options="subCategories" model="announce.subCategory" parent="announce.category"/>
+        <span class="error" ng-show="announce.sub_category.$error.required">*</span>
+      </p>
+
+      <p>
+        <span>Titre : </span>
+        <input type="text" name="title" ng-model="announce.title" required/>
+        <span class="error" ng-show="announce.title.$error.required">*</span>
+      </p>
+
+      <p>
+        <span>Lieu :</span>
+        <input type="text" name="place" ng-model="announce.place"/>
+      </p>
+
+      <p>
+        <span>Description :</span>
+        <textarea name="message" ng-model="announce.message" required/>
+        <span class="error" ng-show="announce.message.$error.required">*</span>
+      </p>
+
+      <button type="submit" class="btn btn-primary">Valider</button>
+    </form>
 </div>
 </div>
