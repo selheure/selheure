@@ -2,8 +2,8 @@
   "name": "selheure",
   "version": "0.0.1",
   "description": "SEL'heure CouchApp",
-  "load": "lib/app",
-  "modules": ["lib"],
+  "load": "src/Selheure/app",
+  "modules": ["src"],
   "attachments": ["static", "partials"],
   "shell": [
     "grunt compile"
@@ -11,9 +11,8 @@
   "dependencies": {
     "properties": null,
     "attachments": null,
+    "couchtypes": null,
     "modules": null,
-    "session": null,
-    "users": null,
     "blocking-multi-shell": null
   }
 }
