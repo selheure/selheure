@@ -1,5 +1,7 @@
 angular.module('selheure').
 controller('MainCtrl', function($scope, $rootScope, notification, login, $modal){
+  $rootScope.login = login
+
   $scope.user = {
     name: '',
     pass: '',
@@ -13,7 +15,7 @@ controller('MainCtrl', function($scope, $rootScope, notification, login, $modal)
   });
 
   $scope.signIn = function(){
-    login.signIn(user.name, user.pass);
+    login.signIn($scope.user.name, $scope.user.pass);
   }
 
   $scope.signUp = function(){

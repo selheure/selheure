@@ -52,13 +52,13 @@
           <!-- End link -->
 
           <!-- Account -->
-          <ul class="nav navbar-nav navbar-right" ng-show="login">
-              <li><a href="#">Pseudo</a></li>
+          <ul class="nav navbar-nav navbar-right" ng-if="login.isConnect()">
+              <li><a href="#">{{login.getName()}}</a></li>
               <li><button class="btn btn-default navbar-btn" ng-click="signOut()">Logout</button></li>
           </ul>
 
           <!-- Form connection -->
-          <form class="navbar-form navbar-right">
+          <form class="navbar-form navbar-right" ng-if="login.isNotConnect()">
             <div class="form-group">
               <input ng-model="user.name" type="text" class="form-control" placeholder="Identifiant">
             </div>
@@ -78,7 +78,6 @@
     <div class="container">
       <div class="row" style="padding-top: 20px;">
         <div class="span12">
-          <breadcrumb></breadcrumb>
           <notification></notification>
           <div ng-view></div>
         <footer style="padding-top: 40px;">
