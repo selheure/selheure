@@ -1,4 +1,12 @@
-exports.proposal_all = {
+exports.announce_all = {
+  map: function(doc) {
+    if(doc.type && doc.type == 'announce' && doc.author){
+      emit(doc.author, doc);
+    }
+  }
+};
+
+exports.announce_proposal_all = {
   map: function(doc) {
     if(doc.type && doc.type == 'announce' && doc.author && doc.announce_type == 'proposal'){
       emit(doc.author, doc);
@@ -6,7 +14,7 @@ exports.proposal_all = {
   }
 };
 
-exports.announce_all = {
+exports.announce_demand_all = {
   map: function(doc) {
     if(doc.type && doc.type == 'announce' && doc.author && doc.announce_type == 'demand'){
       emit(doc.author, doc);
