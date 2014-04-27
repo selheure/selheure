@@ -1,4 +1,4 @@
-angular.module('announce').
+angular.module('category').
 filter('category', ->
   return (announces, category, subCategory)->
     results = []

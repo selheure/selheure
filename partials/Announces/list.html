@@ -22,7 +22,7 @@
       <td>{{ announce.created_at | date:"dd/MM" }}</td>
       <td>{{ announceTypes[announce.announce_type ]}}</td>
       <td>{{ announce.author }}</td>
-      <td>{{ announce.title }}</td>
+      <td><a goto="announce.edit" announce_id="{{announce.id}}">{{ announce.title }}</a></td>
     </tr>
   </table>
 </div>

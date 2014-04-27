@@ -9,7 +9,6 @@ module.exports = (grunt) ->
         files: [
           './partials/{,*/}*.html'
           './src/{,*/}*'
-          './lib/{,*/}*.js'
         ]
         tasks: [
           'shell:kansoPush'

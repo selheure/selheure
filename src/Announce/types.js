@@ -11,14 +11,14 @@ exports.announce = new Type('announce', {
     remove: permissions.hasRole('_admin')
   },
   fields: {
-    id: idField(/\d+/),
-    announce_type: fields.string(),
-    author:     fields.creator(),
-    category: fields.string(),
-    created_at: fields.createdTime(),
-    updated_at: fields.number({
-      required: false
-    }),
-    message: fields.string(),
+    id:             idField(/\w+/),
+    announce_type:  fields.string(),
+    author:         fields.creator(),
+    category:       fields.string(),
+    created_at:     fields.number(),
+    updated_at:     fields.number(),
+    title:          fields.string(),
+    place:          fields.string(),
+    message:        fields.string(),
   },
 });

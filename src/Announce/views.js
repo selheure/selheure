@@ -1,7 +1,7 @@
 exports.announce_all = {
   map: function(doc) {
     if(doc.type && doc.type == 'announce' && doc.author){
-      emit(doc.author, doc);
+      emit(doc.id, doc);
     }
   }
 };
@@ -28,14 +28,4 @@ exports.announce_by_date = {
       emit(doc.created_at, doc._id);
     }
   }
-};
-
-exports.announce_ids = {
-  map: function(doc) {
-    if(doc.type && doc.type == 'announce' && doc.id) {
-      id = parseInt(doc.id);
-      emit(null, id);
-    }
-  },
-  reduce: '_stats',
 };

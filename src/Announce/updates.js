@@ -1,20 +1,30 @@
 exports.announce_edit = function(doc, req) {
-  var form = JSON.parse(req.body),
-    e;
+  var form = JSON.parse(req.body);
+  var field;
+  var updated = false;
   if(doc === null){
-    form.type = 'announce';
-    form._id = form.type + '-' + form.id;
-    form.author = req.userCtx.name;
-    form.created_at = new Date().toISOString();
-    form.last_edit_at = form.created_at;
+    // Creation
+    form.type       = 'announce';
+    form.id         = req.uuid.substr(req.uuid.length -5);
+    form._id        = form.type + ':' + form.id;
+    form.author     = req.userCtx.name;
+    if(form.hasOwnProperty('subCategory')) {
+      form.category   = form.subCategory;
+      delete form.subCategory;
+    }
+    form.created_at = new Date().getTime();
+    form.updated_at = form.created_at;
     return [form, 'ok'];
   } else {
-    doc.last_edit_at = new Date().toISOString();
-    for(e in doc) {
-      if(e in form && form[e] != doc[e]) {
-        log(e, form[e]);
-        doc[e] = form[e];
+    // Modification
+    for(field in doc) {
+      if(field in form && form[field] != doc[field]) {
+        doc[field] = form[field];
+        updated = true;
       }
+    }
+    if(updated) {
+      doc.updated_at = new Date().getTime();
     }
     return [doc, 'ok']
   }

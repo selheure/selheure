@@ -9,10 +9,8 @@ config(function($routeProvider){
         announces: function(Announce){
           return Announce.all();
         },
-        config: function(Selheure){
-          return Selheure.getDoc({
-            id: 'config'
-          });
+        config: function(Config){
+          return Config();
         },
       }
     }).
@@ -21,17 +19,26 @@ config(function($routeProvider){
       controller:  'AnnounceEditCtrl',
       name:        'announce.new',
       resolve: {
-        config: function(Selheure){
-          return Selheure.getDoc({
-            id: 'config'
-          });
+        config: function(Config){
+          return Config();
         },
       }
     }).
-    when('/annonce/:id_announce/modifier', {
+    when('/annonce/:announce_id/modifier', {
       templateUrl: 'partials/Announces/edit.html',
       controller:  'AnnounceEditCtrl',
       name:        'announce.edit',
+      resolve: {
+        announce: function(Announce, $route) {
+          return Announce.get({
+            view: 'all',
+            key:  $route.current.params.announce_id,
+          });
+        },
+        config: function(Config){
+          return Config();
+        },
+      }
     }).
     otherwise({redirectTo: '/'});
 });

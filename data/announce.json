@@ -9,7 +9,7 @@
     "place": "test",
     "category": "05-01",
     "created_at": "1024790249785",
-    "message": "un petit test"
+    "message": "un petit massage"
   },
   {
     "_id": "announce:2",
@@ -21,6 +21,6 @@
     "title": "test",
     "place": "test",
     "created_at": "1024790249789",
-    "message": "un petit test"
+    "message": "je cherche un ustensile"
   }
 ]

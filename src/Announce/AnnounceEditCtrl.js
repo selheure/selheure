@@ -1,32 +1,26 @@
 angular.module('announce').
 controller('AnnounceEditCtrl', function($scope, $route, url, Announce) {
   var config = $route.current.locals.config;
-  $scope.selected = {}
+  if($route.current.locals.hasOwnProperty('announce')) {
+    announce                    = $route.current.locals.announce;
+    $scope.announce             = angular.copy(announce);
+    $scope.announce.category    = announce.category.split('-')[0];
+    $scope.announce.subCategory = announce.category;
+  } else {
+    $scope.announce = {};
+  }
+  $scope.selected = {};
 
   $scope.announceTypes = config.announceTypes;
   $scope.categories    = config.categories;
   $scope.subCategories = config.sub_categories;
 
   $scope.announceSubmit = function() {
-    console.log('call');
-    Announce.view({
-      view: 'ids',
-    }).then(function(data){
-      if(data.length !== 0) {
-        data = data[0];
-      } else {
-        data = {};
+    $scope.announce.update = 'edit'
+    Announce.update($scope.announce).then(
+      function(data) {
+        url.redirect('announce.list');
       }
-
-      Announce.update({
-        update: 'edit',
-        type:   $scope.annouce.type,
-        id:     data.max +1 || 1,
-      }).then(
-        function(data) {
-          url.redirect('announce.list');
-        }
-      );
-    });
+    );
   }
 });
