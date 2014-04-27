@@ -14,7 +14,7 @@
       <th>Auteur</th>
       <th>Titre</th>
     </tr>
-    <tr ng-repeat="(key, announce) in announces">
+    <tr ng-repeat="(key, announce) in announces |category:selected.category:selected.subCategory">
       {{ announce }}
       <td>{{ announce.created_at | date:"dd/MM" }}</td>
       <td>{{ announceTypes[announce.announce_type ]}}</td>
