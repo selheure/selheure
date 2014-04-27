@@ -7,6 +7,7 @@
     "author": "user",
     "title": "test",
     "place": "test",
+    "category": "05-01",
     "created_at": "1024790249785",
     "message": "un petit test"
   },
@@ -15,10 +16,11 @@
     "id": "2",
     "type": "announce",
     "announce_type": "demand",
+    "category": "07-04",
     "author": "user",
     "title": "test",
     "place": "test",
-    "created_at": "1024790249785",
+    "created_at": "1024790249789",
     "message": "un petit test"
   }
 ]
