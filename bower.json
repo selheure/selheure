@@ -16,14 +16,14 @@
   "dependencies": {
     "bootstrap": "~3.1.1",
     "angular": "~1.2.14",
-    "angular-route": "~1.2.14",
     "angular-sanitize": "~1.2.14",
     "angular-bootstrap": "~0.10.0",
     "angular-couch": "LupoLibero/ngCouch",
     "angular-spinner": "~0.4.0",
     "angular-resource": "~1.2.15",
     "angular-gettext": "~0.2.8",
-    "angular-animate": "~1.2.16"
+    "angular-animate": "~1.2.16",
+    "angular-ui-router": "~0.2.10"
   },
   "resolutions": {
     "angular": "1.2.16"

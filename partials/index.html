@@ -33,12 +33,12 @@
 
           <!-- Link -->
           <ul class="nav navbar-nav">
-            <li actual-link><a goto="home">Acceuil</a></li>
+            <li ui-sref-active="active"><a ui-sref="home">Acceuil</a></li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">Catalogue <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li actual-link><a goto="announce.list">Voir les annonces</a></li>
-                <li actual-link><a goto="announce.new">Crée une annonce</a></li>
+                <li ui-sref-active="active"><a ui-sref="announcelist">Voir les annonces</a></li>
+                <li ui-sref-active="active"><a ui-sref="newannouce">Crée une annonce</a></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -79,7 +79,7 @@
       <div class="row" style="padding-top: 20px;">
         <div class="span12">
           <notification></notification>
-          <div ng-view></div>
+          <div ui-view></div>
         <footer style="padding-top: 40px;">
           <p>Licence : GPL</p>
         </footer>
@@ -87,20 +87,20 @@
       </div>
     </div>
 
-    <script src="vendor/jquery/dist/jquery.js                                              "></script>
-    <script src="vendor/bootstrap/dist/js/bootstrap.js                                     "></script>
-    <script src="vendor/spin.js/spin.js                                                    "></script>
+    <script src="vendor/jquery/dist/jquery.js                                "></script>
+    <script src="vendor/bootstrap/dist/js/bootstrap.js                       "></script>
+    <script src="vendor/spin.js/spin.js                                      "></script>
     <!-- Angular -->
-    <script src="vendor/angular/angular.js                                                 "></script>
-    <script src="vendor/angular-route/angular-route.js                                     "></script>
-    <script src="vendor/angular-sanitize/angular-sanitize.js                               "></script>
-    <script src="vendor/angular-resource/angular-resource.js                               "></script>
-    <script src="vendor/angular-animate/angular-animate.js                                 "></script>
+    <script src="vendor/angular/angular.js                                   "></script>
+    <script src="vendor/angular-sanitize/angular-sanitize.js                 "></script>
+    <script src="vendor/angular-resource/angular-resource.js                 "></script>
+    <script src="vendor/angular-animate/angular-animate.js                   "></script>
     <!-- Module -->
-    <script src="vendor/angular-couch/couch.js                                             "></script>
-    <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js                             "></script>
-    <script src="vendor/angular-gettext/dist/angular-gettext.js                            "></script>
-    <script src="vendor/angular-spinner/angular-spinner.js                                 "></script>
-    <script src="js/main.js                                                                "></script>
+    <script src="vendor/angular-couch/couch.js                               "></script>
+    <script src="vendor/angular-ui-router/release/angular-ui-router.js       "></script>
+    <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js               "></script>
+    <script src="vendor/angular-gettext/dist/angular-gettext.js              "></script>
+    <script src="vendor/angular-spinner/angular-spinner.js                   "></script>
+    <script src="js/main.js                                                  "></script>
   </body>
 </html>

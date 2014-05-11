@@ -1,21 +1,33 @@
 angular.module('selheure').
-config(function($routeProvider){
-  $routeProvider.
-    when('/', {
+config(function($stateProvider, $urlRouterProvider){
+  $stateProvider.
+    state('home', {
+      url:         '/',
       templateUrl: 'partials/home.html',
-      name:        'home',
+      controller:  'HomeCtrl',
+      resolve: {
+        announces: function(Announce) {
+          return Announce.all({
+            limit: 10,
+          });
+        },
+      }
     }).
-    when('/utilisateurs/:user_name', {
+    state('user', {
+      url:         '/utilisateurs/:user_name',
       templateUrl: 'partials/user_page.html',
       controller:  'UserPageCtrl',
     }).
-    when('/echanges/nouvelle', {
+    state('echange.new', {
+      url:         '/echanges/nouvelle',
       templateUrl: 'partials/transactions_new.html',
       controller:  'NewTransactionCtrl',
     }).
-    when('/travail_collectif', {
+    state('work', {
+      url:         '/travail_collectif',
       templateUrl: 'partials/collective_work.html',
       controller:  'CollectiveWorkCtrl',
-    }).
-    otherwise({redirectTo: '/'});
+    });
+
+    $urlRouterProvider.otherwise('home');
 });

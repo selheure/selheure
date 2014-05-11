@@ -1,1 +1,1 @@
-angular.module('announce', ['ngCouchDB', 'category']);
+angular.module('announce', ['ui.router', 'ngCouchDB', 'category']);

@@ -1,6 +1,5 @@
 angular.module('selheure', [
-  'ngRoute',
-  'url',
+  'ui.router',
   'dbSelect',
   'notification',
   'translation',

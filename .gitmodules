@@ -2,18 +2,19 @@
 	path = src/dbSelect
 	url = https://github.com/LupoLibero/couch-ng-dbSelect.git
 	branch = master
-[submodule "src/Url"]
-	path = src/Url
-	url = https://github.com/LupoLibero/couch-ng-Url
 [submodule "src/Translation"]
 	path = src/Translation
 	url = https://github.com/LupoLibero/couch-ng-Translation
+	branch = master
 [submodule "src/Breadcrumb"]
 	path = src/Breadcrumb
 	url = https://github.com/LupoLibero/couch-ng-Breadcrumb
+	branch = master
 [submodule "src/Notification"]
 	path = src/Notification
 	url = https://github.com/LupoLibero/couch-ng-Notification.git
+	branch = no-socket
 [submodule "src/Directive"]
 	path = src/Directive
 	url = https://github.com/LupoLibero/directives.git
+	branch = master
