@@ -8,7 +8,6 @@ controller('SignUpCtrl', ($scope, notification, $modalInstance, login, User) ->
   # On click on SignUp
   $scope.signUpSubmit = ->
     user = $scope.user
-    console.log 'try'
 
     # If password and it's confirmation don't match
     if user.password != user.passwordconf

@@ -11,7 +11,6 @@ directive('announces', function(Config) {
     replace: true,
     templateUrl: 'partials/Announces/table.html',
     link: function(scope, element, attrs) {
-      console.log
       Config().then(
         function(data) {
           scope.config = data;

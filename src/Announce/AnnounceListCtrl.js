@@ -5,5 +5,4 @@ controller('AnnounceListCtrl', function($scope, announces, config) {
   $scope.announceTypes = config.announceTypes;
   $scope.categories    = config.categories;
   $scope.subCategories = config.sub_categories;
-  console.log(config);
 });

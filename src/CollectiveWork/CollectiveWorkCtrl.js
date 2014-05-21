@@ -8,9 +8,7 @@ controller('CollectiveWorkCtrl', function($scope, config, db, login, notificatio
 
   $scope.newTransactionSubmit = function() {
     if(login.loginRequired()) {
-      console.log($scope.transaction);
       db.update('selheure/transaction_edit', $scope.transaction).then(function(result) {
-        console.log("success!!", result);
         notification.success("Déclaration sauvegardée avec succès !");
         $scope.transaction = {};
       },function(error) {
