@@ -1,0 +1,30 @@
+<table class="table table-hover">
+  <tr>
+    <th>Date</th>
+    <th>Créditeur</th>
+    <th>Débiteur</th>
+    <th>Montant</th>
+    <th>Motif</th>
+    <th ng-hide="status == 'validated' || status == 'not validated'">Statut</th>
+    <th ng-show="status == 'not validated'">A valider par</th>
+    <th></th>
+  </tr>
+  <tr ng-repeat="transaction in transactionList">
+    <td>{{ transaction.declared_at | date:"dd/MM" }}</td>
+    <td><user-link name="transaction.from"/></td>
+    <td><user-link name="transaction.to"/></td>
+    <td>{{ transaction.amount }}</td>
+    <td ng-show="transaction.reason.text">{{transaction.reason.text}}</td>
+    <td ng-show="!transaction.reason.text && transaction.reason.announce"><announce-link id="transaction.reason.announce"/></td>
+    <td ng-hide="status == 'validated' || status == 'not validated'">{{content.validatedLabels[transaction.validated]}}</td>
+    <td ng-show="status == 'not validated'"><user-link name="transaction[transaction.validator]"/></td>
+    <td ng-show="!transaction.validated">
+      <!--<button class="btn" ng-show="login.user.id == user.id" ng-click="editTransaction(transaction)">Editer</button>-->
+      <button class="btn" ng-show="login.isAuthorized(user.id)" ng-popup="/partials/transaction_edit.html">Editer</button>
+      <ng-confirm title="Valider échange" action-text="Etes-vous sûr de vouloir valider cet échange ?" action-button-text="Oui" action-function="validateTransaction(transaction)" cancel-button-text="Non" cancel-function="close()">
+        <button class="btn" ng-show="login.isAuthorized(transaction[transaction.validator])">Valider</button>
+      </ng-confirm>
+    </td>
+  </tr>
+</table>
+<p ng-if="transactions.length == 0">Aucune transaction n'est disponible</p>

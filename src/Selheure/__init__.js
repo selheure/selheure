@@ -2,6 +2,7 @@ angular.module('selheure', [
   'ui.router',
   'notification',
   'translation',
+  'transaction',
   'breadcrumb',
   'announce',
   'login',

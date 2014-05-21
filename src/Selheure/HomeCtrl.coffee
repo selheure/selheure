@@ -1,4 +1,5 @@
 angular.module('selheure').
-controller('HomeCtrl', (announces, $scope)->
-  $scope.announces = announces
+controller('HomeCtrl', (announces, transactions, $scope)->
+  $scope.announces    = announces
+  $scope.transactions = transactions
 )

@@ -6,6 +6,11 @@ config(function($stateProvider, $urlRouterProvider){
       templateUrl: 'partials/home.html',
       controller:  'HomeCtrl',
       resolve: {
+        transactions: function(Transaction) {
+          return Transaction.all({
+            limit: 10,
+          });
+        },
         announces: function(Announce) {
           return Announce.all({
             limit: 10,
