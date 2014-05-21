@@ -1,0 +1,20 @@
+[
+  {
+    "_id":         "user:test",
+    "id":          "test",
+    "type":        "user",
+    "name":        "test",
+    "email":       "test@test.fr",
+    "created_at":  1400666662219,
+    "updated_at":  1400666662219
+  },
+  {
+    "_id":         "user:user",
+    "id":          "user",
+    "type":        "user",
+    "name":        "user",
+    "email":       "test@test.fr",
+    "created_at":  1400666662219,
+    "updated_at":  1400666662219
+  }
+]
