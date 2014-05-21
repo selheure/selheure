@@ -1,14 +1,14 @@
 angular.module('login').
-controller('SignUpCtrl', ($scope, notification, $modalInstance, login) ->
+controller('SignUpCtrl', ($scope, notification, $modalInstance, login, User) ->
   $scope.user=
-    pseudo:        ""
+    name:        ""
     password:      ""
-    email:         ""
     passwordconf:  ""
 
   # On click on SignUp
-  $scope.signup = ->
+  $scope.signUpSubmit = ->
     user = $scope.user
+    console.log 'try'
 
     # If password and it's confirmation don't match
     if user.password != user.passwordconf
@@ -16,16 +16,22 @@ controller('SignUpCtrl', ($scope, notification, $modalInstance, login) ->
       return false
 
     # If one field is not fill
-    if user.name is '' or user.password is '' or user.passwordconf is '' or user.email is ''
+    if user.name is '' or user.password is '' or user.passwordconf is ''
       notification.setAlert('Please fill all the fields!')
       return false
 
     # SignUp
-    login.signUp(user).then(
-      (data) -> #Sucess
-        $modalInstance.close(data)
-      ,(err) -> #Error
-        $scope.notif.setAlert('This username is already taken!', 'danger')
+    user['update'] = 'create'
+    User.update(user).then(
+      (data)-> #Success
+        login.signUp(user).then(
+          (data) -> #Sucess
+            $modalInstance.close(data)
+          ,(err) -> #Error
+            notification.setAlert('This username is already taken!', 'danger')
+        )
+      ,(err)-> #Error
+        notification.setAlert('This username is already taken!', 'danger')
     )
 
   $scope.cancel = ->

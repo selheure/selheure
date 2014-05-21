@@ -1,5 +1,5 @@
 angular.module('selheure').
-controller('MainCtrl', function($scope, $rootScope, notification, login, $modal){
+controller('MainCtrl', function($scope, $rootScope, notification, login, $modal, User){
   $rootScope.login = login
 
   $scope.user = {
@@ -8,19 +8,34 @@ controller('MainCtrl', function($scope, $rootScope, notification, login, $modal)
   }
   login.getInfo();
 
-  $rootScope.$on('ChangeLanguage', window.navigator.language)
+  $rootScope.$on('ChangeLanguage', window.navigator.language);
   $rootScope.$on('$translateChangeError', function(){
     notification.addAlert("You're favorite language is not available!");
-    $rootScope.$on('ChangeLanguage', 'en')
+    $rootScope.$on('ChangeLanguage', 'en');
   });
 
   $scope.signIn = function(){
-    login.signIn($scope.user.name, $scope.user.pass);
+    User.get({
+      key: $scope.user.name,
+    }).then(
+        function(data){
+          login.signIn($scope.user.name, $scope.user.pass).then(
+            function (data){
+              $scope.user = {}
+            },function (err){
+              console.log(err);
+            }
+          );
+        }, function(err){
+          console.log(err);
+        }
+      );
   }
 
   $scope.signUp = function(){
     $modal.open({
       templateUrl: 'partials/signup.html',
+      controller:  'SignUpCtrl',
     });
   }
 

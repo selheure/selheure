@@ -1,20 +1,25 @@
 <div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-  <h3 id="signUpLabel">{{ content.signUp }}</h3>
+  <button type="button" class="close" ng-click="cancel()">&times;</button>
+  <h3 id="signUpLabel">S'enregistrer</h3>
 </div>
 
 <div class="modal-body">
   <form class="form form-horizontal" ng-submit="signUpSubmit()">
     <div class="control-group">
-      <label class="control-label" for="">Identifiant</label>
+      <label class="control-label">Identifiant</label>
       <div class="controls">
-        <input name="name" type="text" ng-model="user.id" required/>
+        <input name="name" type="text" ng-model="user.name" required/>
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="">Mot de passe</label>
+      <label class="control-label">Mot de passe</label>
       <div class="controls">
         <input name="password" type="password" ng-model="user.password" required/>
+      </div>
+    <div class="control-group">
+      <label class="control-label">Confirmation de mot de passe</label>
+      <div class="controls">
+        <input name="passwordconf" type="password" ng-model="user.passwordconf" required/>
       </div>
     </div>
     <div class="control-group">
@@ -26,7 +31,7 @@
     <div class="control-group">
       <label class="control-label" for="">Tel</label>
       <div class="controls">
-        <input name="title" type="text" ng-model="user.tel"  placeholder="ex : 01 23 45 67 89" ng-pattern="patternTel"/>
+        <input name="title" type="tel" ng-model="user.tel"  placeholder="ex : 01 23 45 67 89"/>
       </div>
     </div>
     <div class="control-group">
@@ -38,7 +43,7 @@
     <div class="control-group">
       <div class="controls">
         <button class="btn btn-primary" type="submit">Valider</button>
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
+        <button class="btn">Annuler</button>
       </div>
     </div>
   </form>

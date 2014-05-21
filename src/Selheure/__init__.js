@@ -1,11 +1,11 @@
 angular.module('selheure', [
   'ui.router',
-  'dbSelect',
   'notification',
   'translation',
   'breadcrumb',
   'announce',
   'login',
+  'user',
 ]).
 value('db', {
   url:  '',
