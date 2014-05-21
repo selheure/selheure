@@ -5,7 +5,7 @@ controller('AnnounceEditCtrl', function($scope, $state, Announce, login) {
   if($state.$current.locals.globals.announce) {
     var announce                = $state.$current.locals.globals.announce;
     if(announce.author != login.getName()) {
-      $state.go('announcelist');
+      $scope.notAllow = true;
     }
     $scope.announce             = angular.copy(announce);
     $scope.announce.category    = announce.category.split('-')[0];
