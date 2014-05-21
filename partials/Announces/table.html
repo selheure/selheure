@@ -1,17 +1,15 @@
-<div>
-  <table class="table table-hover" ng-init="selected.announce_type=type">
-    <tr>
-      <th>Date</th>
-      <th>Type</th>
-      <th>Auteur</th>
-      <th>Titre</th>
-    </tr>
-    <tr ng-repeat="announce in announceList">
-      <td>{{ announce.created_at | date:"dd/MM" }}</td>
-      <td>{{announceTypes[announce.announce_type]}}</td>
-      <td><user-link name="announce.author"/></td>
-      <td>{{ announce.title }}</td>
-      </td>
-    </tr>
-  </table>
-</div>
+<table class="table table-hover">
+  <tr>
+    <th>Date</th>
+    <th>Type</th>
+    <th>Auteur</th>
+    <th>Titre</th>
+  </tr>
+  <tr ng-repeat="announce in announces |types:types |category:category:subcategory">
+    <td>{{ announce.created_at | date:"dd/MM" }}</td>
+    <td>{{config.announceTypes[announce.announce_type]}}</td>
+    <td>{{ announce.author }}</td>
+    <td><a ui-sref="announceedit(announce)">{{ announce.title }}</a></td>
+    </td>
+  </tr>
+</table>

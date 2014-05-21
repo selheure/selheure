@@ -25,7 +25,7 @@ config(function($stateProvider){
       }
     }).
     state('announceedit', {
-      url:         '/annonce/:announce_id/modifier',
+      url:         '/annonce/:id/modifier',
       templateUrl: 'partials/Announces/edit.html',
       controller:  'AnnounceEditCtrl',
       resolve: {

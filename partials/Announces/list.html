@@ -1,29 +1,13 @@
 ﻿<div class="sh-block">
-<div>
-  <h2>Annonces du catalogue</h2>
-  <div class="btn-group">
-    <button class="btn btn-default" ng-model="selected.announceType" ng-repeat="(key, label) in announceTypes" btn-radio="key">{{label}}</button>
+  <div>
+    <h2>Annonces du catalogue</h2>
+    <div class="btn-group">
+      <button class="btn btn-default" ng-model="selected.announceType" ng-repeat="(key, label) in announceTypes" btn-radio="key">{{label}}</button>
+    </div>
+    <div>Rubrique : <category options="categories" model="selected.category"/>
+    </div>
+    <div ng-show="selected.category">Sous-rubrique : <sub-category options="subCategories" model="selected.subCategory" parent="selected.category"/>
+    </div>
   </div>
-  <div>Rubrique : <category options="categories" model="selected.category"/>
-  </div>
-  <div ng-show="selected.category">Sous-rubrique : <sub-category options="subCategories" model="selected.subCategory" parent="selected.category"/>
-  </div>
-</div>
-<div>
-  <table class="table table-hover">
-    <tr>
-      <th>Date</th>
-      <th>Type</th>
-      <th>Auteur</th>
-      <th>Titre</th>
-    </tr>
-    <tr ng-repeat="(key, announce) in announces |types:selected.announceType|category:selected.category:selected.subCategory">
-      {{ announce }}
-      <td>{{ announce.created_at | date:"dd/MM" }}</td>
-      <td>{{ announceTypes[announce.announce_type ]}}</td>
-      <td>{{ announce.author }}</td>
-      <td><a goto="announce.edit" announce_id="{{announce.id}}">{{ announce.title }}</a></td>
-    </tr>
-  </table>
-</div>
+  <announces announces="announces" category="selected.category" subcategory="selected.subCategory" types="selected.announceType"/>
 </div>

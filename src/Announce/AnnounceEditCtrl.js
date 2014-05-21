@@ -1,8 +1,12 @@
 angular.module('announce').
-controller('AnnounceEditCtrl', function($scope, $route, url, Announce) {
-  var config = $route.current.locals.config;
-  if($route.current.locals.hasOwnProperty('announce')) {
-    announce                    = $route.current.locals.announce;
+controller('AnnounceEditCtrl', function($scope, $state, Announce, login) {
+  var config = $state.$current.locals.globals.config;
+
+  if($state.$current.locals.globals.announce) {
+    var announce                = $state.$current.locals.globals.announce;
+    if(announce.author != login.getName()) {
+      $state.go('announcelist');
+    }
     $scope.announce             = angular.copy(announce);
     $scope.announce.category    = announce.category.split('-')[0];
     $scope.announce.subCategory = announce.category;
@@ -19,7 +23,7 @@ controller('AnnounceEditCtrl', function($scope, $route, url, Announce) {
     $scope.announce.update = 'edit'
     Announce.update($scope.announce).then(
       function(data) {
-        url.redirect('announce.list');
+        $state.go('announcelist');
       }
     );
   }
