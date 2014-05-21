@@ -13,11 +13,6 @@ config(function($stateProvider, $urlRouterProvider){
         },
       }
     }).
-    state('user', {
-      url:         '/utilisateurs/:user_name',
-      templateUrl: 'partials/user_page.html',
-      controller:  'UserPageCtrl',
-    }).
     state('echange.new', {
       url:         '/echanges/nouvelle',
       templateUrl: 'partials/transactions_new.html',
@@ -29,5 +24,5 @@ config(function($stateProvider, $urlRouterProvider){
       controller:  'CollectiveWorkCtrl',
     });
 
-    $urlRouterProvider.otherwise('home');
+    $urlRouterProvider.otherwise('/');
 });

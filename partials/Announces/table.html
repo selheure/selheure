@@ -8,7 +8,7 @@
   <tr ng-repeat="announce in announces |types:types |category:category:subcategory">
     <td>{{ announce.created_at | date:"dd/MM" }}</td>
     <td>{{config.announceTypes[announce.announce_type]}}</td>
-    <td>{{ announce.author }}</td>
+    <td><a ui-sref="userpage({name: announce.author})">{{ announce.author }}</a></td>
     <td><a ui-sref="announceedit(announce)">{{ announce.title }}</a></td>
     </td>
   </tr>

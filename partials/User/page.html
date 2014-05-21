@@ -1,0 +1,59 @@
+<div class="sh-block">
+<div ng-show="user.id">
+  <h3>{{ user.id }}</h3>
+  <hr>
+  <p ng-show="user.tel">Telephone : {{user.tel}}</p>
+  <p ng-show="user.email">Adresse Email : {{user.email}}</p>
+  <p ng-show="!user.tel && !user.email">Attention : pas d'information de contact</p>
+  <p ng-show="user.localization">Localisation : {{user.localization}}</p>
+  <p>Solde compte temps : {{balance.value}} {{balance.unity}}</p>
+  <hr/>
+  <div>
+    <h4>Echanges en attente de validation</h4>
+    <transactions transaction="transaction"></transactions>
+  </div>
+
+  <hr/>
+  <h4 ng-if="login.getName() == user.name">Mes annonces</h4>
+  <h4 ng-if="login.getName() != user.name">Annonces de {{user.name}}</h4>
+  <div ng-repeat="(type, label) in announceTypes">
+    <h5>{{ label }}s</h5>
+    <table class="table table-hover" ng-init="selected.announce_type=type">
+      <tr>
+        <th>Date</th>
+        <th>Titre</th>
+        <th>Lieu</th>
+        <th></th>
+      </tr>
+      <tr ng-repeat="(key, announce) in user_announces | filter:selected">
+        <td>{{ announce.created_at | date }}</td>
+        <td><a href="" ng-popup="/partials/announces_edit.html">{{ announce.title }}</a></td>
+        <td>{{ announce.place }}</td>
+        <td>
+          <a ui-sref="announceedit(announce)"><button class="btn" ng-if="login.getName() == user.name">Editer</button></a>
+          <button class="btn" ng-show="login.isAuthorized(user.id)" ng-click="deleteAnnounce(key)">x</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <hr/>
+  <h4 ng-if="login.user.id == user.id">Historique de mes échanges</h4>
+  <h4 ng-if="login.user.id != user.id">Historique des échanges de {{user.id}}</h4>
+  <transaction transactions="transactions"></transaction>
+</div>
+</div>
+
+
+<div id="confirmModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="confirmModalLabel">{{ confirm.label }}</h3>
+  </div>
+  <div class="modal-body">
+    {{ confirm.question }}
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="confirm.ok()">Oui</button>
+    <button class="btn" data-dismiss="modal" aria-hidden="true" ng-click="confirm.cancel()">Non</button>
+  </div>
+</div>
