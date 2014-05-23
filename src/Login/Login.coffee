@@ -117,7 +117,11 @@ factory('login', ($q, $rootScope, $timeout, $http, User) ->
       for piece in this.actualUser.roles
         if role == piece or piece == 'admin'
           return true
+          break
       return false
+
+    authorize: (name)->
+      return this.getName() == name || this.hasRole(name)
   }
 
   $rootScope.$on('$routeChangeSuccess', ->

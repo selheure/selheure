@@ -3,7 +3,6 @@ angular.module('selheure', [
   'notification',
   'translation',
   'transaction',
-  'breadcrumb',
   'announce',
   'login',
   'user',

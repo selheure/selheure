@@ -10,8 +10,8 @@
   </tr>
   <tr ng-repeat="transaction in transactions">
     <td>{{ transaction.created_at | date }}</td>
-    <td><a ui-sref="userpage({name: transaction.from.split(' ')[0]})">{{transaction.from}}</a></td>
-    <td><a ui-sref="userpage({name: transaction.to})">{{transaction.to}}</a></td>
+    <td><a ui-sref="userpage({name: transaction.from})">{{transaction.from}} <span ng-if="transaction.fromgroup">({{transaction.declared_by}})</span></a></td>
+    <td><a ui-sref="userpage({name: transaction.to})">{{transaction.to}} <span ng-if="transaction.togroup">({{transaction.declared_by}})</span></a></td>
     <td>{{ transaction.amount }}</td>
     <td ng-if="transaction.message">{{transaction.message}}</td>
     <td ng-if="!transaction.message">Pas de message</td>
@@ -20,8 +20,8 @@
     <td>
       <p ng-show="!transaction.validated">Non validé</p>
       <p ng-show="transaction.validated">Validé</p>
-      <p ng-show="login.getName() == transaction.validator && !transaction.validated"><button ng-click="validate(transaction)">Valider</button></p>
-      <p ng-show="login.getName() == transaction.declared_by"><button ng-click="edit(transaction)">Editer</button></p>
+      <p ng-show="login.authorize(transaction.validator) && !transaction.validated"><button ng-click="validate(transaction)">Valider</button></p>
+      <p ng-show="login.authorize(transaction.editable)  && !transaction.validated"><button ng-click="edit(transaction)">Editer</button></p>
     </td>
   </tr>
 </table>

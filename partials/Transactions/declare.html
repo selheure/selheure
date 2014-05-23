@@ -16,7 +16,7 @@
         <button type="button" class="btn btn-default" ng-model="transaction.from" ng-repeat="proxy in login.proxys" btn-radio="proxy">{{proxy}}</button>
         <button type="button" class="btn btn-default" ng-model="transaction.from" btn-radio="'another'">Celui de...</button>
       </div>
-      <input ng-show="transaction.from == 'another'" type="text" ng-model="transaction.fromField" typeahead="username for username in userList | filter:$viewValue" placeholder="Prénom Nom"/>
+      <input ng-show="transaction.from == 'another'" type="text" ng-model="transaction.fromField" typeahead-editable="false" typeahead="username for username in userList | filter:$viewValue" placeholder="Prénom Nom"/>
 
 
       <p>----------------&gt;</p>
@@ -27,7 +27,7 @@
         <button type="button" class="btn btn-primary" ng-model="transaction.to" ng-repeat="proxy in login.proxys" btn-radio="proxy" ng-hide="transaction.from == proxy">{{proxy}}</button>
         <button type="button" class="btn btn-primary" ng-model="transaction.to" btn-radio="'another'" ng-if="transaction.from !== 'another'">Celui de...</button>
       </div>
-      <input ng-show="transaction.to == 'another'" type="text" ng-model="transaction.toField" typeahead="username for username in userList | filter:$viewValue" placeholder="Prénom Nom"/>
+      <input ng-show="transaction.to == 'another'" type="text" ng-model="transaction.toField" typeahead-editable="false" typeahead="username for username in userList | filter:$viewValue" placeholder="Prénom Nom"/>
 
       <h4>Motif de l'échange</h4>
       <p>Référence à une annonce</p>

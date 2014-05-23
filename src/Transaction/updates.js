@@ -10,6 +10,7 @@ exports.transaction_create = function(doc, req) {
     doc.created_at  = new Date().getTime();
     doc.declared_by = req.userCtx.name;
   }
+
   doc.to          = form.to || null;
   doc.from        = form.from || null;
   doc.message     = form.reason.text || '';
@@ -19,12 +20,25 @@ exports.transaction_create = function(doc, req) {
   if( form.hasOwnProperty('amount')) {
     doc.amount = parseInt(form.amount);
   }
-  if( doc.to == req.userCtx.name   || req.userCtx.roles.indexOf(doc.to) ) {
+
+  if (doc.from == req.userCtx.name) {
     doc.validator = doc.from;
-  }
-  if( doc.from == req.userCtx.name || req.userCtx.roles.indexOf(doc.to) ) {
+    doc.editable  = doc.to;
+  } else if (doc.to == req.userCtx.name) {
     doc.validator = doc.to;
+    doc.editable  = doc.from;
+  } else if (req.userCtx.roles.indexOf(doc.from)) {
+    doc.editable  = doc.from;
+    doc.validator = doc.to;
+    doc.fromgroup = true;
+  } else if (req.userCtx.roles.indexOf(doc.to)) {
+    doc.editable  = doc.to;
+    doc.validator = doc.from;
+    doc.togroup   = true;
   }
+
+  doc.togroup   = doc.togroup   || false;
+  doc.fromgroup = doc.fromgroup || false;
 
   return [doc, 'ok'];
 }

@@ -8,8 +8,8 @@ exports.transaction_get = {
 exports.transaction_by_author = {
   map: function(doc) {
     if(doc.type == "transaction" && doc._id)
-      emit(doc.to.split(' ')[0], doc);
-      emit(doc.from.split(' ')[0], doc);
+      emit(doc.to, doc);
+      emit(doc.from, doc);
   }
 }
 
@@ -22,20 +22,9 @@ exports.transaction_all = {
 
 exports.transaction_not_validated = {
   map: function(doc) {
-    if(doc.type && doc.type == "transaction" && !doc.validated && doc.validator){
-      var newDoc = {};
-      var toRemove = {
-        _rev: true,
-        type: true,
-      };
-      for(var attr in doc){
-        if(!toRemove[attr]){
-          newDoc[attr] = doc[attr];
-        }
-      }
-      newDoc.validator = doc[doc.validator];
-      emit(doc.from, newDoc);
-      emit(doc.to, newDoc);
+    if(doc.type && doc.type == "transaction" && !doc.validated){
+      emit(doc.from, doc);
+      emit(doc.to, doc);
     }
   }
 };

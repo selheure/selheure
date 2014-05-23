@@ -13,8 +13,11 @@ exports.transaction = new Type('transaction', {
   fields: {
     id:           idField(/\w+/),
     to:           fields.string(),
+    editable:     fields.string(),
     declared_by:  fields.creator(),
     from:         fields.string(),
+    togroup:      fields.boolean(),
+    fromgroup:    fields.boolean(),
     amount:       fields.number(),
     message:      fields.string({
       required: false,
