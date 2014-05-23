@@ -8,7 +8,6 @@ directive('announces', function(Config) {
       category:    '=',
       subcategory: '=',
     },
-    replace: true,
     templateUrl: 'partials/Announces/table.html',
     link: function(scope, element, attrs) {
       Config().then(
