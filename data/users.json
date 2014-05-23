@@ -16,5 +16,14 @@
     "email":       "test@test.fr",
     "created_at":  1400666662219,
     "updated_at":  1400666662219
+  },
+  {
+    "_id":         "user:CRIC",
+    "id":          "CRIC",
+    "type":        "user",
+    "name":        "CRIC",
+    "email":       "cric@cric.fr",
+    "created_at":  1400666219,
+    "updated_at":  14006662219
   }
 ]

@@ -17,17 +17,7 @@ config(function($stateProvider, $urlRouterProvider){
           });
         },
       }
-    }).
-    state('echange.new', {
-      url:         '/echanges/nouvelle',
-      templateUrl: 'partials/transactions_new.html',
-      controller:  'NewTransactionCtrl',
-    }).
-    state('work', {
-      url:         '/travail_collectif',
-      templateUrl: 'partials/collective_work.html',
-      controller:  'CollectiveWorkCtrl',
-    });
+    })
 
     $urlRouterProvider.otherwise('/');
 });

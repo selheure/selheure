@@ -11,5 +11,19 @@ exports.transaction = new Type('transaction', {
     remove: permissions.hasRole('_admin')
   },
   fields: {
+    id:           idField(/\w+/),
+    to:           fields.string(),
+    declared_by:  fields.creator(),
+    from:         fields.string(),
+    amount:       fields.number(),
+    message:      fields.string({
+      required: false,
+    }),
+    reference:    fields.string({
+      required: false,
+    }),
+    created_at:   fields.createdTime(),
+    validated:    fields.boolean(),
+    validator:    fields.string(),
   },
 });

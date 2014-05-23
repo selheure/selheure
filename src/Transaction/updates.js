@@ -1,27 +1,42 @@
-exports.transaction_edit = function(doc, req) {
-  var form = JSON.parse(req.body)
-  if(doc === null) {
-    if(!form.to && form.from != req.userCtx.name){
-      form.to = req.userCtx.name;
-    }
-    form.type = 'transaction';
-    form._id = req.uuid;
-    form.declared_by = req.userCtx.name;
-    form.declared_at = new Date().toISOString();
-    form.amount = parseInt(form.amount);
-    if(form.declared_by == form.from || has_role(req.userCtx, form.from))
-      form.validator = 'to';
-    else if(form.declared_by == form.to || has_role(req.userCtx, form.to))
-      form.validator = 'from';
-    //form.validator = form.declared_by == form.from ? 'to' : 'from';
-    return [form, 'ok'];
-  } else {
-    for(e in doc) {
-      if(e in form && form[e] != doc[e]) {
-        log(e, form[e]);
-        doc[e] = form[e];
-      }
-    }
-    return [doc, 'ok']
+exports.transaction_create = function(doc, req) {
+  var form = JSON.parse(req.body);
+  form.reason = form.reason || {};
+
+  if( doc === null) {
+    doc             = {};
+    doc.type        = 'transaction';
+    doc.id          = req.uuid;
+    doc._id         = doc.type+':'+doc.id;
+    doc.created_at  = new Date().getTime();
+    doc.declared_by = req.userCtx.name;
   }
+  doc.to          = form.to || null;
+  doc.from        = form.from || null;
+  doc.message     = form.reason.text || '';
+  doc.reference   = form.reason.announce || '';
+  doc.validated   = false;
+
+  if( form.hasOwnProperty('amount')) {
+    doc.amount = parseInt(form.amount);
+  }
+  if( doc.to == req.userCtx.name   || req.userCtx.roles.indexOf(doc.to) ) {
+    doc.validator = doc.from;
+  }
+  if( doc.from == req.userCtx.name || req.userCtx.roles.indexOf(doc.to) ) {
+    doc.validator = doc.to;
+  }
+
+  return [doc, 'ok'];
+}
+
+exports.transaction_validate = function(doc, req) {
+  if(doc !== null) {
+    if(req.userCtx.name == doc.validator) {
+      doc.validated = true;
+    } else {
+      throw({forbidden: "You are the validator"});
+    }
+    return [doc, 'ok'];
+  }
+  throw({forbidden: "Can't update an document that doesn't exist"});
 }

@@ -1,0 +1,41 @@
+<div class="sh-block">
+  <h1>Nouvel échange</h1>
+  <hr>
+  <span ng-if="login.isNotConnect()">Vous devez être connecté pour accéder à cette page</span>
+
+  <div ng-if="login.isConnect()">
+    <p>Vous pouvez déclarer tout échange réalisé, soit au débit, soit au crédit. Le partenaire de l'échange devra le valider.</p>
+    <h3>Description de l'échange</h3>
+    <form ng-submit="newTransactionSubmit()">
+      <p><input type="number" min="0" ng-model="transaction.amount" placeholder="ex : 60" required/> minutes</p>
+      <h6>Compte à créditer</h6>
+
+      <!-- From ? -->
+      <div class="btn-group">
+        <button type="button" class="btn btn-default" ng-model="transaction.from" btn-radio="login.getName()">Le mien</button>
+        <button type="button" class="btn btn-default" ng-model="transaction.from" ng-repeat="proxy in login.proxys" btn-radio="proxy">{{proxy}}</button>
+        <button type="button" class="btn btn-default" ng-model="transaction.from" btn-radio="'another'">Celui de...</button>
+      </div>
+      <input ng-show="transaction.from == 'another'" type="text" ng-model="transaction.fromField" typeahead="username for username in userList | filter:$viewValue" placeholder="Prénom Nom"/>
+
+
+      <p>----------------&gt;</p>
+
+      <!-- To ? -->
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" ng-model="transaction.to" btn-radio="login.getName()" ng-if="transaction.from !== login.getName()">Le mien</button>
+        <button type="button" class="btn btn-primary" ng-model="transaction.to" ng-repeat="proxy in login.proxys" btn-radio="proxy" ng-hide="transaction.from == proxy">{{proxy}}</button>
+        <button type="button" class="btn btn-primary" ng-model="transaction.to" btn-radio="'another'" ng-if="transaction.from !== 'another'">Celui de...</button>
+      </div>
+      <input ng-show="transaction.to == 'another'" type="text" ng-model="transaction.toField" typeahead="username for username in userList | filter:$viewValue" placeholder="Prénom Nom"/>
+
+      <h4>Motif de l'échange</h4>
+      <p>Référence à une annonce</p>
+      <select ng-options="value.id as value.title for (id, value) in announceList" ng-model="transaction.reason.announce"></select>
+      <p>Texte libre</p>
+      <textarea name="reason" class="span4" ng-model="transaction.reason.text" ngMaxlength="60" />
+      <button type="submit" class="btn btn-primary">Envoyé</button>
+    </form>
+  </div>
+
+</div>

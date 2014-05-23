@@ -5,25 +5,23 @@
     <th>Débiteur</th>
     <th>Montant</th>
     <th>Motif</th>
-    <th ng-hide="status == 'validated' || status == 'not validated'">Statut</th>
-    <th ng-show="status == 'not validated'">A valider par</th>
-    <th></th>
+    <th>Announce</th>
+    <th>Validation</th>
   </tr>
-  <tr ng-repeat="transaction in transactionList">
-    <td>{{ transaction.declared_at | date:"dd/MM" }}</td>
-    <td><user-link name="transaction.from"/></td>
-    <td><user-link name="transaction.to"/></td>
+  <tr ng-repeat="transaction in transactions">
+    <td>{{ transaction.created_at | date }}</td>
+    <td><a ui-sref="userpage({name: transaction.from.split(' ')[0]})">{{transaction.from}}</a></td>
+    <td><a ui-sref="userpage({name: transaction.to})">{{transaction.to}}</a></td>
     <td>{{ transaction.amount }}</td>
-    <td ng-show="transaction.reason.text">{{transaction.reason.text}}</td>
-    <td ng-show="!transaction.reason.text && transaction.reason.announce"><announce-link id="transaction.reason.announce"/></td>
-    <td ng-hide="status == 'validated' || status == 'not validated'">{{content.validatedLabels[transaction.validated]}}</td>
-    <td ng-show="status == 'not validated'"><user-link name="transaction[transaction.validator]"/></td>
-    <td ng-show="!transaction.validated">
-      <!--<button class="btn" ng-show="login.user.id == user.id" ng-click="editTransaction(transaction)">Editer</button>-->
-      <button class="btn" ng-show="login.isAuthorized(user.id)" ng-popup="/partials/transaction_edit.html">Editer</button>
-      <ng-confirm title="Valider échange" action-text="Etes-vous sûr de vouloir valider cet échange ?" action-button-text="Oui" action-function="validateTransaction(transaction)" cancel-button-text="Non" cancel-function="close()">
-        <button class="btn" ng-show="login.isAuthorized(transaction[transaction.validator])">Valider</button>
-      </ng-confirm>
+    <td ng-if="transaction.message">{{transaction.message}}</td>
+    <td ng-if="!transaction.message">Pas de message</td>
+    <td ng-if="transaction.reference"><a ui-sref="announceedit({id: transaction.reference})">Announce</a></td>
+    <td ng-if="!transaction.reference">Pas d'annonce</a></td>
+    <td>
+      <p ng-show="!transaction.validated">Non validé</p>
+      <p ng-show="transaction.validated">Validé</p>
+      <p ng-show="login.getName() == transaction.validator && !transaction.validated"><button ng-click="validate(transaction)">Valider</button></p>
+      <p ng-show="login.getName() == transaction.declared_by"><button ng-click="edit(transaction)">Editer</button></p>
     </td>
   </tr>
 </table>

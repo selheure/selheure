@@ -1,7 +1,22 @@
+exports.transaction_get = {
+  map: function(doc) {
+    if(doc.type == "transaction" && doc._id)
+      emit(doc.id, doc);
+  }
+}
+
+exports.transaction_by_author = {
+  map: function(doc) {
+    if(doc.type == "transaction" && doc._id)
+      emit(doc.to.split(' ')[0], doc);
+      emit(doc.from.split(' ')[0], doc);
+  }
+}
+
 exports.transaction_all = {
   map: function(doc) {
-    if(doc.type == "transaction" && doc.declared_at && doc._id)
-      emit(doc.declared_at, doc._id)
+    if(doc.type == "transaction" && doc._id)
+      emit(doc.created_at, doc);
   }
 }
 
