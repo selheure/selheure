@@ -53,7 +53,7 @@
 
           <!-- Account -->
           <ul class="nav navbar-nav navbar-right" ng-if="login.isConnect()">
-              <li><a href="#">{{login.getName()}}</a></li>
+              <li><a ui-sref="userpage({name: login.getName()})">{{login.getName()}}</a></li>
               <li><button class="btn btn-default navbar-btn" ng-click="signOut()">Logout</button></li>
           </ul>
 
@@ -78,7 +78,7 @@
     <div class="container">
       <div class="row" style="padding-top: 20px;">
         <div class="span12">
-          <notification></notification>
+          <notification-overlay></notification-overlay>
           <div ui-view></div>
         <footer style="padding-top: 40px;">
           <p>Licence : GPL</p>

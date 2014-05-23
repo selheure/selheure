@@ -6,6 +6,14 @@ exports.announce_all = {
   }
 };
 
+exports.announce_by_author = {
+  map: function(doc) {
+    if(doc.type && doc.type == 'announce' && doc.author){
+      emit(doc.author, doc);
+    }
+  }
+};
+
 exports.announce_proposal_all = {
   map: function(doc) {
     if(doc.type && doc.type == 'announce' && doc.author && doc.announce_type == 'proposal'){
