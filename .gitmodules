@@ -1,7 +1,3 @@
-[submodule "src/dbSelect"]
-	path = src/dbSelect
-	url = https://github.com/LupoLibero/couch-ng-dbSelect.git
-	branch = master
 [submodule "src/Translation"]
 	path = src/Translation
 	url = https://github.com/LupoLibero/couch-ng-Translation
