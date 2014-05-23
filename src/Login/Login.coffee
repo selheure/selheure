@@ -1,6 +1,7 @@
 angular.module('login').
-factory('login', ($q, $rootScope, $timeout, $http) ->
+factory('login', ($q, $rootScope, $timeout, $http, User) ->
   login = {
+    proxys: []
     actualUser: {
       name:     ''
       password: ''
@@ -127,6 +128,20 @@ factory('login', ($q, $rootScope, $timeout, $http) ->
       else
         $rootScope.$broadcast('SignOut', login.getName())
     ,200)
+  )
+
+  $rootScope.$on('SessionChanged', ($event, name)->
+    if name == ''
+      login.proxys = []
+    else
+      for role in login.actualUser.roles
+        if login.proxys.indexOf(role) == -1
+          User.get({
+            key: role
+          }).then(
+            (data)-> #Success
+              login.proxys.push(role)
+          )
   )
 
   return login
