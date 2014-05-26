@@ -114,7 +114,7 @@ factory('login', ($q, $rootScope, $timeout, $http, User) ->
         return !this.isConnect()
 
     hasRole: (role) ->
-      for piece in this.actualUser.roles
+      for piece in this.actualUser.roles || []
         if role == piece or piece == 'admin'
           return true
           break

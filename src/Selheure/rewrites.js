@@ -8,8 +8,9 @@ module.exports = [
   {from: '/vendor/*',          to: 'static/vendor/*'},
   {from: '/modules.js',        to: 'modules.js'},
   {from: '/',                  to: 'partials/index.html'},
-  {from: ':db',                to: '../../../:db'},
-  {from: ':db/:id',            to: '../../../:db/:id'},
+  {from: '/:db/:id',           to: '../../../:db/:id'},
+  {from: '/:id',               to: '../../:id'},
   {from: '/:db/_design/:dd/*', to: '../../../:db/_design/:dd/*'},
   {from: '/_design/:dd/*',     to: '../../_design/:dd/*'},
+  {from: '/:db/:doc/:att',     to: '../../../:db/:doc/:att'},
 ];

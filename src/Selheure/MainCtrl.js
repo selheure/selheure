@@ -24,10 +24,11 @@ controller('MainCtrl', function($scope, $rootScope, notification, login, $modal,
               $scope.user = {}
             },function (err){
               console.log(err);
+              notification.addAlert('Mauvais Utilisateur/Mot de passe', 'danger')
             }
           );
         }, function(err){
-          console.log(err);
+          notification.addAlert('Mauvais Utilisateur/Mot de passe', 'danger')
         }
       );
   }

@@ -22,11 +22,11 @@ exports.transaction_create = function(doc, req) {
   }
 
   if (doc.from == req.userCtx.name) {
-    doc.validator = doc.from;
-    doc.editable  = doc.to;
-  } else if (doc.to == req.userCtx.name) {
-    doc.validator = doc.to;
     doc.editable  = doc.from;
+    doc.validator = doc.to;
+  } else if (doc.to == req.userCtx.name) {
+    doc.editable  = doc.to;
+    doc.validator = doc.from;
   } else if (req.userCtx.roles.indexOf(doc.from)) {
     doc.editable  = doc.from;
     doc.validator = doc.to;

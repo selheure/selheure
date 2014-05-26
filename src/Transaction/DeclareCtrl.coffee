@@ -1,5 +1,5 @@
 angular.module('transaction').
-controller('DeclareCtrl', ($scope, $state, login, userList, Announce, Transaction)->
+controller('DeclareCtrl', ($scope, $state, login, userList, Announce, Transaction, notification)->
   $scope.transaction  = {}
   $scope.userList     = []
   demandList          = []
@@ -37,6 +37,12 @@ controller('DeclareCtrl', ($scope, $state, login, userList, Announce, Transactio
     delete transaction.toField
     delete transaction.fromField
     transaction.update = 'create'
+
+    if not transaction.amount? or
+    not transaction.from      or
+    not transaction.to
+      notification.addAlert('Veuillez remplir les champs obligatoire', 'danger')
+      return false
 
     Transaction.update(transaction).then(
       (data)-> #Success

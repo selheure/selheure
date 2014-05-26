@@ -18,7 +18,9 @@ exports.announce = new Type('announce', {
     created_at:     fields.number(),
     updated_at:     fields.number(),
     title:          fields.string(),
-    place:          fields.string(),
+    place:          fields.string({
+      required: false,
+    }),
     message:        fields.string(),
   },
 });
