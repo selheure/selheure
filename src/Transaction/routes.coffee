@@ -25,7 +25,16 @@ config( ($stateProvider)->
     }).
     state('work', {
       url:         '/travail_collectif'
-      templateUrl: 'partials/collective_work.html'
+      templateUrl: 'partials/Transactions/collectivework.html'
       controller:  'CollectiveWorkCtrl'
+      resolve: {
+        config: (Config)->
+          return Config()
+        announces: (Announce)->
+          Announce.view({
+            view: 'by_author'
+            key:  'CRIC'
+          })
+      }
     })
 )

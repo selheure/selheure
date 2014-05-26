@@ -18,3 +18,16 @@ exports.hasRole = function (user) {
     return _.include(roles, role);
   }
 }
+
+exports.roleMatchesField = function (path) {
+    if (!_.isArray(path)) {
+        path = [path];
+    }
+    return function (newDoc, oldDoc, newVal, oldVal, userCtx) {
+        var role = utils.getPropertyPath(oldDoc, path);
+        var roles = userCtx ? (userCtx.roles || []): [];
+        if (!_.include(roles, role)) {
+            throw new Error('User must have "' + role + '" role.');
+        }
+    };
+};

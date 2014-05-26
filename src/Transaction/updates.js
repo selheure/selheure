@@ -45,7 +45,7 @@ exports.transaction_create = function(doc, req) {
 
 exports.transaction_validate = function(doc, req) {
   if(doc !== null) {
-    if(req.userCtx.name == doc.validator) {
+    if(req.userCtx.name == doc.validator || req.userCtx.roles.indexOf(doc.validator) != -1) {
       doc.validated = true;
     } else {
       throw({forbidden: "You are the validator"});
