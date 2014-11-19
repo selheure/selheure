@@ -12,9 +12,17 @@ config(function($stateProvider, $urlRouterProvider){
           });
         },
         announces: function(Announce) {
-          return Announce.all({
+          list = Announce.all({
             limit: 10,
           });
+          for(element in list) {
+            if(element.hasOwnAttribute('reference')) {
+              Transaction.get(element.reference).then(function(announce) {
+                element.announceTitle = announce.title
+              });
+            }
+          }
+          return list
         },
       }
     })

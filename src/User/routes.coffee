@@ -18,7 +18,7 @@ config( ($stateProvider) ->
             key:  $stateParams.name
             limit: 10
           })
-        notValidate: (Transaction, $stateParams)->
+        notValidated: (Transaction, $stateParams)->
           return Transaction.view({
             view: 'not_validated'
             key:  $stateParams.name

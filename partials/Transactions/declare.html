@@ -8,7 +8,7 @@
     <h3>Description de l'échange</h3>
     <form ng-submit="newTransactionSubmit()">
       <p><input type="number" min="0" ng-model="transaction.amount" placeholder="ex : 60" required/> minutes</p>
-      <h6>Compte à créditer</h6>
+      <h5>Compte à débiter</h5>
 
       <!-- From ? -->
       <div class="btn-group">
@@ -19,7 +19,7 @@
       <input ng-show="transaction.from == 'another'" type="text" ng-model="transaction.fromField" typeahead-editable="false" typeahead="username for username in userList | filter:$viewValue" placeholder="Prénom Nom"/>
 
 
-      <p>----------------&gt;</p>
+      <h5>Compte à créditer</h5>
 
       <!-- To ? -->
       <div class="btn-group">
@@ -30,8 +30,9 @@
       <input ng-show="transaction.to == 'another'" type="text" ng-model="transaction.toField" typeahead-editable="false" typeahead="username for username in userList | filter:$viewValue" placeholder="Prénom Nom"/>
 
       <h4>Motif de l'échange</h4>
-      <p>Référence à une annonce</p>
+      <p ng-show="announceList">Référence à une annonce
       <select ng-options="value.id as value.title for (id, value) in announceList" ng-model="transaction.reason.announce"></select>
+      </p>
       <p>Texte libre</p>
       <textarea name="reason" class="span4" ng-model="transaction.reason.text" ngMaxlength="60" />
       <button type="submit" class="btn btn-primary">Envoyé</button>
