@@ -5,13 +5,17 @@ var permissions       = require('couchtypes/permissions');
 var idField           = require('../Selheure/fields').idField;
 var utils             = require('../Selheure/utils');
 
+var usernameOrRoleMatchesField = function(field) {
+  return permissions.any([
+    permissions.usernameMatchesField(field),
+    utils.roleMatchesField(field),
+  ]);
+}
+
 exports.transaction = new Type('transaction', {
   permissions: {
-    add: permissions.loggedIn(),
-    update: permissions.any([
-      utils.roleMatchesField('editable'),
-      permissions.usernameMatchesField('editable'),
-    ]),
+    add:    permissions.loggedIn(),
+    update: permissions.loggedIn(),
     remove: permissions.hasRole('_admin')
   },
   fields: {
@@ -45,20 +49,26 @@ exports.transaction = new Type('transaction', {
     amount:         fields.number(),
     execution_date: fields.string({
       required: false,
+      permissions: {
+        update: usernameOrRoleMatchesField('declared_by'),
+      }
     }),
     message:        fields.string({
       required: false,
+      permissions: {
+        update: usernameOrRoleMatchesField('declared_by'),
+      }
     }),
     reference:      fields.string({
       required: false,
+      permissions: {
+        update: usernameOrRoleMatchesField('declared_by'),
+      }
     }),
     created_at:     fields.createdTime(),
     validated:      fields.boolean({
       permissions: {
-        update: permissions.any([
-          utils.roleMatchesField('validator'),
-          permissions.usernameMatchesField('validator'),
-        ]),
+        update: usernameOrRoleMatchesField('validator'),
       }
     }),
     validator:      fields.string({

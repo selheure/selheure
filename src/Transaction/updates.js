@@ -48,9 +48,9 @@ exports.transaction_validate = function(doc, req) {
     if(req.userCtx.name == doc.validator || req.userCtx.roles.indexOf(doc.validator) != -1) {
       doc.validated = true;
     } else {
-      throw({forbidden: "You are the validator"});
+      throw({forbidden: "You are not the validator"});
     }
     return [doc, 'ok'];
   }
-  throw({forbidden: "Can't update an document that doesn't exist"});
+  throw({forbidden: "Can't update a document that doesn't exist"});
 }

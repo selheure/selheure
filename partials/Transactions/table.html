@@ -5,7 +5,6 @@
     <th>Débiteur</th>
     <th>Montant</th>
     <th>Motif</th>
-    <th>Announce</th>
     <th>Validation</th>
   </tr>
   <tr ng-repeat="transaction in transactions">
@@ -14,9 +13,6 @@
     <td><a ui-sref="userpage({name: transaction.to})">{{transaction.to}} <span ng-if="transaction.togroup">({{transaction.declared_by}})</span></a></td>
     <td>{{ transaction.amount }}</td>
     <td ng-if="transaction.message">{{transaction.message}}</td>
-    <td ng-if="!transaction.message">Pas de message</td>
-    <td ng-if="transaction.reference"><a ui-sref="announceedit({id: transaction.reference})">Announce</a></td>
-    <td ng-if="!transaction.reference">Pas d'annonce</a></td>
     <td>
       <p ng-show="!transaction.validated">Non validé</p>
       <p ng-show="transaction.validated">Validé</p>
