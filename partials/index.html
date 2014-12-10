@@ -48,12 +48,13 @@
                 <li ui-sref-active="active"><a ui-sref="work">Une participation CRIC</a></li>
               </ul>
             </li>
+            <li ui-sref-active="active" ng-if="login.isValidated()"><a ui-sref="userlist">Utilisateurs</a></li>
           </ul>
           <!-- End link -->
 
           <!-- Account -->
           <ul class="nav navbar-nav navbar-right" ng-if="login.isConnect()">
-              <li><a ui-sref="userpage({name: login.getName()})">{{login.getName()}}</a></li>
+              <li><a ui-sref="userpage({name: login.getName()})">{{login.getName()}}<span ng-hide="login.isValidated()">&nbsp;(non validé)</span></a></li>
               <li><button class="btn btn-default navbar-btn" ng-click="signOut()">Logout</button></li>
           </ul>
 

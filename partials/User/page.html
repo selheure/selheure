@@ -1,7 +1,10 @@
 <div class="sh-block">
-<div ng-show="user.id">
-  <h3>{{ user.id }}</h3>
+<div ng-show="user.name">
+  <h3>{{ user.name }}</h3>
   <hr>
+  <p ng-if="login.getName() == user.name && !login.isValidated()">
+	<strong>Compte non validé</strong>
+  </p>
   <p ng-show="user.tel">Telephone : {{user.tel}}</p>
   <p ng-show="user.email">Adresse Email : {{user.email}}</p>
   <p ng-show="!user.tel && !user.email">Attention : pas d'information de contact</p>
@@ -18,8 +21,8 @@
   <h4 ng-if="login.getName() != user.name">Annonces de {{user.name}}</h4>
   <announces announces="announces"></announces>
   <hr/>
-  <h4 ng-if="login.user.id == user.id">Historique de mes échanges</h4>
-  <h4 ng-if="login.user.id != user.id">Historique des échanges de {{user.id}}</h4>
+  <h4 ng-if="login.getName() == user.name">Historique de mes échanges</h4>
+  <h4 ng-if="login.getName() != user.name">Historique des échanges de {{user.name}}</h4>
   <transactions transactions="transactions"></transactions>
 </div>
 </div>

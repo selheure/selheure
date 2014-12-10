@@ -1,0 +1,20 @@
+﻿<div class="sh-block">
+  <div>
+    <h2>Utilisateurs enregistrés</h2>
+  </div>
+
+  <table class="table table-hover">
+  <tr>
+    <th>Nom</th>
+    <th>E-mail</th>
+    <th>Statut</th>
+    <th ng-if="login.isAdmin()">Actions</th>
+  </tr>
+  <tr ng-repeat="user in users">
+    <td><a ui-sref="userpage({name: user.name})">{{ user.name }}</a></td>
+    <td>{{ user.email }}</td>
+    <td><span ng-if="!user.validated">Non validé</span><span ng-if="user.validated">Validé</span></td>
+    <td ng-if="login.isAdmin()"><button ng-if="!user.validated" ng-click="validateUser(user)">Valider</button></td>
+  </tr>
+</table>
+</div>
