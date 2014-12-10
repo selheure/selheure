@@ -1,8 +1,8 @@
 angular.module('login').
-factory('login', ($q, $rootScope, $timeout, $http, User) ->
+factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
   login = {
     proxys: []
-    actualUser: {
+    currentUser: {
       name:     ''
       password: ''
       roles:    []
@@ -10,27 +10,32 @@ factory('login', ($q, $rootScope, $timeout, $http, User) ->
 
     getPassword: ->
       if this.isConnect()
-        return this.actualUser.password
+        return this.currentUser.password
       else
         return ''
 
     getName: ->
       if this.isConnect()
-        return this.actualUser.name
+        if this.currentUser.name.indexOf(db.name + '.') == 0
+          this.currentUser.name = this.currentUser.name[db.name.length+1..]
+        return this.currentUser.name
       else
         return ''
 
-    signIn: (user, password) ->
-      defer = $q.defer()
+    getFullyQualifiedName: (name) ->
+      return db.name + '.' + name
 
+    signIn: (username, password) ->
+      defer = $q.defer()
+      fullName = @getFullyQualifiedName(username)
       $http.post("/_session", {
-        name:     user
+        name:     fullName
         password: password
       }).then(
         (data)=> #Success
           data = data.data
           data['password'] = password
-          @actualUser      = data
+          @currentUser      = data
           $rootScope.$broadcast('SignIn', @getName() )
           $rootScope.$broadcast('SessionChanged', @getName())
           defer.resolve(data)
@@ -42,13 +47,21 @@ factory('login', ($q, $rootScope, $timeout, $http, User) ->
 
     signUp: (user) ->
       defer = $q.defer()
+      userData = {}
+      userData[db.name] =
+        name:           user.name
+        email:          user.email
+        tel:            user.tel
+        localization:   user.localization
+      fullName = @getFullyQualifiedName(user.name)
       # Create the user inside _users db
       $http.post('/_users/',{
-        _id:       "org.couchdb.user:#{user.name}"
-        name:      user.name
+        _id:       "org.couchdb.user:#{fullName}"
+        name:      fullName
         type:      "user"
         roles:     []
         password:  user.password
+        data:      userData
       }).then(
         (data)=> #Success
           @signIn(user.name, user.password).then(
@@ -68,10 +81,10 @@ factory('login', ($q, $rootScope, $timeout, $http, User) ->
       $http.delete('/_session').then(
         (data) => #Success
           data = data.data
-          @actualUser = {
+          @currentUser = {
             name:     data.name
             password: ''
-            role:     data.role
+            roles:     data.roles
           }
           $rootScope.$broadcast('SignOut')
           $rootScope.$broadcast('SessionChanged', @getName())
@@ -88,7 +101,7 @@ factory('login', ($q, $rootScope, $timeout, $http, User) ->
       $http.get('/_session').then(
         (data) => #Success
           data = data.data.userCtx
-          @actualUser = data
+          @currentUser = data
           $timeout( =>
             $rootScope.$broadcast('SessionStart', @getName())
             $rootScope.$broadcast('SessionChanged', @getName())
@@ -105,16 +118,22 @@ factory('login', ($q, $rootScope, $timeout, $http, User) ->
       return defer.promise
 
     isConnect: ->
-      return this.actualUser.name? and this.actualUser.name != ''
+      return this.currentUser.name? and this.currentUser.name != ''
 
     isNotConnect: ->
-      if not this.actualUser.hasOwnProperty('name')
+      if not this.currentUser.hasOwnProperty('name')
         return false
       else
         return !this.isConnect()
 
+    isValidated: ->
+      return @hasRole(db.name)
+
+    isAdmin: ->
+      return @hasRole(db.name + "_admin")
+
     hasRole: (role) ->
-      for piece in this.actualUser.roles || []
+      for piece in this.currentUser.roles || []
         if role == piece or piece == 'admin'
           return true
           break
@@ -138,7 +157,7 @@ factory('login', ($q, $rootScope, $timeout, $http, User) ->
     if name == ''
       login.proxys = []
     else
-      for role in login.actualUser.roles
+      for role in login.currentUser.roles
         if login.proxys.indexOf(role) == -1
           User.get({
             key: role

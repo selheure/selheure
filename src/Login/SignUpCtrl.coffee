@@ -1,7 +1,7 @@
 angular.module('login').
 controller('SignUpCtrl', ($scope, notification, $modalInstance, login, User) ->
   $scope.user=
-    name:        ""
+    name:          ""
     password:      ""
     passwordconf:  ""
 
@@ -11,26 +11,20 @@ controller('SignUpCtrl', ($scope, notification, $modalInstance, login, User) ->
 
     # If password and it's confirmation don't match
     if user.password != user.passwordconf
-      notification.setAlert('The two password are not the same!', 'danger')
+      notification.setAlert('Les deux mots de passe sont différents !', 'danger')
       return false
 
     # If one field is not fill
     if user.name is '' or user.password is '' or user.passwordconf is ''
-      notification.setAlert('Please fill all the fields!')
+      notification.setAlert('Merci de remplir tous les champs obligatoires')
       return false
 
     # SignUp
-    user['update'] = 'create'
-    User.update(user).then(
-      (data)-> #Success
-        login.signUp(user).then(
-          (data) -> #Sucess
-            $modalInstance.close(data)
-          ,(err) -> #Error
-            notification.setAlert('This username is already taken!', 'danger')
-        )
-      ,(err)-> #Error
-        notification.setAlert('This username is already taken!', 'danger')
+    login.signUp(user).then(
+      (data) => #Success
+        $modalInstance.close(data)
+      ,(err) => #Error
+        notification.setAlert("Ce nom d'utilisateur est déjà pris", 'danger')
     )
 
   $scope.cancel = ->

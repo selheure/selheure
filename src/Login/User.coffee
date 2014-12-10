@@ -1,4 +1,4 @@
 angular.module('login').
 factory('User', (CouchDB, db)->
-  return CouchDB(db.url, db.name, 'user')
+  return CouchDB(db.private, db.name, 'user')
 )
