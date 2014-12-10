@@ -6,26 +6,36 @@ config(function($stateProvider, $urlRouterProvider){
       templateUrl: 'partials/home.html',
       controller:  'HomeCtrl',
       resolve: {
-        transactions: function(Transaction) {
-          return Transaction.all({
+        transactions: function(Transaction, Announce) {
+          var promise = Transaction.all({
             limit: 10,
           });
+          promise.then(function(list) {
+            console.log(list);
+            for(var i = 0 ; i < list.length ; i++) {
+              console.log(list[i]);
+              if(list[i].hasOwnProperty('reference') && list[i].reference) {
+                console.log(list[i].reference);
+                (function(element){
+                  Announce.get({
+                    view: 'all',
+                    key:  element.reference,
+                  }).then(function(announce) {
+                    element.message = announce.message
+                  });
+                })(list[i])
+              }
+            }
+          });
+          return promise
         },
         announces: function(Announce) {
-          list = Announce.all({
+          return Announce.all({
             limit: 10,
           });
-          for(element in list) {
-            if(element.hasOwnAttribute('reference')) {
-              Transaction.get(element.reference).then(function(announce) {
-                element.announceTitle = announce.title
-              });
-            }
-          }
-          return list
         },
       }
-    })
+    });
 
     $urlRouterProvider.otherwise('/');
 });

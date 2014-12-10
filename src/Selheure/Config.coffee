@@ -11,7 +11,7 @@ factory('Config', ($http, $location, $q, db)->
         url = url.join('/')
     else
       url = db.url
-    $http.get("#{url}selheure:config", {
+    $http.get("#{url}/selheure:config", {
       cache: true
     }).then(
       (data)-> #Success
