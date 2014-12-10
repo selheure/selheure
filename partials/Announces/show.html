@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="cancel()">&times;</button>
+  <h3>{{ announce.title }}</h3>
+  <p>
+    {{ config.categories[announce.category] }}&nbsp;
+    <strong ng-show="announce.subCategory">&gt;</strong> {{ config.subCategories[announce.category][announce.subCategory || "99"] }}
+  </p>
+</div>
+
+<div class="modal-body">
+  <p>{{ announce.message }}</p>
+
+  <p ng-show="announce.place">Lieu : {{ announce.place }}</p>
+</div>

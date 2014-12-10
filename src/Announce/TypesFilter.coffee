@@ -4,7 +4,7 @@ filter('types', ->
     if types?
       results = []
       for announce in announces
-        if announce.announce_type == types
+        if announce.type == types
           results.push(announce)
 
       return results

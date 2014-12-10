@@ -9,6 +9,7 @@ config(function($stateProvider){
         announces: function(Announce){
           return Announce.all();
         },
+        announce: function() { return null},
         config: function(Config){
           return Config();
         },
@@ -25,14 +26,33 @@ config(function($stateProvider){
       }
     }).
     state('announceedit', {
-      url:         '/annonce/:id/modifier',
+      url:         '/annonces/:id/modifier',
       templateUrl: 'partials/Announces/edit.html',
       controller:  'AnnounceEditCtrl',
       resolve: {
         announce: function(Announce, $stateParams) {
           return Announce.get({
-            view: 'all',
+            view: 'full',
             key:  $stateParams.announce_id,
+          });
+        },
+        config: function(Config){
+          return Config();
+        },
+      }
+    }).
+    state('announceshow', {
+      url:         '/annonces/:id/voir',
+      templateUrl: 'partials/Announces/list.html',
+      controller:  'AnnounceListCtrl',
+      resolve: {
+        announces: function(Announce){
+          return Announce.all();
+        },
+        announce: function(Announce, $stateParams) {
+          return Announce.get({
+            view: 'full',
+            key:  $stateParams.id,
           });
         },
         config: function(Config){

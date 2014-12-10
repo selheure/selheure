@@ -1,7 +1,59 @@
 exports.announce_all = {
   map: function(doc) {
     if(doc.type && doc.type == 'announce' && doc.author){
-      emit(doc.id, doc);
+      var catTab = doc.category.split("-");
+      var toEmit = {};
+      var exclude = {"message" : null, "type": null}
+      for(var element in doc) {
+        if(exclude.hasOwnProperty(element)){
+          continue;
+        }
+        switch(element) {
+          case "announce_type":
+            toEmit.type = doc[element];
+            break;
+          case "category":
+            toEmit.category = catTab[0];
+            break;
+          default:
+            toEmit[element] = doc[element];
+            break;
+        }
+      }
+      if(catTab.length > 1) {
+        toEmit.subCategory = catTab[1];
+      }
+      emit(doc.id, toEmit);
+    }
+  }
+};
+
+exports.announce_full = {
+  map: function(doc) {
+    if(doc.type && doc.type == 'announce' && doc.author){
+      var catTab = doc.category.split("-");
+      var toEmit = {};
+      var exclude = {"type": null}
+      for(var element in doc) {
+        if(exclude.hasOwnProperty(element)){
+          continue;
+        }
+        switch(element) {
+          case "announce_type":
+            toEmit.type = doc[element];
+            break;
+          case "category":
+            toEmit.category = catTab[0];
+            break;
+          default:
+            toEmit[element] = doc[element];
+            break;
+        }
+      }
+      if(catTab.length > 1) {
+        toEmit.subCategory = catTab[1];
+      }
+      emit(doc.id, toEmit);
     }
   }
 };
