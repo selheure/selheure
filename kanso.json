@@ -1,5 +1,5 @@
 {
-  "name": "selheure",
+  "name": "selheure-main",
   "version": "0.0.1",
   "description": "SEL'heure CouchApp",
   "load": "src/Selheure/app",
@@ -8,6 +8,9 @@
   "shell": [
     "grunt compile"
   ],
+  "bots": {
+    "dbSyncBot": "./bots/dbSyncBot/dbSyncBot.coffee _url _app _instance"
+  },
   "dependencies": {
     "properties": null,
     "attachments": null,
