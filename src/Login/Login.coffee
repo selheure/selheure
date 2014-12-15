@@ -16,14 +16,14 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
 
     getName: ->
       if this.isConnect()
-        if this.currentUser.name.indexOf(db.name + '.') == 0
-          this.currentUser.name = this.currentUser.name[db.name.length+1..]
+        if this.currentUser.name.indexOf(db.main.name + '.') == 0
+          this.currentUser.name = this.currentUser.name[db.main.name.length+1..]
         return this.currentUser.name
       else
         return ''
 
     getFullyQualifiedName: (name) ->
-      return db.name + '.' + name
+      return db.main.name + '.' + name
 
     signIn: (username, password) ->
       defer = $q.defer()
@@ -40,6 +40,7 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
           $rootScope.$broadcast('SessionChanged', @getName())
           defer.resolve(data)
         ,(err)-> #Error
+          console.log err
           defer.reject(err)
       )
 
@@ -48,7 +49,7 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
     signUp: (user) ->
       defer = $q.defer()
       userData = {}
-      userData[db.name] =
+      userData[db.main.name] =
         name:           user.name
         email:          user.email
         tel:            user.tel
@@ -127,10 +128,10 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
         return !this.isConnect()
 
     isValidated: ->
-      return @hasRole(db.name)
+      return @hasRole(db.main.name)
 
     isAdmin: ->
-      return @hasRole(db.name + "_admin")
+      return @hasRole(db.main.name + "_admin")
 
     hasRole: (role) ->
       for piece in this.currentUser.roles || []
