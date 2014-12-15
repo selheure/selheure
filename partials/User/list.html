@@ -13,8 +13,12 @@
   <tr ng-repeat="user in users">
     <td><a ui-sref="userpage({name: user.name})">{{ user.name }}</a></td>
     <td>{{ user.email }}</td>
-    <td><span ng-if="!user.validated">Non validé</span><span ng-if="user.validated">Validé</span></td>
-    <td ng-if="login.isAdmin()"><button ng-if="!user.validated" ng-click="validateUser(user)">Valider</button></td>
+    <td><span ng-if="user.locked">Bloqué</span><span ng-if="!user.locked">Actif</span></td>
+    <td ng-if="login.isAdmin()">
+      <button ng-if="user.locked" ng-click="unlockUser(user)">Débloquer</button>
+      <button ng-if="!user.locked && login.getName() != user.name" ng-click="lockUser(user)">Bloquer</button>
+      <button ng-click="resetPwd(user)">Reset du mdp</button>
+    </td>
   </tr>
 </table>
 </div>

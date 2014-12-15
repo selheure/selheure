@@ -1,5 +1,5 @@
 angular.module('user').
-config( ($stateProvider) ->
+config( ($stateProvider, $qProvider) ->
   $stateProvider
     .state('userpage', {
       url:         '/user/:name'
@@ -24,14 +24,32 @@ config( ($stateProvider) ->
             key:  $stateParams.name
             limit: 10
           })
-        user: (User, $stateParams)->
-          return User.get({
+        user: (User, $stateParams, $q)->
+          deferred = $q.defer()
+          User.get({
             key: $stateParams.name
-          })
+          }).then(
+            (result) =>
+              deferred.resolve(result)
+            (err) =>
+              deferred.resolve({name: $stateParams.name})
+          )
+          return deferred.promise
         balance: (Transaction, $stateParams)->
           return Transaction.view({
             view: 'balances'
             key: $stateParams.name
+          })
+      }
+    })
+    .state('userlist', {
+      url:         '/utilisateurs/'
+      templateUrl: 'partials/User/list.html'
+      controller:  'UserListCtrl'
+      resolve: {
+        users: (User, login) ->
+          return User.view({
+            view: 'get'
           })
       }
     })
