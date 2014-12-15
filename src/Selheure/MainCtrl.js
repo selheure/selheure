@@ -1,5 +1,5 @@
 angular.module('selheure').
-controller('MainCtrl', function($scope, $rootScope, notification, login, $modal, User){
+controller('MainCtrl', function($scope, $rootScope, notification, login, $modal, User, Config){
   $rootScope.login = login
 
   $scope.user = {
@@ -15,22 +15,16 @@ controller('MainCtrl', function($scope, $rootScope, notification, login, $modal,
   });
 
   $scope.signIn = function(){
-    User.get({
-      key: $scope.user.name,
-    }).then(
-        function(data){
-          login.signIn($scope.user.name, $scope.user.pass).then(
-            function (data){
-              $scope.user = {}
-            },function (err){
-              console.log(err);
-              notification.addAlert('Mauvais Utilisateur/Mot de passe', 'danger')
-            }
-          );
-        }, function(err){
-          notification.addAlert('Mauvais Utilisateur/Mot de passe', 'danger')
-        }
-      );
+    login.signIn($scope.user.name, $scope.user.pass).then(
+      function (data){
+        $scope.user = {}
+        if(!login.isValidated())
+          notification.addAlert("Votre compte n'est pas encore validé. Vous ne pourrez pas effectuer certaines actions", 'danger')
+      },function (err){
+        console.log(err);
+        notification.addAlert('Mauvais Utilisateur/Mot de passe', 'danger')
+      }
+    );
   }
 
   $scope.signUp = function(){
