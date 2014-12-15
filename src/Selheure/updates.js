@@ -4,4 +4,3 @@ reExports(exports, '../Announce/updates');
 
 reExports(exports, '../Transaction/updates');
 
-reExports(exports, '../User/updates');
