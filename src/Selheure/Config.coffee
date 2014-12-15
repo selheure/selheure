@@ -2,7 +2,7 @@ angular.module('selheure').
 factory('Config', ($http, $location, $q, db)->
   return ->
     defer = $q.defer()
-    if db.url == ''
+    if db.main.url == ''
       url = $location.absUrl()
       url = url.split('#')[0]
       if url.charAt(url.length-1) != '/'
@@ -10,7 +10,7 @@ factory('Config', ($http, $location, $q, db)->
         url.pop()
         url = url.join('/')
     else
-      url = db.url
+      url = db.main.url
     $http.get("#{url}/selheure:config", {
       cache: true
     }).then(

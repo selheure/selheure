@@ -1,1 +1,1 @@
-angular.module('login', ['ngCouchDB', 'ui.bootstrap'])
+angular.module('login', ['ngCouchDB', 'ui.bootstrap', 'user'])

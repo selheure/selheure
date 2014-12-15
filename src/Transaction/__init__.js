@@ -1,1 +1,1 @@
-angular.module('transaction', []);
+angular.module('transaction', ['user']);
