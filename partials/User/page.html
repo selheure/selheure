@@ -2,8 +2,8 @@
 <div ng-show="user.name">
   <h3>{{ user.name }}</h3>
   <hr>
-  <p ng-if="login.getName() == user.name && !login.isValidated()">
-	<strong>Compte non validé</strong>
+  <p ng-if="user.locked">
+	<strong>Compte verrouillé. <span ng-if="user.name == login.getName()">Demandez le dévérouillage à l'administrateur</span></strong>
   </p>
   <p ng-show="user.tel">Telephone : {{user.tel}}</p>
   <p ng-show="user.email">Adresse Email : {{user.email}}</p>
