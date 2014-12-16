@@ -5,7 +5,7 @@
   # envoi à la db
  * validations côté db pour chaque écriture
   * création/modif compte
-  * création/modif annonce
+  # création/modif annonce
   # création/modif transaction
   # gestion des erreurs côté client
   * gérer les erreurs renvoyées par la db côté client
@@ -26,7 +26,7 @@
    # séparer propositions et demandes
   # compta utilisateur
    # solde
-   * historique des transaction de l'ut
+   # historique des transaction de l'ut
  * ne pas afficher les infos personnelles aux non membres
   * blocage en base (application d'un rôle ?)
   * "blocage" dans l'appli
@@ -39,16 +39,15 @@
  * page utilisateurs ? (carnet d'adresses)
  # transformer en couchapp
  # mettre en ligne
- * installer serveur CRIC
 
 * page d'admin
  * ajout du groupe
  * liste des rubriques / sous-rubriques
- * modification de transaction ? 
+ * modification de transaction ?
  * traçabilité des actions des admins (de tous ?)
 * super-admin ?
  * configuration du site
- 
+
 * statistiques
  * globales
  * pour l'ut
@@ -58,14 +57,14 @@
  * page contact ?
  * page CRIC ?
  * log work CRIC ?
- 
+
  * config récupéré depuis la db
  * majuscule & pluriel pour les mots traduits
  * scrollbar pour la modal
  * transformer main en header
  # transformer categories & subCategories en directive
   # vider subCat si cat est modifiée
- 
+
 
  * tout de suite
   # transaction possible dans les 2 sens avec validation de l'autre personne
@@ -78,10 +77,6 @@
    * afficher le nom de la personne qui a déclaré l'échange entre parenthèses
   * "mon compte"
    * editer info contact
-  # en attente de validation
-   # label
-   # un tableau validé
-   # colonne "à valider par"
   # user_page : enlever action
   * nouvel échange : limiter motif (60 car)
   # localisation géographique basique
@@ -91,29 +86,17 @@
    * ateliers collectifs
     * ajouter "annonce CRIC"
   * preparation beta
-   * indépendant du nom de la base de données
-  * champ confirmation mdp
-  * récupération mdp ?
-  # "créditeur"/"débiteur" pour les échanges
-  * nouvelle annonce
-   # réfléchir aux intitulés
-   # bouton pour type
-  # nouvel échange
-   # départ -> compte à débiter ; arrivée -> compte à créditer
-   # bug "celui de"
-   # bloquer "le mien" + "celui de... moi"
-  * voir les annonces : "Annonces du catalogue"
-   * réparer
-   * texte présentation
-  # user
-   # temps dispo : Solde compte temps
+   # indépendant du nom de la base de données
+  # champ confirmation mdp
+  * perte mdp ?
   * select date
-  * bugs
-   # affichage dates
-   * balance non mise à jour après validation transaction
-   * capturer les erreurs et afficher un message dans chaque page
-   * page utilisateur : bouton editer pour "en attente de validation"
-   * clic sur une annonce dans page utilisateur
+  # protéger les infos personnelles (visible seulement des personnes ayant le bon groupe)
+  # autoriser le login si on a le bon groupe
+  * validation d'un utilisateur
+   * validation d'un utilisateur par l'admin (+ validation technique de la validation)
+   * assignation du rôle par un watcher pour éviter de donner les droits d'admin sur tout le serveur à un admin local
+  * validation des écritures dans la db private
+
 
  * plus tard
   * gestion mdp (perte & changement)
@@ -124,8 +107,7 @@
   * compte de solidarité -> à réfléchir
   * extraction du catalogue
    * extraction depuis une date : nouvelles annonces + modifs existantes (??)
-  * pagination des tables
-  * migrer content dans une factory
+  * pagination
   * hors compta / partage
   * carte
   * bugs

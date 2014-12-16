@@ -1,12 +1,18 @@
-[submodule "src/Translation"]
-	path = src/Translation
+[submodule "dbs/main/src/Directive"]
+	path = dbs/main/src/Directive
+	url = https://github.com/LupoLibero/directives
+	branch = master
+[submodule "dbs/main/src/Url"]
+	path = dbs/main/src/Url
+	url = https://github.com/LupoLibero/couch-ng-Url
+	branch = master
+[submodule "dbs/main/src/dbSelect"]
+	path = dbs/main/src/dbSelect
+	url = https://github.com/LupoLibero/couch-ng-dbSelect
+	branch = master
+[submodule "dbs/main/src/Notification"]
+	path = dbs/main/src/Notification
+	url = https://github.com/LupoLibero/couch-ng-Notification
+[submodule "dbs/main/src/Translation"]
+	path = dbs/main/src/Translation
 	url = https://github.com/LupoLibero/couch-ng-Translation
-	branch = master
-[submodule "src/Notification"]
-	path = src/Notification
-	url = https://github.com/LupoLibero/couch-ng-Notification.git
-	branch = no-socket
-[submodule "src/Directive"]
-	path = src/Directive
-	url = https://github.com/LupoLibero/directives.git
-	branch = master

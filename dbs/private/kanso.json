@@ -1,0 +1,13 @@
+{
+  "name": "selheure-private",
+  "version": "0.0.1",
+  "description": "SEL'heure CouchApp - private part",
+  "load": "src/Selheure-private/app",
+  "attachments": [],
+  "modules": ["src"],
+  "dependencies": {
+    "properties": null,
+    "couchtypes": null,
+    "modules": null
+  }
+}
