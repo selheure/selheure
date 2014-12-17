@@ -33,8 +33,8 @@ exports.isAppAdmin = function () {
     return function (newDoc, oldDoc, newVal, oldVal, userCtx) {
         var roles = userCtx ? (userCtx.roles || []): [];
         var db = userCtx ? userCtx.db : "";
-        var splitted = db.split("-");
-        if(splitted[splitted.length-1] == "private") {
+        var splitted = db.split("_");
+        if(splitted.length > 1) {
           splitted.pop();
           db = splitted.join('-');
         }
