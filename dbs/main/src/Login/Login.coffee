@@ -9,13 +9,13 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
     }
 
     getPassword: ->
-      if this.isConnect()
+      if this.isConnected()
         return this.currentUser.password
       else
         return ''
 
     getName: ->
-      if this.isConnect()
+      if this.isConnected()
         if this.currentUser.name.indexOf(db.main.name + '.') == 0
           this.currentUser.name = this.currentUser.name[db.main.name.length+1..]
         return this.currentUser.name
@@ -106,7 +106,7 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
           $timeout( =>
             $rootScope.$broadcast('SessionStart', @getName())
             $rootScope.$broadcast('SessionChanged', @getName())
-            if @isConnect()
+            if @isConnected()
               $rootScope.$broadcast('SignIn', @getName())
             else
               $rootScope.$broadcast('SignOut')
@@ -118,14 +118,8 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
 
       return defer.promise
 
-    isConnect: ->
+    isConnected: ->
       return this.currentUser.name? and this.currentUser.name != ''
-
-    isNotConnect: ->
-      if not this.currentUser.hasOwnProperty('name')
-        return false
-      else
-        return !this.isConnect()
 
     isValidated: ->
       return @hasRole(db.main.name)
@@ -147,7 +141,7 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
   $rootScope.$on('$routeChangeSuccess', ->
     $timeout( ->
       $rootScope.$broadcast('SessionChanged', login.getName())
-      if login.isConnect()
+      if login.isConnected()
         $rootScope.$broadcast('SignIn', login.getName())
       else
         $rootScope.$broadcast('SignOut', login.getName())

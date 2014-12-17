@@ -4,9 +4,9 @@
     <h2 ng-if="announce.id">Editer une annonce</h2>
     <h2 ng-if="!announce.id">Nouvelle annonce</h2>
 
-    <span ng-if="login.isNotConnect()">Vous devez être connecté pour accéder à cette page</span>
+    <span ng-if="!login.isConnected()">Vous devez être connecté pour accéder à cette page</span>
 
-    <div class="row-fluid" ng-if="login.isConnect()">
+    <div class="row-fluid" ng-if="login.isConnected()">
       <h3>{{ content.typeTitles[selectedType.type] }}</h3>
 
       <div class="btn-group">

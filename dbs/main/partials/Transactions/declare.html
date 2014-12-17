@@ -1,9 +1,9 @@
 <div class="sh-block">
   <h1>Nouvel échange</h1>
   <hr>
-  <span ng-if="login.isNotConnect()">Vous devez être connecté pour accéder à cette page</span>
+  <span ng-if="!login.isConnected()">Vous devez être connecté pour accéder à cette page</span>
 
-  <div ng-if="login.isConnect()">
+  <div ng-if="login.isConnected()">
     <p>Vous pouvez déclarer tout échange réalisé, soit au débit, soit au crédit. Le partenaire de l'échange devra le valider.</p>
     <h3>Description de l'échange</h3>
     <form ng-submit="newTransactionSubmit()">

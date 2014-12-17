@@ -1,8 +1,8 @@
 ﻿<div class="sh-block">
   <h3>Travail collectif</h3>
   <hr>
-  <span ng-if="login.isNotConnect()">Vous devez être connecté pour effectuer cette action</span>
-  <form ng-submit="newTransactionSubmit()" ng-if="login.isConnect()">
+  <span ng-if="!login.isConnected()">Vous devez être connecté pour effectuer cette action</span>
+  <form ng-submit="newTransactionSubmit()" ng-if="login.isConnected()">
     <p>Ici vous pouvez déclarer le temps que vous avez consacré à un travail destiné au collectif</p>
     <label for="execution_date">Date : </label>
     <input type="text" class="form-control" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />

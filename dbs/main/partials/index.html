@@ -53,13 +53,13 @@
           <!-- End link -->
 
           <!-- Account -->
-          <ul class="nav navbar-nav navbar-right" ng-if="login.isConnect()">
+          <ul class="nav navbar-nav navbar-right" ng-if="login.isConnected()">
               <li><a ui-sref="userpage({name: login.getName()})">{{login.getName()}}<span ng-hide="login.isValidated()">&nbsp;(non validé)</span></a></li>
               <li><button class="btn btn-default navbar-btn" ng-click="signOut()">Logout</button></li>
           </ul>
 
           <!-- Form connection -->
-          <form class="navbar-form navbar-right" ng-if="login.isNotConnect()">
+          <form class="navbar-form navbar-right" ng-if="!login.isConnected()">
             <div class="form-group">
               <input ng-model="user.name" type="text" class="form-control" placeholder="Identifiant">
             </div>
