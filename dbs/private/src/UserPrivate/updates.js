@@ -72,9 +72,7 @@ exports.user_userData = function(doc, req) {
   // any case
   for(var element in form.data) {
     if(toNotchange.indexOf(element) < 0){
-      if(form.data.hasOwnProperty(element)){
-        doc[element] = form.data[element]
-      }
+      doc[element] = form.data[element]
     }
   }
   doc.updated_at = time;

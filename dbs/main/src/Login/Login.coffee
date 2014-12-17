@@ -25,13 +25,16 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
     getFullyQualifiedName: (name) ->
       return db.main.name + '.' + name
 
-    signIn: (username, password) ->
-      defer = $q.defer()
+    _lowLevelSignIn: (username, password) ->
       fullName = @getFullyQualifiedName(username)
       $http.post("/_session", {
         name:     fullName
         password: password
-      }).then(
+      })
+
+    signIn: (username, password) ->
+      defer = $q.defer()
+      @_lowLevelSignIn(username, password).then(
         (data)=> #Success
           data = data.data
           data['password'] = password
@@ -78,7 +81,6 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
 
     signOut: ->
       defer = $q.defer()
-
       $http.delete('/_session').then(
         (data) => #Success
           data = data.data
@@ -98,7 +100,6 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
 
     getInfo: ->
       defer = $q.defer()
-
       $http.get('/_session').then(
         (data) => #Success
           data = data.data.userCtx
@@ -136,6 +137,44 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
 
     authorize: (name)->
       return this.getName() == name || this.hasRole(name)
+
+    _updateUserDoc: (username, editUserDocCallback)->
+      fqName = @getFullyQualifiedName(username)
+      userDbId = "/_users/org.couchdb.user:#{fqName}"
+      $http.get(userDbId).then (resp) =>
+        $http.put(
+          userDbId
+          editUserDocCallback(resp.data)
+        )
+
+
+    updateUserData: (username, newData)->
+      @_updateUserDoc(
+        username
+        (userDoc) =>
+          # set/modify user data for this app (userDoc.data.<mainDbName>)
+          if not userDoc.data[db.main.name]
+            userDoc.data[db.main.name] = {}
+          for element,value of newData
+            if value?
+              userDoc.data[db.main.name][element] = value
+          return userDoc
+      )
+
+    changePwd: (username, oldPwd, newPwd)->
+      @_lowLevelSignIn(username, oldPwd).then(
+        (result) =>
+          @_updateUserDoc(
+            username
+            (userDoc) =>
+              userDoc.password = newPwd
+              return userDoc
+          ).then () =>
+            # sign in again because session has been destroyed
+            @_lowLevelSignIn(username, newPwd)
+        , (err) =>
+          return 'CHPWD_BADOLDPWD'
+      )
   }
 
   $rootScope.$on('$routeChangeSuccess', ->
