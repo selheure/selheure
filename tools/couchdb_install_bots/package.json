@@ -1,0 +1,13 @@
+{
+  "name": "couchdb_install_bots",
+  "version": "0.0.1",
+  "description": "CouchDb bots installer",
+  "main": "couchdb_install_bots.coffee",
+  "dependencies": {
+    "cradle": "~0.6.7"
+  },
+  "author": [
+    "Sylvain Duchesne"
+  ],
+  "license": "GPL"
+}
