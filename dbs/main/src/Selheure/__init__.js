@@ -11,7 +11,7 @@ angular.module('selheure', [
 value('db', {
 }).
 run(function($rootScope, Config, db, DbSelect) {
-  DbSelect.setDbConfig(db, ['private'])
+  DbSelect.setDbConfig('selheure', db, ['private'])
   console.log("dbs", db)
   Config().then(function(config) {
     $rootScope.config = config;
