@@ -5,10 +5,28 @@ var permissions       = require('couchtypes/permissions');
 var idField           = require('../Selheure/fields').idField;
 var utils             = require('../Selheure/utils');
 
-var usernameOrRoleMatchesField = function(field) {
+var usernameNotMatchesField = function (field) {
+  return function (newDoc, oldDoc, newValue, oldValue, userCtx) {
+    if (userCtx.name === field) {
+      throw new Error('Username matches field ' + field);
+    }
+  };
+};
+
+var canValidate = function() {
+  return permissions.all([
+    permissions.any([
+      permissions.usernameMatchesField('validatableBy'),
+      utils.roleMatchesField('validatableBy')
+    ]),
+    usernameNotMatchesField('editableBy')
+  ]);
+}
+
+var canEdit = function() {
   return permissions.any([
-    permissions.usernameMatchesField(field),
-    utils.roleMatchesField(field),
+    permissions.usernameMatchesField('editableBy'),
+    utils.roleMatchesField('editableBy'),
   ]);
 }
 
@@ -25,55 +43,51 @@ exports.transaction = new Type('transaction', {
         update: permissions.fieldUneditable(),
       },
     }),
-    editable:       fields.string({
+    editableBy:       fields.string({
       permissions: {
         update: permissions.fieldUneditable(),
       },
     }),
-    declared_by:    fields.creator(),
+    declaredBy:    fields.creator(),
     from:           fields.string({
       permissions: {
         update: permissions.fieldUneditable(),
       },
     }),
-    togroup:        fields.boolean({
-      permissions: {
-        update: permissions.fieldUneditable(),
-      },
-    }),
-    fromgroup:      fields.boolean({
-      permissions: {
-        update: permissions.fieldUneditable(),
-      },
-    }),
     amount:         fields.number(),
-    execution_date: fields.string({
+    executionDate: fields.string({
       required: false,
       permissions: {
-        update: usernameOrRoleMatchesField('declared_by'),
+        update: canEdit(),
       }
     }),
     message:        fields.string({
       required: false,
       permissions: {
-        update: usernameOrRoleMatchesField('declared_by'),
+        update: canEdit(),
       }
     }),
     reference:      fields.string({
       required: false,
       permissions: {
-        update: usernameOrRoleMatchesField('declared_by'),
+        update: canEdit(),
       }
     }),
-    created_at:     fields.createdTime(),
+    createdAt:     fields.createdTime(),
     validated:      fields.boolean({
       permissions: {
-        update: usernameOrRoleMatchesField('validator'),
+        update: canValidate(),
       }
     }),
-    validator:      fields.string({
+    validatableBy:      fields.string({
       permissions: {
         update: permissions.fieldUneditable(),
+      },
+    }),
+    validatedBy:    fields.string({
+      required: false,
+      permissions: {
+        update: canValidate(),
       },
     }),
   },

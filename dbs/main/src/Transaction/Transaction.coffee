@@ -1,6 +1,6 @@
 angular.module('transaction').
 factory('Transaction', (CouchDB, db, User)->
-  userFields = ['to', 'from', 'declared_by', 'editable', 'validator']
+  userFields = ['to', 'from', 'declaredBy', 'editableBy', 'validatedBy', 'validatableBy']
 
   Transaction = CouchDB(db.main.url, db.main.appName, 'transaction')
 

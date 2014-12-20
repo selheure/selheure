@@ -26,7 +26,7 @@ exports.transaction_validated_by_author = {
 exports.transaction_all = {
   map: function(doc) {
     if(doc.type == "transaction" && doc._id)
-      emit(doc.created_at, doc);
+      emit(doc.createdAt, doc);
   }
 }
 

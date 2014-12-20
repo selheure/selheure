@@ -7,8 +7,8 @@ exports.transaction_create = function(doc, req) {
     doc.type        = 'transaction';
     doc.id          = req.uuid;
     doc._id         = doc.type+':'+doc.id;
-    doc.created_at  = new Date().getTime();
-    doc.declared_by = req.userCtx.name;
+    doc.createdAt  = new Date().getTime();
+    doc.declaredBy = req.userCtx.name;
   }
 
   doc.to          = form.to || null;
@@ -21,34 +21,25 @@ exports.transaction_create = function(doc, req) {
     doc.amount = parseInt(form.amount);
   }
 
-  if (doc.from == req.userCtx.name) {
-    doc.editable  = doc.from;
-    doc.validator = doc.to;
-  } else if (doc.to == req.userCtx.name) {
-    doc.editable  = doc.to;
-    doc.validator = doc.from;
-  } else if (req.userCtx.roles.indexOf(doc.from)) {
-    doc.editable  = doc.from;
-    doc.validator = doc.to;
-    doc.fromgroup = true;
-  } else if (req.userCtx.roles.indexOf(doc.to)) {
-    doc.editable  = doc.to;
-    doc.validator = doc.from;
-    doc.togroup   = true;
+  if (doc.from == req.userCtx.name || req.userCtx.roles.indexOf(doc.from) > -1) {
+    doc.editableBy      = doc.from;
+    doc.validatableBy   = doc.to;
+  } else if (doc.to == req.userCtx.name || req.userCtx.roles.indexOf(doc.to) > -1) {
+    doc.editableBy      = doc.to;
+    doc.validatableBy   = doc.from;
   }
-
-  doc.togroup   = doc.togroup   || false;
-  doc.fromgroup = doc.fromgroup || false;
 
   return [doc, 'ok'];
 }
 
 exports.transaction_validate = function(doc, req) {
   if(doc !== null) {
-    if(req.userCtx.name == doc.validator || req.userCtx.roles.indexOf(doc.validator) != -1) {
-      doc.validated = true;
+    if(req.userCtx.name == doc.validatableBy || req.userCtx.roles.indexOf(doc.validatableBy) != -1) {
+      doc.validated   = true;
+      doc.validatedBy = req.userCtx.name
+
     } else {
-      throw({forbidden: "You are not the validator"});
+      throw({forbidden: "You are allowed to validate this transaction"});
     }
     return [doc, 'ok'];
   }
