@@ -50,19 +50,20 @@
   <hr/>
   <p>Solde compte temps : {{balance.value}} {{balance.unity}}</p>
   <hr/>
-  <div>
-    <h4>Echanges en attente de validation</h4>
+  <div ng-show="notValidated.length">
+    <h4>Échanges en attente de validation</h4>
     <transactions transactions="notValidated"></transactions>
+    <hr/>
   </div>
-
-  <hr/>
   <h4 ng-if="login.getName() == user.name">Mes annonces</h4>
   <h4 ng-if="login.getName() != user.name">Annonces de {{user.name}}</h4>
-  <announces announces="announces"></announces>
+  <announces ng-show="announces.length" announces="announces"></announces>
+  <p ng-hide="announces.length">Pas d'annonces</p>
   <hr/>
   <h4 ng-if="login.getName() == user.name">Historique de mes échanges</h4>
   <h4 ng-if="login.getName() != user.name">Historique des échanges de {{user.name}}</h4>
-  <transactions transactions="transactions"></transactions>
+  <transactions ng-show="transactions.length" transactions="transactions"></transactions>
+  <p ng-hide="transactions.length">Pas d'échanges</p>
 </div>
 </div>
 

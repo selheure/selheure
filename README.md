@@ -34,7 +34,23 @@ Futures fonctionnalités :
 
 
 Techniquement :
-SEL'heure est basée sur CouchDB, Kanso et AngularJS.
+SEL'heure est basée sur CouchDB, Kanso, AngularJS, NodeJS et Coffeescript.
 
+Dépendences : kanso, npm, node, coffeescript, grunt-cli, bower
+TODO : installation des dépendences
+
+Déploiement :
+ - installation des outils :
+    - `cd tools/dbForBots/ && npm install`
+    - `cd ../couchdb_install_bots/ && npm install`
+  - installation des dépendances pour les dbs :
+    - `cd dbs/main && kanso install && npm install && bower install`
+    - `cd ../private && kanso install`
+    - `cd ../_users && kanso install`
+  - installation des sous-modules
+    - `git submodule init && git submodule update`
+  - déployer
+    - `coffee deploy.coffee <url> <app> <env>`
+  - add configuration object
 Licence :
 SEL'heure est sous licence AGPLv3.

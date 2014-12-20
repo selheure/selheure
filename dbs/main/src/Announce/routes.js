@@ -7,9 +7,9 @@ config(function($stateProvider){
       controller:  'AnnounceListCtrl',
       resolve: {
         announces: function(Announce){
-          return Announce.all();
+          return Announce.all()
         },
-        announce: function() { return null},
+        announce: function() { return null },
         config: function(Config){
           return Config();
         },
@@ -20,9 +20,7 @@ config(function($stateProvider){
       templateUrl: 'partials/Announces/edit.html',
       controller:  'AnnounceEditCtrl',
       resolve: {
-        config: function(Config){
-          return Config();
-        },
+        announce: function() { return {} },
       }
     }).
     state('announceedit', {
@@ -34,10 +32,7 @@ config(function($stateProvider){
           return Announce.get({
             view: 'full',
             key:  $stateParams.announce_id,
-          });
-        },
-        config: function(Config){
-          return Config();
+          })
         },
       }
     }).
@@ -47,16 +42,13 @@ config(function($stateProvider){
       controller:  'AnnounceListCtrl',
       resolve: {
         announces: function(Announce){
-          return Announce.all();
+          return Announce.all()
         },
-        announce: function(Announce, $stateParams) {
+        announce: function(Announce, $stateParams, login) {
           return Announce.get({
             view: 'full',
             key:  $stateParams.id,
-          });
-        },
-        config: function(Config){
-          return Config();
+          })
         },
       }
     });

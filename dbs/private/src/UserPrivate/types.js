@@ -40,12 +40,16 @@ exports.user = new Type('user', {
     updated_at:    fields.number({
       permissions: updateBySyncBotOnly
     }),
-    locked:     fields.boolean({
+    locked:        fields.boolean({
+      permissions: {
+        update: utils.isAppAdmin()
+      }
+    }),
+    resetPassword: fields.boolean({
       permissions: {
         update: utils.isAppAdmin()
       },
-      required: false,
-      default_value: true
-    })
+      required: false
+    }),
   },
 });

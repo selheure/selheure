@@ -19,7 +19,10 @@ exports.announce = new Type('announce', {
     announce_type:  fields.string(),
     author:         fields.creator(),
     category:       fields.string(),
-    created_at:     fields.number(),
+    subCategory:    fields.string({
+      required: false
+    }),
+    created_at:     fields.createdTime(),
     updated_at:     fields.number(),
     title:          fields.string(),
     place:          fields.string({

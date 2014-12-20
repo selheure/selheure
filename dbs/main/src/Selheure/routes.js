@@ -7,10 +7,10 @@ config(function($stateProvider, $urlRouterProvider){
       controller:  'HomeCtrl',
       resolve: {
         transactions: function(Transaction, Announce) {
-          var promise = Transaction.all({
+          return Transaction.all({
             limit: 10,
-          });
-          promise.then(function(list) {
+            descending: true
+          }).then(function(list) {
             console.log(list);
             for(var i = 0 ; i < list.length ; i++) {
               console.log(list[i]);
@@ -26,12 +26,13 @@ config(function($stateProvider, $urlRouterProvider){
                 })(list[i])
               }
             }
-          });
-          return promise
+            return list
+          })
         },
         announces: function(Announce) {
           return Announce.all({
             limit: 10,
+            descending: true
           });
         },
       }

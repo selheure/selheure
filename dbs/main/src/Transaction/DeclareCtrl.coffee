@@ -1,5 +1,5 @@
 angular.module('transaction').
-controller('DeclareCtrl', ($scope, $state, login, userList, Announce, Transaction, notification)->
+controller('DeclareCtrl', ($scope, $state, config, login, userList, Announce, Transaction, User, notification)->
   $scope.transaction  = {}
   $scope.userList     = []
   demandList          = []
@@ -30,19 +30,29 @@ controller('DeclareCtrl', ($scope, $state, login, userList, Announce, Transactio
   $scope.newTransactionSubmit = ->
     transaction = angular.copy($scope.transaction)
 
-    if transaction.to == 'another'
-      transaction.to = transaction.toField
+
+
     if transaction.from == 'another'
       transaction.from = transaction.fromField
+      if login.proxys.length == 0
+        transaction.to = login.getName()
+    if transaction.to == 'another'
+      transaction.to = transaction.toField
+
     delete transaction.toField
     delete transaction.fromField
-    transaction.update = 'create'
 
+    console.log transaction
     if not transaction.amount? or
     not transaction.from      or
     not transaction.to
-      notification.addAlert('Veuillez remplir les champs obligatoire', 'danger')
+      notification.addAlert('Veuillez remplir les champs obligatoires', 'danger')
       return false
+
+    transaction.update = 'create'
+
+    transaction.to   = User.getId(transaction.to)
+    transaction.from = User.getId(transaction.from)
 
     Transaction.update(transaction).then(
       (data)-> #Success
@@ -100,9 +110,12 @@ controller('DeclareCtrl', ($scope, $state, login, userList, Announce, Transactio
 
   updateUserList = ->
     $scope.userList = []
-    for user in userList
-      if user.name != login.getName()
-        $scope.userList.push(user.name)
+    for username in userList
+      if username != login.getName() and
+      login.proxys.indexOf(username) == -1
+        $scope.userList.push(username)
+    for username in config.collectiveUsers
+      $scope.userList.push(username)
 
   updateUserList()
   $scope.$on('SessionChanged', updateUserList)

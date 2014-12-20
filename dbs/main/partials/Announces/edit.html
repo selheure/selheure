@@ -1,6 +1,6 @@
 <div class="sh-block">
-  <p ng-if="notAllow">Vous n'êtes pas authorisé à modifier cette annonces</p>
-  <div ng-controller="AnnounceEditCtrl" ng-if="!notAllow">
+  <p ng-if="notAllowed">Vous n'êtes pas authorisé à modifier cette annonce</p>
+  <div ng-if="!notAllowed">
     <h2 ng-if="announce.id">Editer une annonce</h2>
     <h2 ng-if="!announce.id">Nouvelle annonce</h2>
 
@@ -10,20 +10,19 @@
       <h3>{{ content.typeTitles[selectedType.type] }}</h3>
 
       <div class="btn-group">
-        <button class="btn btn-default" ng-model="announce.announce_type" ng-repeat="(key, label) in announceTypes" btn-radio="key">{{label}}</button>
+        <button class="btn btn-default" ng-model="announce.announce_type" ng-repeat="(key, label) in config.announceTypes" btn-radio="key">{{label}}</button>
       </div>
 
       <form name="announceForm" ng-submit="announceSubmit()">
         <p>
           <span>Rubrique : </span>
-          <category options="categories" model="announce.category"/>
+          <category options="config.categories" model="announce.category"/>
           <span class="error" ng-show="announce.category.$error.required">*</span>
         </p>
 
-        <p ng-show="announce.category">
+        <p ng-show="announce.category && !isEmpty(config.subCategories[announce.category])">
           <span>Sous Rubrique : </span>
-          <sub-category options="subCategories" model="announce.subCategory" parent="announce.category"/>
-          <span class="error" ng-show="announce.sub_category.$error.required">*</span>
+          <sub-category options="config.subCategories" model="announce.subCategory" parent="announce.category"/>
         </p>
 
         <p>

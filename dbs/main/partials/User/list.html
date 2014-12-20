@@ -17,7 +17,7 @@
     <td ng-if="login.isAdmin()">
       <button ng-if="user.locked" ng-click="unlockUser(user)">Débloquer</button>
       <button ng-if="!user.locked && login.getName() != user.name" ng-click="lockUser(user)">Bloquer</button>
-      <button ng-click="resetPwd(user)">Reset du mdp</button>
+      <button ng-show="login.getName() != user.name" ng-click="resetPwd(user)">Reset du mdp</button>
     </td>
   </tr>
 </table>

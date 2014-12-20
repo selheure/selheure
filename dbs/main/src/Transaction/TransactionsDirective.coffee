@@ -18,6 +18,16 @@ directive('transactions', (Config, login, $state, Transaction, notification)->
       scope.edit = (transaction)->
         $state.go('transactionedit', transaction)
 
+      scope.canValidate = (transaction)->
+        if not transaction?
+          return false
+        return login.isAuthorized(transaction.validator) and !scope.canEdit(transaction)
+
+      scope.canEdit = (transaction)->
+        if not transaction?
+          return false
+        return login.isAuthorized(transaction.editable)
+
       scope.validate = (transaction)->
         Transaction.update({
           update: 'validate'

@@ -6,23 +6,26 @@ config( ($stateProvider, $qProvider) ->
       templateUrl: 'partials/User/page.html'
       controller:  'UserPageCtrl'
       resolve: {
-        transactions: (Transaction, $stateParams)->
+        transactions: (Transaction, $stateParams, User)->
           return Transaction.view({
-            view: 'by_author'
-            key:  $stateParams.name
+            view: 'validated_by_author'
+            key:  User.getId($stateParams.name)
             limit: 10
+            descending: true
           })
-        announces: (Announce, $stateParams)->
+        announces: (Announce, $stateParams, User)->
           return Announce.view({
             view: 'by_author'
-            key:  $stateParams.name
+            key:  User.getId($stateParams.name)
             limit: 10
+            descending: true
           })
-        notValidated: (Transaction, $stateParams)->
+        notValidated: (Transaction, $stateParams, User)->
           return Transaction.view({
             view: 'not_validated'
-            key:  $stateParams.name
+            key:  User.getId($stateParams.name)
             limit: 10
+            descending: true
           })
         user: (User, $stateParams, $q)->
           deferred = $q.defer()
@@ -35,10 +38,10 @@ config( ($stateProvider, $qProvider) ->
               deferred.resolve({name: $stateParams.name})
           )
           return deferred.promise
-        balance: (Transaction, $stateParams)->
+        balance: (Transaction, $stateParams, User)->
           return Transaction.view({
             view: 'balances'
-            key: $stateParams.name
+            key: User.getId($stateParams.name)
           })
       }
     })
@@ -47,7 +50,7 @@ config( ($stateProvider, $qProvider) ->
       templateUrl: 'partials/User/list.html'
       controller:  'UserListCtrl'
       resolve: {
-        users: (User, login) ->
+        users: (User) ->
           return User.view({
             view: 'get'
           })

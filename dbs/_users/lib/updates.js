@@ -1,11 +1,9 @@
 exports.user_unlock = function(doc, req) {
   var form = JSON.parse(req.body);
   if (doc !== null) {
-    if (!form.hasOwnProperty('app')) {
-      throw({forbidden: 'Request incomplete'});
-    }
-    if(doc.roles.indexOf(form.app) < 0){
-      doc.roles.push(form.app);
+    var appName = doc._id.split(':')[1].split('.')[0]
+    if(doc.roles.indexOf(appName) < 0){
+      doc.roles.push(appName);
     }
 
     return [doc, 'ok'];
@@ -18,11 +16,8 @@ exports.user_unlock = function(doc, req) {
 exports.user_lock = function(doc, req) {
   var form = JSON.parse(req.body);
   if (doc !== null) {
-    if (!form.hasOwnProperty('app')) {
-      throw({forbidden: 'Request incomplete'});
-    }
-    var index = doc.roles.indexOf(form.app);
-    if(index > 0) {
+    var index = doc.roles.indexOf(appName);
+    if(index >= 0) {
       doc.roles.splice(index, 1)
     }
     return [doc, 'ok'];

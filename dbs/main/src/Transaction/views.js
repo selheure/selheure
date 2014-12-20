@@ -7,9 +7,19 @@ exports.transaction_get = {
 
 exports.transaction_by_author = {
   map: function(doc) {
-    if(doc.type == "transaction" && doc._id)
+    if(doc.type == "transaction" && doc._id && doc.validated) {
       emit(doc.to, doc);
       emit(doc.from, doc);
+    }
+  }
+}
+
+exports.transaction_validated_by_author = {
+  map: function(doc) {
+    if(doc.type == "transaction" && doc._id && doc.validated) {
+      emit(doc.to, doc);
+      emit(doc.from, doc);
+    }
   }
 }
 

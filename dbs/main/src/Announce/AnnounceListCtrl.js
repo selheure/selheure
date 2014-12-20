@@ -1,8 +1,7 @@
 angular.module('announce').
-controller('AnnounceListCtrl', function($scope, $modal, $state, $stateParams, announces, announce, config) {
+controller('AnnounceListCtrl', function($scope, $modal, $state, $stateParams, announces, announce) {
   $scope.selected      = {};
   $scope.announces     = announces;
-  $scope.announceTypes = config.announceTypes;
 
   if(announce !== null) {
     var modalInstance = $modal.open({

@@ -14,21 +14,24 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
       else
         return ''
 
-    getName: ->
+    getName: (name) ->
+      if not name?
+        if this.isConnected()
+          name = this.currentUser.name
+        else
+          return ''
+      name = User.getName(name)
       if this.isConnected()
-        if this.currentUser.name.indexOf(db.main.name + '.') == 0
-          this.currentUser.name = this.currentUser.name[db.main.name.length+1..]
-        return this.currentUser.name
-      else
-        return ''
+        this.currentUser.name = name
+      return name
 
     getFullyQualifiedName: (name) ->
-      return db.main.name + '.' + name
+      return User.getId(name)
 
     _lowLevelSignIn: (username, password) ->
-      fullName = @getFullyQualifiedName(username)
+      userId = User.getId(username)
       $http.post("/_session", {
-        name:     fullName
+        name:     userId
         password: password
       })
 
@@ -135,8 +138,8 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
           break
       return false
 
-    authorize: (name)->
-      return this.getName() == name || this.hasRole(name)
+    isAuthorized: (name)->
+      return @getName() == name or @proxys.indexOf(name) > -1
 
     _updateUserDoc: (username, editUserDocCallback)->
       fqName = @getFullyQualifiedName(username)
@@ -191,14 +194,11 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
     if name == ''
       login.proxys = []
     else
+      userNamePrefix = User.getId('')
       for role in login.currentUser.roles
-        if login.proxys.indexOf(role) == -1
-          User.get({
-            key: role
-          }).then(
-            (data)-> #Success
-              login.proxys.push(role)
-          )
+        if role.indexOf(userNamePrefix) == 0 and
+        login.proxys.indexOf(role) == -1
+          login.proxys.push(User.getName(role))
   )
 
   return login

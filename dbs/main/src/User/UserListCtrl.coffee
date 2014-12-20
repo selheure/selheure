@@ -11,7 +11,7 @@ controller('UserListCtrl', ($scope, $modal, $state, notification, User, login, u
       (data) ->
         user.locked = true
       ,(err) ->
-        notification.addAlert('Le verrouillage a échoué ! (Log : ' + err + ')', 'danger')
+        notification.addAlert('Le verrouillage a échoué ! (Log : ' + err.reason + ')', 'danger')
         console.log err
     )
 
@@ -24,7 +24,7 @@ controller('UserListCtrl', ($scope, $modal, $state, notification, User, login, u
       (data) ->
         user.locked = false
       ,(err) ->
-        notification.addAlert('Le déverrouillage a échoué ! (Log : ' + err + ')', 'danger')
+        notification.addAlert('Le déverrouillage a échoué ! (Log : ' + err.reason + ')', 'danger')
         console.log err
     )
 
@@ -37,7 +37,7 @@ controller('UserListCtrl', ($scope, $modal, $state, notification, User, login, u
       (data) ->
         notification.addAlert('Mot de passe réinitialisé à "motdepasse"', 'info')
       ,(err) ->
-        notification.addAlert('Le déverrouillage a échoué ! (Log : ' + err + ')', 'danger')
+        notification.addAlert('Impossible de réinitialiser le mot de passe ! (Log : ' + err.reason + ')', 'danger')
         console.log err
     )
 )

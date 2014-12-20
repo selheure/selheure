@@ -19,15 +19,15 @@ exports.hasRole = function (user) {
   }
 }
 
-exports.roleMatchesField = function (role) {
+exports.roleMatchesField = function (field) {
     return function (newDoc, oldDoc, newVal, oldVal, userCtx) {
+        var role  = oldDoc[field];
         var roles = userCtx ? (userCtx.roles || []): [];
         if (!_.include(roles, role)) {
             throw new Error('User must have "' + role + '" role.');
         }
     };
 };
-
 
 exports.isAppAdmin = function () {
     return function (newDoc, oldDoc, newVal, oldVal, userCtx) {

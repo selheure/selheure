@@ -8,16 +8,20 @@
     <th>Validation</th>
   </tr>
   <tr ng-repeat="transaction in transactions">
-    <td>{{ transaction.created_at | date }}</td>
+    <td>{{ transaction.created_at | date:"dd/MM"}}</td>
     <td><a ui-sref="userpage({name: transaction.from})">{{transaction.from}} <span ng-if="transaction.fromgroup">({{transaction.declared_by}})</span></a></td>
     <td><a ui-sref="userpage({name: transaction.to})">{{transaction.to}} <span ng-if="transaction.togroup">({{transaction.declared_by}})</span></a></td>
     <td>{{ transaction.amount }}</td>
-    <td ng-if="transaction.message">{{transaction.message}}</td>
+    <td>{{transaction.message}}</td>
     <td>
-      <p ng-show="!transaction.validated">Non validé</p>
-      <p ng-show="transaction.validated">Validé</p>
-      <p ng-show="login.authorize(transaction.validator) && !transaction.validated"><button ng-click="validate(transaction)">Valider</button></p>
-      <p ng-show="login.authorize(transaction.editable)  && !transaction.validated"><button ng-click="edit(transaction)">Editer</button></p>
+      <span ng-show="transaction.validated">Validé</span>
+
+      <span ng-show="!transaction.validated">
+        <button ng-show="canValidate(transaction)" ng-click="validate(transaction)">Valider</button>
+        <span ng-show="!canValidate(transaction)">Non validé</span>
+        <button ng-show="canEdit(transaction)" ng-click="edit(transaction)">Editer</button>
+      </span>
+
     </td>
   </tr>
 </table>

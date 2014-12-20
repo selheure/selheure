@@ -47,7 +47,7 @@ class UsersDbWatcher extends DbWatcher
   lockUser: (name) ->
     userId = @_userIdFromUsername(name)
     #console.log "lockUser", userId
-    @_db.update(@_appName + '/user_lock', userId, {app: @_appDbName})
+    @_db.update(@_appName + '/user_lock', userId)
     .then(
       (data) =>
         @_ignoreRelatedChange(data)
@@ -58,7 +58,7 @@ class UsersDbWatcher extends DbWatcher
   unlockUser: (name) ->
     userId = @_userIdFromUsername(name)
     console.log "unlockUser", userId
-    @_db.update(@_appName + '/user_unlock', userId, {app: @_appDbName})
+    @_db.update(@_appName + '/user_unlock', userId)
     .then(
       (data) =>
         @_ignoreRelatedChange(data)
@@ -68,7 +68,7 @@ class UsersDbWatcher extends DbWatcher
 
   resetPassword: (name) ->
     userId = @_userIdFromUsername(name)
-    @_db.update(@_appDbName + "/reset_password", userId, {pwd: "toto"})
+    @_db.update(@_appName + "/reset_password", userId, {pwd: "motdepasse"})
     .then(
       (data) =>
         @_ignoreRelatedChange(data)

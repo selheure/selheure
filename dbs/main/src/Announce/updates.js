@@ -8,10 +8,6 @@ exports.announce_edit = function(doc, req) {
     form.id         = req.uuid.substr(req.uuid.length -5);
     form._id        = form.type + ':' + form.id;
     form.author     = req.userCtx.name;
-    if(form.hasOwnProperty('subCategory')) {
-      form.category   = form.subCategory;
-      delete form.subCategory;
-    }
     form.created_at = new Date().getTime();
     form.updated_at = form.created_at;
     return [form, 'ok'];

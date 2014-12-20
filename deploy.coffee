@@ -21,12 +21,13 @@ isUrl = (url)->
 args = process.argv.slice(2)
 if args.length < 2
   throw "Not enough arguments! Should be: coffee deploy.coffee url appName [instanceName]"
+
 url = args[0]
 appName = args[1]
 if args.length > 2
   instanceName = args[2]
 
-[_ign, serverUrl] = url.match(/^(http(?:s)?:\/\/[^\/]*)\//)
+[_ign, serverUrl] = url.match(/^(http(?:s)?:\/\/[^\/]*)\/?/)
 console.log serverUrl
 for db in fs.readdirSync('dbs/')
   if db == '_users'
@@ -38,7 +39,7 @@ for db in fs.readdirSync('dbs/')
     if db != 'main'
       realDbName += '_' + db
   cmd = "kanso push dbs/#{db} #{serverUrl}/#{realDbName}"
-  #execCommand(cmd)
+  execCommand(cmd)
   execCommand("coffee #{installBotsPath} dbs/#{db} #{serverUrl} #{appName} #{instanceName}")
 
 
