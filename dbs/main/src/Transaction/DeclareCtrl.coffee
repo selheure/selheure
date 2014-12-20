@@ -30,8 +30,6 @@ controller('DeclareCtrl', ($scope, $state, config, login, userList, Announce, Tr
   $scope.newTransactionSubmit = ->
     transaction = angular.copy($scope.transaction)
 
-
-
     if transaction.from == 'another'
       transaction.from = transaction.fromField
       if login.proxys.length == 0

@@ -4,7 +4,6 @@ cradle = require('cradle')
 
 module.exports = (host, port)->
   return (dbName, username = null, password = null)->
-    console.log dbName
     params = { cache: false }
     if username isnt null and password isnt null
       params.auth = {username: username, password: password}
@@ -35,7 +34,6 @@ module.exports = (host, port)->
 
       update: (appAndUpdate, id = '', data = {}, user = {}) ->
         [app, updateName] = appAndUpdate.split('/')
-        console.log "update", app, updateName
         defer  = Q.defer()
         method = (if id is '' then 'POST' else 'PUT')
 

@@ -3,7 +3,6 @@ controller('UserListCtrl', ($scope, $modal, $state, notification, User, login, u
   $scope.users = users
 
   $scope.lockUser = (user) ->
-    console.log user
     User.update({
       update: 'lock'
       id:     user.name
@@ -16,7 +15,6 @@ controller('UserListCtrl', ($scope, $modal, $state, notification, User, login, u
     )
 
   $scope.unlockUser = (user) ->
-    console.log user
     User.update({
       update: 'unlock'
       id:     user.name
@@ -25,11 +23,9 @@ controller('UserListCtrl', ($scope, $modal, $state, notification, User, login, u
         user.locked = false
       ,(err) ->
         notification.addAlert('Le déverrouillage a échoué ! (Log : ' + err.reason + ')', 'danger')
-        console.log err
     )
 
   $scope.resetPwd = (user) ->
-    console.log user
     User.update({
       update: 'resetPwd'
       id:     user.name
@@ -38,6 +34,5 @@ controller('UserListCtrl', ($scope, $modal, $state, notification, User, login, u
         notification.addAlert('Mot de passe réinitialisé à "motdepasse"', 'info')
       ,(err) ->
         notification.addAlert('Impossible de réinitialiser le mot de passe ! (Log : ' + err.reason + ')', 'danger')
-        console.log err
     )
 )

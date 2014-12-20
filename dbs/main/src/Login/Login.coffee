@@ -46,7 +46,6 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
           $rootScope.$broadcast('SessionChanged', @getName())
           defer.resolve(data)
         ,(err)-> #Error
-          console.log err
           defer.reject(err)
       )
 
