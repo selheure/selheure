@@ -28,3 +28,19 @@ exports.roleMatchesField = function (field) {
         }
     };
 };
+
+exports.isAppAdmin = function () {
+    return function (newDoc, oldDoc, newVal, oldVal, userCtx) {
+        var roles = userCtx ? (userCtx.roles || []): [];
+        var db = userCtx ? userCtx.db : "";
+        var splitted = db.split("_");
+        if(splitted.length > 1) {
+          splitted.pop();
+          db = splitted.join('-');
+        }
+        var appAdminRole = db + "_admin"
+        if (!_.include(roles, appAdminRole)) {
+            throw new Error('User is not App admin (role: ' + appAdminRole);
+        }
+    };
+};

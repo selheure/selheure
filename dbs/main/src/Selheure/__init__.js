@@ -7,6 +7,7 @@ angular.module('selheure', [
   'login',
   'user',
   'dbSelect',
+  'configuration'
 ]).
 value('db', {
 }).

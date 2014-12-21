@@ -1,4 +1,4 @@
-angular.module('selheure').
+angular.module('configuration').
 factory('Config', ($http, $location, $q, db)->
   return ->
     defer = $q.defer()
@@ -11,7 +11,8 @@ factory('Config', ($http, $location, $q, db)->
         url = url.join('/')
     else
       url = db.main.url
-    $http.get("#{url}/selheure:config", {
+    applicationName = db.main.name.split('-')[0]
+    $http.get("#{url}/config:#{applicationName}", {
       cache: true
     }).then(
       (data)-> #Success
