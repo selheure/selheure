@@ -48,7 +48,12 @@
   </div>
 
   <hr/>
-  <p>Solde compte temps : {{balance.value}} {{balance.unity}}</p>
+  <p>Solde compte temps : {{userBalance}} <ng-pluralize count="userBalance"
+                                                        when="{'0':     '{{config.currency}}',
+                                                               'one':   '{{config.currency}}',
+                                                               'other': '{{config.currency}}s'}">
+                                          </ng-pluralize>
+  </p>
   <hr/>
   <div ng-show="notValidated.length">
     <h4>Échanges en attente de validation</h4>

@@ -112,8 +112,7 @@ controller('DeclareCtrl', ($scope, $state, config, login, userList, Announce, Tr
       if username != login.getName() and
       login.proxys.indexOf(username) == -1
         $scope.userList.push(username)
-    for username in config.collectiveUsers
-      $scope.userList.push(username)
+    $scope.userList.push(config.collectiveUser)
 
   updateUserList()
   $scope.$on('SessionChanged', updateUserList)

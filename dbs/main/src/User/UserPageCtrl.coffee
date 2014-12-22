@@ -4,9 +4,7 @@ controller('UserPageCtrl', ($scope, login, notification, transactions, announces
   $scope.transactions = transactions
   $scope.notValidated = notValidated
   $scope.announces    = announces
-  $scope.balance      =
-    value: balance[0]?.sum ? 0
-    unity: 'minutes'
+  $scope.userBalance  = balance[0]?.sum ? 0
 
   $scope.newUserData =
     tel:          $scope.user.tel
