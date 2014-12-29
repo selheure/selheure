@@ -1,5 +1,5 @@
 angular.module('selheure').
-controller('MainCtrl', function($scope, $rootScope, notification, login, $modal, User, Config){
+controller('MainCtrl', function($scope, $rootScope, notification, login, $modal, User){
   $rootScope.login = login
 
   $scope.user = {

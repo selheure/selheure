@@ -7,7 +7,7 @@ directive('category', function() {
       'model':   '=',
     },
     replace: true,
-    template: 	'<select ng-model="model" ng-options="id as name for (id, name) in options">' +
+    template: 	'<select ng-model="model" ng-options="id as obj.name for (id, obj) in options">' +
             '<option value=""></option>' +
           '</select>',
   }

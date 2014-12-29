@@ -47,6 +47,7 @@
               </ul>
             </li>
             <li ui-sref-active="active" ng-if="login.isValidated()"><a ui-sref="userlist">Utilisateurs</a></li>
+            <li ui-sref-active="active" ng-if="login.isAppAdmin()"><a ui-sref="configedit">Configuration</a></li>
           </ul>
           <!-- End link -->
 

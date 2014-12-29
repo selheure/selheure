@@ -1,5 +1,5 @@
 ﻿angular.module('transaction').
-directive('transactions', (Config, login, $state, Transaction, notification)->
+directive('transactions', (login, $state, Transaction, notification)->
   return {
     restrict: 'E'
     scope: {
@@ -7,14 +7,6 @@ directive('transactions', (Config, login, $state, Transaction, notification)->
     }
     templateUrl: 'partials/Transactions/table.html'
     link: (scope, element, attrs)->
-      scope.login = login
-      Config().then(
-        (data)-> #Success
-          scope.config = data
-        ,(err)-> #Error
-          console.log err
-      )
-
       for t in scope.transactions
         if t.declaredBy != t.editableBy
           if t.editableBy == t.from

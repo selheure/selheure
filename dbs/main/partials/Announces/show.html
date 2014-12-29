@@ -2,8 +2,8 @@
   <button type="button" class="close" ng-click="cancel()">&times;</button>
   <h3>{{ announce.title }}</h3>
   <p>
-    {{ config.categories[announce.category] }}&nbsp;
-    <strong ng-show="announce.subCategory">&gt;</strong> {{ config.subCategories[announce.category][announce.subCategory || "99"] }}
+    {{ categories[announce.category].name }}&nbsp;
+    <strong ng-show="announce.subCategory">&gt;</strong> {{ categories[announce.category].sub[announce.subCategory || "99"] }}
   </p>
   <p>
     <span ng-show="announce.announce_type == 'demand'">Demandé</span>

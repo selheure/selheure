@@ -2,11 +2,11 @@
   <div>
     <h2>Annonces du catalogue</h2>
     <div class="btn-group">
-      <button class="btn btn-default" ng-model="selected.announceType" ng-repeat="(key, label) in config.announceTypes" btn-radio="key">{{label}}</button>
+      <button class="btn btn-default" ng-model="selected.announceType" ng-repeat="(key, label) in announceTypes" btn-radio="key">{{label}}</button>
     </div>
-    <div>Rubrique : <category options="config.categories" model="selected.category"/>
+    <div>Rubrique : <category options="categories" model="selected.category"/>
     </div>
-    <div ng-show="selected.category">Sous-rubrique : <sub-category options="config.subCategories" model="selected.subCategory" parent="selected.category"/>
+    <div ng-show="selected.category">Sous-rubrique : <sub-category options="categories[selected.category].sub" model="selected.subCategory"/>
     </div>
   </div>
 
@@ -19,7 +19,7 @@
   </tr>
   <tr ng-repeat="announce in announces |types:selected.announceType |category:selected.category:selected.subCategory">
     <td>{{ announce.created_at | date:"dd/MM" }}</td>
-    <td>{{config.announceTypes[announce.announce_type]}}</td>
+    <td>{{ announceTypes[announce.announce_type] }}</td>
     <td><a ui-sref="userpage({name: announce.author})">{{ announce.author }}</a></td>
     <td><a ui-sref="announceshow(announce)">{{ announce.title }}</a></td>
     </td>

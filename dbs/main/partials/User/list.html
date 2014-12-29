@@ -8,7 +8,7 @@
     <th>Nom</th>
     <th>E-mail</th>
     <th>Statut</th>
-    <th ng-if="login.isAdmin()">Actions</th>
+    <th ng-if="login.isAppAdmin()">Actions</th>
   </tr>
   <tr ng-repeat="user in users">
     <td><a ui-sref="userpage({name: user.name})">{{ user.name }}</a></td>

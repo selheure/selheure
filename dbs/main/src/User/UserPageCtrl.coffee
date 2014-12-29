@@ -1,10 +1,11 @@
 angular.module('user').
-controller('UserPageCtrl', ($scope, login, notification, transactions, announces, balance, notValidated, user)->
+controller('UserPageCtrl', ($scope, config, login, notification, transactions, announces, balance, notValidated, user)->
   $scope.user         = user
   $scope.transactions = transactions
   $scope.notValidated = notValidated
   $scope.announces    = announces
   $scope.userBalance  = balance[0]?.sum ? 0
+  $scope.currencyName = config.get('currency')
 
   $scope.newUserData =
     tel:          $scope.user.tel

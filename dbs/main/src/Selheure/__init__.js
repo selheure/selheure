@@ -11,13 +11,7 @@ angular.module('selheure', [
 ]).
 value('db', {
 }).
-value('config', {}).
-run(function($rootScope, Config, config, db, DbSelect) {
+run(function($rootScope, config, db, DbSelect) {
   DbSelect.setDbConfig('selheure', db, ['private'])
-  Config().then(function(conf) {
-    for(var key in conf){
-      config[key] = conf[key]
-    }
-    $rootScope.config = conf;
-  });
+  config.load('selheure', db.main.url)
 });

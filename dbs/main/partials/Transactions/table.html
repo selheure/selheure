@@ -1,14 +1,14 @@
 <table class="table table-hover">
   <tr>
     <th>Date</th>
-    <th>Créditeur</th>
-    <th>Débiteur</th>
+    <th>Débité</th>
+    <th>Crédité</th>
     <th>Montant</th>
     <th>Motif</th>
     <th>Validation</th>
   </tr>
   <tr ng-repeat="transaction in transactions">
-    <td>{{ transaction.created_at | date:"dd/MM"}}</td>
+    <td>{{ transaction.createdAt | date:"dd/MM"}}</td>
     <td><a ui-sref="userpage({name: transaction.from})">{{transaction.from}} <span ng-if="transaction.fromUser">({{transaction.fromUser}})</span></a></td>
     <td><a ui-sref="userpage({name: transaction.to})">{{transaction.to}} <span ng-if="transaction.toUser">({{transaction.toUser}})</span></a></td>
     <td>{{ transaction.amount }}</td>

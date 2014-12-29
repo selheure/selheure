@@ -1,0 +1,57 @@
+<div class="sh-block">
+  <h1>Modification de la configuration</h1>
+  <p ng-if="!login.isAppAdmin()">Vous n'êtes pas autorisé(e) à modifier la newConfig.ration</p>
+  <div ng-if="login.isAppAdmin()">
+    <form name="configForm" ng-submit="configSubmit()">
+      <p>
+        <label for="collectiveUser">Nom du collectif : </label>
+        <input name="collectiveUser" ng-model="newConfig.collectiveUser" required>
+        <label for="currency">Nom de la monnaie : </label>
+        <input name="currency" ng-model="newConfig.currency" required>
+      </p>
+
+      <p>
+        <label>Types d'annonces : </label>
+        <div ng-repeat="(key, label) in newConfig.announceTypes">
+          <input type="text" ng-model="newConfig.announceTypes[key]">&nbsp;
+          <button type="button" class="btn btn-default" ng-click="removeType(key)">x</button>
+          <br>
+        </div>
+        <button type="button" class="btn btn-default" ng-click="addAnnounceType()">+</button>
+      </p>
+
+      <p>
+        <label>Catégories : </label>
+        <div ng-repeat="(key, cat) in newConfig.categories" ng-show="cat.name != removedFlag">
+          <button type="button" class="btn btn-default" ng-click="switchOpenedCategory(key)">
+            <span class="glyphicon glyphicon-play" aria-hidden="true"
+                  ng-show="openedCategory != key"></span>
+            <span class="caret" ng-show="openedCategory == key"></span>
+          </button>
+          <input type="text" ng-model="cat.name">&nbsp;
+          <button type="button" class="btn btn-default" ng-click="removeCategory(key)">x</button>
+          <br>
+          <div ng-show="openedCategory == key">
+            <div ng-repeat="(keySub, labelSub) in newConfig.categories[key].sub"
+                 ng-show="keySub != '99'  && labelSub != removedFlag">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text" ng-model="newConfig.categories[key].sub[keySub]">&nbsp;
+              <button type="button" class="btn btn-default" ng-click="removeSubCategory(key, keySub)">x</button>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-default" ng-click="addSubCategory(key)">+</button>
+            <br ng-show="openedCategory == key">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" ng-model="newConfig.categories[key].sub['99']">
+            <br>
+            <br>
+          </div>
+        </div>
+        <button type="button" class="btn btn-default" ng-click="addCategory()">+</button>
+      </p>
+      <hr>
+      <button class="btn btn-primary" type="submit">Valider</button>
+      <button class="btn" type="button" ng-click="cancel()">Annuler</button>
+    </form>
+  </div>
+</div>

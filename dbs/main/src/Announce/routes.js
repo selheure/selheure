@@ -10,9 +10,6 @@ config(function($stateProvider){
           return Announce.all()
         },
         announce: function() { return null },
-        config: function(Config){
-          return Config();
-        },
       }
     }).
     state('newannounce', {

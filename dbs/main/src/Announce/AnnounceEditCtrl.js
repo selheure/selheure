@@ -1,6 +1,9 @@
 angular.module('announce').
-controller('AnnounceEditCtrl', function($scope, $state, Announce, login, notification, announce) {
+controller('AnnounceEditCtrl', function($scope, $state, config, Announce, login, notification, announce) {
   $scope.announce = announce || {}
+  $scope.announceTypes = config.get('announceTypes');
+  $scope.categories    = config.get('categories');
+
   if(announce.hasOwnProperty('author')) {
     if(announce.author != login.getName()) {
       $scope.notAllowed = true;

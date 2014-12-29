@@ -127,7 +127,7 @@ factory('login', ($q, $rootScope, $timeout, $http, User, db) ->
     isValidated: ->
       return @hasRole(db.main.name)
 
-    isAdmin: ->
+    isAppAdmin: ->
       return @hasRole(db.main.name + "_admin")
 
     hasRole: (role) ->

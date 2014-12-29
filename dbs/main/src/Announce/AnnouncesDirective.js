@@ -1,5 +1,5 @@
 angular.module('announce').
-directive('announces', function(Config) {
+directive('announces', function(config) {
   return {
     restrict: 'E',
     scope: {
@@ -9,14 +9,5 @@ directive('announces', function(Config) {
       subcategory: '=',
     },
     templateUrl: 'partials/Announces/table.html',
-    link: function(scope, element, attrs) {
-      Config().then(
-        function(data) {
-          scope.config = data;
-        }, function(err) {
-          console.log(err);
-        }
-      );
-    }
   }
 });

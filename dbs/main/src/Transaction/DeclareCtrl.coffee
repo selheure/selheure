@@ -5,6 +5,7 @@ controller('DeclareCtrl', ($scope, $state, config, login, userList, Announce, Tr
   demandList          = []
   proposalList        = []
   $scope.announceList = []
+  $scope.currencyName = config.get('currency')
 
   ########### Edit
   if $state.$current.locals.globals.transaction
