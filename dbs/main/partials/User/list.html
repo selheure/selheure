@@ -14,7 +14,7 @@
     <td><a ui-sref="userpage({name: user.name})">{{ user.name }}</a></td>
     <td>{{ user.email }}</td>
     <td><span ng-if="user.locked">Bloqué</span><span ng-if="!user.locked">Actif</span></td>
-    <td ng-if="login.isAdmin()">
+    <td ng-if="login.isAppAdmin()">
       <button ng-if="user.locked" ng-click="unlockUser(user)">Débloquer</button>
       <button ng-if="!user.locked && login.getName() != user.name" ng-click="lockUser(user)">Bloquer</button>
       <button ng-show="login.getName() != user.name" ng-click="resetPwd(user)">Reset du mdp</button>
