@@ -16,3 +16,6 @@
 [submodule "dbs/main/src/Translation"]
 	path = dbs/main/src/Translation
 	url = https://github.com/LupoLibero/couch-ng-Translation
+[submodule "tools/couch-deploy"]
+	path = tools/couch-deploy
+	url = https://github.com/LupoLibero/couch-deploy
