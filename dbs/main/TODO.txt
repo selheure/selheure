@@ -27,26 +27,26 @@
   # compta utilisateur
    # solde
    # historique des transaction de l'ut
- * ne pas afficher les infos personnelles aux non membres
-  * blocage en base (application d'un rôle ?)
-  * "blocage" dans l'appli
+ # ne pas afficher les infos personnelles aux non membres
+  # blocage en base (application d'un rôle ?)
+  # "blocage" dans l'appli
  # auto-création de compte
-  * autorisation par un admin (application d'un rôle)
+  # autorisation par un admin (application d'un rôle)
  # transactions
   # page "enregistrer une transaction"
    # enregistrement comptable de la transaction
   * page historique des transactions
- * page utilisateurs ? (carnet d'adresses)
+ # page utilisateurs ? (carnet d'adresses)
  # transformer en couchapp
  # mettre en ligne
 
 * page d'admin
- * ajout du groupe
- * liste des rubriques / sous-rubriques
+ # ajout du groupe
+ # liste des rubriques / sous-rubriques
  * modification de transaction ?
- * traçabilité des actions des admins (de tous ?)
+ # traçabilité des actions des admins (de tous ?)
 * super-admin ?
- * configuration du site
+ # configuration du site
 
 * statistiques
  * globales
@@ -58,7 +58,7 @@
  * page CRIC ?
  * log work CRIC ?
 
- * config récupéré depuis la db
+ * config récupérée depuis la db
  * majuscule & pluriel pour les mots traduits
  * scrollbar pour la modal
  * transformer main en header
@@ -71,12 +71,12 @@
   # 2x validation de toutes les transactions
   # déclaration de travail au CRIC dans l'interface (heures participatives)
    # validation par une personne ayant le groupe CRIC
-  * échanges initiés par le CRIC
+  # échanges initiés par le CRIC
    * Melun-Amap/Ateliers (Yoga)
-   * initialisation des comptes
-   * afficher le nom de la personne qui a déclaré l'échange entre parenthèses
-  * "mon compte"
-   * editer info contact
+   # initialisation des comptes
+   # afficher le nom de la personne qui a déclaré l'échange entre parenthèses
+  # "mon compte"
+   # editer info contact
   # user_page : enlever action
   * nouvel échange : limiter motif (60 car)
   # localisation géographique basique
@@ -85,7 +85,7 @@
    # dernières annonces
    * ateliers collectifs
     * ajouter "annonce CRIC"
-  * preparation beta
+  # preparation beta
    # indépendant du nom de la base de données
   # champ confirmation mdp
   * perte mdp ?
