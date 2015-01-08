@@ -2,7 +2,7 @@
   "name": "selheure-main",
   "version": "0.0.1",
   "description": "SEL'heure CouchApp",
-  "load": "src/Selheure/app",
+  "load": "src/Main/app",
   "modules": ["src"],
   "attachments": ["static", "partials"],
   "shell": [
