@@ -10,8 +10,4 @@ angular.module('selheure', [
   'configuration'
 ]).
 value('db', {
-}).
-run(function($rootScope, config, db, DbSelect) {
-  DbSelect.setDbConfig('selheure', db, ['private'])
-  config.load('selheure', db.main.url)
 });

@@ -1,8 +1,8 @@
 var Type        = require('couchtypes/types').Type;
 var fields      = require('couchtypes/fields');
 var permissions = require('couchtypes/permissions');
-var idField     = require('../Selheure/fields').idField;
-var isAppAdmin  = require('../Selheure/utils').isAppAdmin;
+var idField     = require('../Main/fields').idField;
+var isAppAdmin  = require('../Main/utils').isAppAdmin;
 
 
 exports.config = new Type('config', {

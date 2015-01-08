@@ -2,8 +2,8 @@ var Type              = require('couchtypes/types').Type;
 var fields            = require('couchtypes/fields');
 var widgets           = require('couchtypes/widgets');
 var permissions       = require('couchtypes/permissions');
-var idField           = require('../Selheure/fields').idField;
-var utils             = require('../Selheure/utils');
+var idField           = require('../Main/fields').idField;
+var utils             = require('../Main/utils');
 
 exports.announce = new Type('announce', {
   permissions: {
