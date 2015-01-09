@@ -17,7 +17,8 @@ config( ($stateProvider)->
       resolve: {
         transaction: (Transaction, $stateParams) ->
           return Transaction.get({
-            key: $stateParams.id
+            key:          $stateParams.id
+            include_docs: true
           })
         userList: (User) ->
           return User.all()
@@ -32,8 +33,9 @@ config( ($stateProvider)->
           return Config()
         announces: (Announce)->
           Announce.view({
-            view: 'by_author'
-            key:  'CRIC'
+            view:         'by_author'
+            key:          'CRIC'
+            include_docs: true
           })
       }
     })

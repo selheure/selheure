@@ -2,35 +2,39 @@ angular.module('user').
 config( ($stateProvider, $qProvider) ->
   $stateProvider
     .state('userpage', {
-      url:         '/user/:name'
-      templateUrl: 'partials/User/page.html'
-      controller:  'UserPageCtrl'
+      url:           '/user/:name'
+      templateUrl:   'partials/User/page.html'
+      controller:    'UserPageCtrl'
       resolve: {
         transactions: (Transaction, $stateParams, User)->
           return Transaction.view({
-            view: 'validated_by_author'
-            key:  User.getId($stateParams.name)
-            limit: 10
-            descending: true
+            view:         'validated_by_author'
+            key:          User.getId($stateParams.name)
+            limit:        10
+            descending:   true
+            include_docs: true
           })
         announces: (Announce, $stateParams, User)->
           return Announce.view({
-            view: 'by_author'
-            key:  User.getId($stateParams.name)
-            limit: 10
-            descending: true
+            view:        'by_author'
+            key:          User.getId($stateParams.name)
+            limit:        10
+            descending:   true
+            include_docs: true
           })
         notValidated: (Transaction, $stateParams, User)->
           return Transaction.view({
-            view: 'not_validated'
-            key:  User.getId($stateParams.name)
-            limit: 10
-            descending: true
+            view:         'not_validated'
+            key:          User.getId($stateParams.name)
+            limit:        10
+            descending:   true
+            include_docs: true
           })
         user: (User, $stateParams, $q)->
           deferred = $q.defer()
           User.get({
-            key: $stateParams.name
+            key:          $stateParams.name
+            include_docs: true
           }).then(
             (result) =>
               deferred.resolve(result)
@@ -52,7 +56,8 @@ config( ($stateProvider, $qProvider) ->
       resolve: {
         users: (User) ->
           return User.view({
-            view: 'get'
+            view:         'get'
+            include_docs: true
           })
       }
     })

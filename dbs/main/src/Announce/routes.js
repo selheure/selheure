@@ -7,7 +7,9 @@ config(function($stateProvider){
       controller:  'AnnounceListCtrl',
       resolve: {
         announces: function(Announce){
-          return Announce.all()
+          return Announce.all({
+            include_docs: true
+          })
         },
         announce: function() { return null },
       }
@@ -26,25 +28,9 @@ config(function($stateProvider){
       controller:  'AnnounceEditCtrl',
       resolve: {
         announce: function(Announce, $stateParams) {
-          return Announce.get({
-            view: 'full',
-            key:  $stateParams.announce_id,
-          })
-        },
-      }
-    }).
-    state('announceshow', {
-      url:         '/annonces/:id/voir',
-      templateUrl: 'partials/Announces/list.html',
-      controller:  'AnnounceListCtrl',
-      resolve: {
-        announces: function(Announce){
-          return Announce.all()
-        },
-        announce: function(Announce, $stateParams, login) {
-          return Announce.get({
-            view: 'full',
-            key:  $stateParams.id,
+          return Announce.all({
+            include_docs: true,
+            key:          $stateParams.announce_id,
           })
         },
       }

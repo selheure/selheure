@@ -1,15 +1,15 @@
 exports.transaction_get = {
   map: function(doc) {
     if(doc.type == "transaction" && doc._id)
-      emit(doc.id, doc);
+      emit(doc.id, null);
   }
 }
 
 exports.transaction_by_author = {
   map: function(doc) {
     if(doc.type == "transaction" && doc._id && doc.validated) {
-      emit(doc.to, doc);
-      emit(doc.from, doc);
+      emit(doc.to,   null);
+      emit(doc.from, null);
     }
   }
 }
@@ -17,8 +17,8 @@ exports.transaction_by_author = {
 exports.transaction_validated_by_author = {
   map: function(doc) {
     if(doc.type == "transaction" && doc._id && doc.validated) {
-      emit(doc.to, doc);
-      emit(doc.from, doc);
+      emit(doc.to,   null);
+      emit(doc.from, null);
     }
   }
 }
@@ -26,15 +26,15 @@ exports.transaction_validated_by_author = {
 exports.transaction_all = {
   map: function(doc) {
     if(doc.type == "transaction" && doc._id)
-      emit(doc.createdAt, doc);
+      emit(doc.createdAt, null);
   }
 }
 
 exports.transaction_not_validated = {
   map: function(doc) {
     if(doc.type && doc.type == "transaction" && !doc.validated){
-      emit(doc.from, doc);
-      emit(doc.to, doc);
+      emit(doc.from, null);
+      emit(doc.to,   null);
     }
   }
 };
