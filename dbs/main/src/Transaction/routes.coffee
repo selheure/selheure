@@ -2,9 +2,10 @@ angular.module('transaction').
 config( ($stateProvider)->
   $stateProvider.
     state('declare', {
-      url:         '/echanges/nouvelle'
-      templateUrl: 'partials/Transactions/declare.html'
-      controller:  'DeclareCtrl'
+      url:           '/echanges/nouvelle'
+      templateUrl:   'partials/Transactions/declare.html'
+      controller:    'DeclareCtrl'
+      loginRequired: true
       resolve: {
         userList: (User) ->
           return User.all()

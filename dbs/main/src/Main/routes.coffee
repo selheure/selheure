@@ -5,8 +5,6 @@ config ($stateProvider, $urlRouterProvider) ->
       url:         '/',
       templateUrl: 'partials/home.html',
       controller:  'HomeCtrl',
-      onEnter: ($stateParams) ->
-        console.log $stateParams
       resolve:
         transactions: (Transaction, Announce) ->
           return Transaction.all({

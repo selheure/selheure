@@ -1,8 +1,13 @@
-angular.module('selheure')
-.config(["$provide", ($provide) ->
-  $provide.decorator("$exceptionHandler", ["$delegate", ($delegate) ->
+angular.module('selheure').
+config(["$provide", ($provide) ->
+  $provide.decorator("$exceptionHandler", ($delegate, $injector, errors) ->
     return (exception, cause) ->
-      #$delegate(exception, cause)
-      console.log exception.message
-  ])
+      # to avoid circular dependency issue
+      $state       = $injector.get("$state")
+      notification = $injector.get("notification")
+      if errors.hasOwnProperty exception.message
+        notification.setAlert errors[exception.message], 'danger'
+      else
+        $delegate(exception, cause)
+  )
 ])
