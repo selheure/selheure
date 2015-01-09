@@ -12,14 +12,14 @@
 
   <accordion close-others="true">
     <accordion-group ng-repeat="announce in announces |types:selected.announceType |category:selected.category:selected.subCategory"
-                     is-open="selected == announce.id" is-disabled="status.isFirstDisabled">
+                     is-open="opened == announce.id" is-disabled="status.isFirstDisabled">
       <accordion-heading>
         {{ announce.created_at | date:"dd/MM" }} : {{announce.title}} ({{ announceTypes[announce.announce_type] }} de <a ui-sref="userpage({name: announce.author})">{{announce.author}}</a>)
       </accordion-heading>
       <a id="{{announce.id}}"></a>
       <p>
         Catégorie : {{ categories[announce.category].name }}&nbsp;
-        <strong ng-show="announce.subCategory">&gt;</strong> {{ categories[announce.category].sub[announce.subCategory || "99"] }}
+        <strong ng-show="announce.subCategory">&gt;</strong> {{ categories[announce.category].sub[announce.subCategory] }}
       </p>
       <p>{{ announce.message }}</p>
     </accordion-group>

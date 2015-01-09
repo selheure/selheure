@@ -6,8 +6,7 @@ controller 'AnnounceListCtrl', ($scope, $stateParams, $location, $anchorScroll, 
   $scope.categories    = config.get('categories')
 
   if $stateParams.id != null
-    $scope.selected = $stateParams.id
-    $location.hash($scope.selected)
-    console.log "scroll"
+    $scope.opened = $stateParams.id
+    $location.hash($scope.opened)
     $anchorScroll()
 
