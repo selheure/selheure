@@ -11,7 +11,6 @@ config(function($stateProvider){
             include_docs: true
           })
         },
-        announce: function() { return null },
       }
     }).
     state('newannounce', {
@@ -31,6 +30,18 @@ config(function($stateProvider){
           return Announce.all({
             include_docs: true,
             key:          $stateParams.announce_id,
+          })
+        },
+      }
+    }).
+    state('announceshow', {
+      url: '/annonces/:id/voir',
+      templateUrl: 'partials/Announces/list.html',
+      controller: 'AnnounceListCtrl',
+      resolve: {
+        announces: function(Announce){
+          return Announce.all({
+            include_docs: true,
           })
         },
       }
