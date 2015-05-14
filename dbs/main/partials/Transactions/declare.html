@@ -7,8 +7,6 @@
     <p>Vous pouvez déclarer tout échange réalisé, soit au débit, soit au crédit. Le partenaire de l'échange devra le valider.</p>
     <h3>Description de l'échange</h3>
     <form ng-submit="newTransactionSubmit()">
-      <p><input type="number" min="0" ng-model="transaction.amount" placeholder="ex : 60" required/>&nbsp;{{currencyName}}s
-      </p>
       <h5>Compte à débiter</h5>
 
       <!-- From ? -->
@@ -29,6 +27,12 @@
         <button type="button" class="btn btn-default" ng-model="transaction.to" btn-radio="'another'" ng-if="transaction.from !== 'another'">Celui de...</button>
       </div>
       <input ng-show="transaction.to == 'another'" type="text" ng-model="transaction.toField" typeahead-editable="false" typeahead="username for username in userList | filter:$viewValue" placeholder="Prénom Nom"/>
+
+      <h5>Montant de l'échange</h5>
+      <p>
+        <input type="number" min="0" ng-model="transaction.amount"
+               placeholder="ex : 60" required/>&nbsp;{{currencyName}}s
+      </p>
 
       <h4>Motif de l'échange</h4>
       <p ng-show="announceList">Référence à une annonce
