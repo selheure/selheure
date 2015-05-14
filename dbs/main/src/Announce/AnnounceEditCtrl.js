@@ -1,6 +1,6 @@
 angular.module('announce').
 controller('AnnounceEditCtrl', function($scope, $state, config, Announce, login, notification, announce) {
-  $scope.announce = announce || {}
+  $scope.announce      = announce || {}
   $scope.announceTypes = config.get('announceTypes');
   $scope.categories    = config.get('categories');
 
@@ -30,7 +30,7 @@ controller('AnnounceEditCtrl', function($scope, $state, config, Announce, login,
     announce.update = 'edit';
     Announce.update(announce).then(
       function(data) {
-        $state.go('announcelist');
+        $state.go('announceshow', {id: $scope.announce.id});
       }, function(err) {
         console.log(err);
       }

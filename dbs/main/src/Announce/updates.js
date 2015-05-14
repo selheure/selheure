@@ -22,6 +22,19 @@ exports.announce_edit = function(doc, req) {
     if(updated) {
       doc.updated_at = new Date().getTime();
     }
+    doc.author = req.userCtx.name;
+    return [doc, 'ok']
+  }
+}
+
+
+exports.announce_delete = function(doc, req) {
+  if(doc === null){
+    throw "No announce found"
+  } else {
+    doc._deleted = true;
+    doc.updated_at = new Date().getTime();
+    doc.author = req.userCtx.name;
     return [doc, 'ok']
   }
 }

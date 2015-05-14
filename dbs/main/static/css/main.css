@@ -30,7 +30,10 @@ a {
   text-align: center;
 }
 
-
+.actions {
+  float: right;
+  width: 50px;
+}
 
 
 

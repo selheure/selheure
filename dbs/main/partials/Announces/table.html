@@ -5,8 +5,8 @@
     <th>Auteur</th>
     <th>Titre</th>
   </tr>
-  <tr ng-repeat="announce in announces |types:types |category:category:subcategory">
-    <td>{{ announce.created_at | date:"dd/MM" }}</td>
+  <tr ng-repeat="announce in announces |types:types |category:category:subcategory | orderBy:'created_at':true">
+    <td>{{ announce.created_at | date:"dd/MM/yy" }}</td>
     <td>{{ announceTypes[announce.announce_type] }}</td>
     <td><a ui-sref="userpage({name: announce.author})">{{ announce.author }}</a></td>
     <td><a ui-sref="announceshow(announce)">{{ announce.title }}</a></td>

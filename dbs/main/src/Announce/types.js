@@ -12,7 +12,11 @@ exports.announce = new Type('announce', {
       utils.roleMatchesField('author'),
       permissions.usernameMatchesField('author'),
     ]),
-    remove: permissions.hasRole('_admin')
+    remove: permissions.any([
+      utils.roleMatchesField('author'),
+      permissions.usernameMatchesField('author'),
+      permissions.hasRole('_admin')
+    ]),
   },
   fields: {
     id:             idField(/\w+/),
