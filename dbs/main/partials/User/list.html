@@ -8,12 +8,14 @@
     <th>Nom</th>
     <th>E-mail</th>
     <th>Statut</th>
+    <th>Droit spécial</th>
     <th ng-if="login.isAppAdmin()">Actions</th>
   </tr>
   <tr ng-repeat="user in users">
     <td><a ui-sref="userpage({name: user.name})">{{ user.name }}</a></td>
     <td>{{ user.email }}</td>
     <td><span ng-if="user.locked">Bloqué</span><span ng-if="!user.locked">Actif</span></td>
+    <td><span ng-if=""></span></td>
     <td ng-if="login.isAppAdmin()">
       <button ng-if="user.locked" ng-click="unlockUser(user)">Débloquer</button>
       <button ng-if="!user.locked && login.getName() != user.name" ng-click="lockUser(user)">Bloquer</button>
