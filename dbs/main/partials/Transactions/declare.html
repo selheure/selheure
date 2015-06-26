@@ -11,11 +11,16 @@
 
       <!-- From ? -->
       <div class="btn-group">
-        <button type="button" class="btn btn-default" ng-model="transaction.from" btn-radio="login.getName()">Le mien</button>
-        <button type="button" class="btn btn-default" ng-model="transaction.from" ng-repeat="proxy in login.proxys" btn-radio="proxy">{{proxy}}</button>
-        <button type="button" class="btn btn-default" ng-model="transaction.from" btn-radio="'another'">Celui de...</button>
+        <button type="button" class="btn btn-default" ng-model="transaction.from"
+                btn-radio="login.getName()">Le mien</button>
+        <button type="button" class="btn btn-default" ng-model="transaction.from"
+                ng-repeat="proxy in login.proxys" btn-radio="proxy">{{proxy}}</button>
+        <button type="button" class="btn btn-default" ng-model="transaction.from"
+                btn-radio="'another'">Celui de...</button>
       </div>
-      <input ng-show="transaction.from == 'another'" type="text" ng-model="transaction.fromField" typeahead-editable="false" typeahead="username for username in userList | filter:$viewValue" placeholder="Prénom Nom"/>
+      <input ng-show="transaction.from == 'another'" type="text"
+             ng-model="transaction.fromField" typeahead-editable="false"
+             typeahead="username for username in userList | filter:$viewValue" />
 
 
       <h5>Compte à créditer</h5>

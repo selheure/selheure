@@ -11,6 +11,18 @@ config( ($stateProvider)->
           return User.all()
       }
     }).
+    state('declare-participation', {
+      url:           '/echanges/participation'
+      templateUrl:   'partials/Transactions/declare_participation.html'
+      controller:    'DeclareCtrl'
+      loginRequired: true
+      resolve: {
+        userList: (User) ->
+          return User.all()
+        participation: ->
+          return true
+      }
+    }).
     state('transactionedit', {
       url:         '/echanges/:id/editer'
       templateUrl: 'partials/Transactions/declare.html'

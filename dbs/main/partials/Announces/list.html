@@ -2,7 +2,8 @@
   <div>
     <h2>Annonces du catalogue</h2>
     <div class="btn-group">
-      <button class="btn btn-default" ng-model="selected.announceType" ng-repeat="(key, label) in announceTypes" btn-radio="key">{{label}}</button>
+      <button class="btn btn-default" ng-model="selected.announceType"
+              ng-repeat="(key, label) in announceTypes" btn-radio="key">{{label}}</button>
     </div>
     <div>Rubrique : <category options="categories" model="selected.category"/>
     </div>
