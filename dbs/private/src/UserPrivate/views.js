@@ -9,8 +9,10 @@ exports.user_get = {
 
 exports.user_all = {
   map: function(doc) {
-    if(doc.type && doc.type == 'user'){
-      emit(null, doc.name);
+    if(doc.type) {
+      if(doc.type == 'user' || doc.type == 'group'){
+        emit(null, doc.name);
+      }
     }
   }
 };
