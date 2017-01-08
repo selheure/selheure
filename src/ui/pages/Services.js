@@ -1,7 +1,7 @@
 import React from 'react';
 import ServicesList from '../components/services/ServicesList'
-import ServiceProposition from '../components/services/ServiceProposition'
-import ServiceRequest from '../components/services/ServiceRequest'
+import Propose from '../components/services/Propose'
+import Request from '../components/services/Request'
 
 class Services extends React.Component {
   componentDidMount() {
@@ -14,8 +14,8 @@ class Services extends React.Component {
     return(
       <div>
         <ServicesList />
-        <ServiceProposition />
-        <ServiceRequest />
+        <Propose />
+        <Request />
       </div>
     )
   }

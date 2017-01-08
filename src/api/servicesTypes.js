@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const propositionsTypes = {
+export const servicesTypes = {
   0: "Choisissez un service",
   1: "Sortir mon chien",
   2: "Faire ma vaiselle",
