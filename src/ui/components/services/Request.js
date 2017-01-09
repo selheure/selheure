@@ -18,7 +18,7 @@ class Request extends React.Component {
   render() {
     return(
       <div className="col m6 offset-m3 s12" style={{ 'border':  '2px double', 'borderRadius': '5px' }}>
-        Request
+        Recherche
 
         <div className="row">
           <Select title="Type de requete :" option={servicesCategory}/>

@@ -5,11 +5,12 @@ export const servicesList = [
   { idService: 2, type: 'declaration', service: 'vaisselle', from: 'pasMoi', for: 'moi' }
 ]
 
-export const servicesTypes = [
-  { name: 'propose' },
-  { name: 'request' },
-  { name: 'declaration' }
-]
+export const servicesTypes = {
+  0: "type de service",
+  1: "propose",
+  2: "request",
+  3: "declaration"
+}
 
 export const servicesCategory = {
   0: "Choisissez un service",
