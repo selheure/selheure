@@ -1,15 +1,15 @@
 
 export const servicesList = [
-  { idService: 0, type: 'propose', service: 'jardinnage', from: 'moi' },
-  { idService: 1, type: 'request', service: 'vaisselle', from: 'pasMoi' },
-  { idService: 2, type: 'declaration', service: 'vaisselle', from: 'pasMoi', for: 'moi' }
+  { idService: 0, type: 'Propose', service: 'jardinnage', from: 'moi' },
+  { idService: 1, type: 'Recherche', service: 'vaisselle', from: 'pasMoi' },
+  { idService: 2, type: 'Declaration', service: 'vaisselle', from: 'pasMoi', for: 'moi' }
 ]
 
 export const servicesTypes = {
-  0: "type de service",
-  1: "propose",
-  2: "request",
-  3: "declaration"
+  0: "Tous",
+  1: "Propose",
+  2: "Recherche",
+  3: "Declaration"
 }
 
 export const servicesCategory = {

@@ -10,17 +10,32 @@ import {
 class ServicesList extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      typeSelected: 0
+    }
+  }
+
+  onChange(value) {
+    this.setState({'typeSelected': value})
   }
 
   render() {
+    const index = []
+
+    this.props.list.forEach(service => {
+        if( (service.type === servicesTypes[this.state.typeSelected]) || (this.state.typeSelected == 0) ) {
+          index.push(service)
+        }
+      })
+
     return(
       <div className="col s12 m6 offset-m3" style={{ 'border': '2px double', 'borderRadius': '5px' }}>
         ServicesList
-        <Select title="Type de service :" option={servicesTypes}/>
+        <Select title="Type de service :" option={servicesTypes} onChange={(e) => this.onChange(e.target.value)} value={this.state.typeSelected}/>
 
-        {this.props.list.map(service =>
-          <div key={ service.type }>
-            <Service title={ service.type } />
+        {index.map(service =>
+          <div key={ service.idService }>
+            <Service service={ service } />
           </div>
           )}
 

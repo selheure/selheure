@@ -1,10 +1,5 @@
 import React from 'react';
 
-import {
-  servicesList,
-  servicesTypes,
-  servicesCategory
-} from '../../../api/servicesData'
 
 class ListOfType extends React.Component {
   constructor(props) {
@@ -12,10 +7,19 @@ class ListOfType extends React.Component {
   }
 
   render() {
+    const service = this.props.service
+    console.log(service)
     return(
-      <div className="col s12 m6 offset-m3" style={{ 'border': '2px double', 'borderRadius': '5px' }}>
-        { this.props.title }
-
+      <div className="col s12 m10 offset-m1" style={{ 'border': '2px double', 'borderRadius': '5px' }}>
+        <h5>{ service.type }</h5>
+        <div className="row">
+          <div className="col s12 m6">
+            Type de service :
+          </div>
+          <div className="col s12 m6">
+            { service.service }
+          </div>
+        </div>
       </div>
     )
   }

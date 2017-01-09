@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Compteur    from '../components/generic/Compteur'
+import UserBarre from '../components/user/UserBarre'
 import Historical from '../components/user/Historical'
 
 import {
@@ -10,32 +10,30 @@ import {
 class UserPage extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      user: this.props.user || userData
-    }
   }
 
   render() {
-    const profil = this.state.user
+    const profil = this.props.user || userData
     return(
-      <div className="row">
-        <div className="center">
+      <div>
+        <div className="row">
+          <UserBarre profil={profil}/>
+        </div>
+        <div className="row">
+          <div className="center">
 
-          <ul>
-            <li>
-              <div className="center" >{ profil.userName }</div>
-            </li>
-            <li>
-              <div className="center" >{ profil.eMail }</div>
-            </li>
-            <li>
-              <div className="center" >{ profil.phone }</div>
-            </li>
-          </ul>
+            <ul>
+              <li>
+                <div className="center" >{ profil.eMail }</div>
+              </li>
+              <li>
+                <div className="center" >{ profil.phone }</div>
+              </li>
+            </ul>
 
-          <Compteur title="Solde: " value={ profil.solde } unite=" euro"/>
-          <Historical />
+            <Historical />
 
+          </div>
         </div>
       </div>
     )
