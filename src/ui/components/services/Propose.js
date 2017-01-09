@@ -4,8 +4,8 @@ import { Router, Route, IndexRoute, browserHistory, Link }       from 'react-rou
 import Select from '../generic/Select'
 
 import {
-  servicesTypes
-} from '../../../api/servicesTypes'
+  servicesCategory
+} from '../../../api/servicesData'
 
 class Propose extends React.Component {
   constructor(props) {
@@ -21,10 +21,10 @@ class Propose extends React.Component {
 
   render() {
     return(
-      <div className="col m6 offset-m3 s12">
+      <div className="col s12 m6 offset-m3" style={{ 'border': '2px double', 'borderRadius': '5px' }}>
         Propose
         <div className="row">
-          <Select title="Type de proposition :" option={servicesTypes}/>
+          <Select title="Type de proposition :" option={servicesCategory}/>
         </div>
       </div>
     )

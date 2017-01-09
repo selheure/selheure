@@ -4,8 +4,8 @@ import { Router, Route, IndexRoute, browserHistory, Link }       from 'react-rou
 import Select from '../generic/Select'
 
 import {
-  servicesTypes
-} from '../../../api/servicesTypes'
+  servicesCategory
+} from '../../../api/servicesData'
 
 
 class Request extends React.Component {
@@ -17,11 +17,11 @@ class Request extends React.Component {
 
   render() {
     return(
-      <div className="col m6 offset-m3 s12">
+      <div className="col m6 offset-m3 s12" style={{ 'border':  '2px double', 'borderRadius': '5px' }}>
         Request
 
         <div className="row">
-          <Select title="Type de requete :" option={servicesTypes}/>
+          <Select title="Type de requete :" option={servicesCategory}/>
         </div>
 
       </div>
