@@ -1,6 +1,13 @@
 import React from 'react';
 import ServicesList from '../components/services/ServicesList'
 
+import {
+  servicesList,
+  servicesTypes,
+  servicesCategory
+} from '../../api/servicesData'
+
+
 class Home extends React.Component {
   componentDidMount() {
   }
@@ -10,8 +17,8 @@ class Home extends React.Component {
 
   render() {
     return(
-      <div>
-        <ServicesList />
+      <div className="row">
+        <ServicesList list={servicesList}/>
       </div>
     )
   }

@@ -1,23 +1,25 @@
 import React from 'react';
 
-import {
-  servicesList,
-  servicesTypes,
-  servicesCategory
-} from '../../../api/servicesData'
+import ListOfType from './ListOfType'
+
+
 
 class ServicesList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      servicesList: this.props.servicesList || servicesList
-    }
   }
 
   render() {
     return(
       <div className="col s12 m6 offset-m3" style={{ 'border': '2px double', 'borderRadius': '5px' }}>
         ServicesList
+
+        {this.props.list.map(service =>
+          <div key={ service.type }>
+            <ListOfType title={ service.type } />
+          </div>
+          )}
+
       </div>
     )
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link }       from 'react-router'
 
+
 class NavBar extends React.Component {
   componentDidMount() {
     $(document).ready(function() {

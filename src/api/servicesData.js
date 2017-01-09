@@ -1,14 +1,14 @@
-import React from 'react'
-
 
 export const servicesList = [
   { idService: 0, type: 'propose', service: 'jardinnage', from: 'moi' },
-  { idService: 1, type: 'request', service: 'vaisselle', from: 'pasMoi' }
+  { idService: 1, type: 'request', service: 'vaisselle', from: 'pasMoi' },
+  { idService: 2, type: 'declaration', service: 'vaisselle', from: 'pasMoi', for: 'moi' }
 ]
 
 export const servicesTypes = [
-  'Proposition',
-  'requete'
+  { name: 'propose' },
+  { name: 'request' },
+  { name: 'declaration' }
 ]
 
 export const servicesCategory = {
