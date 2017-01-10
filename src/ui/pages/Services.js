@@ -17,9 +17,13 @@ class Services extends React.Component {
   render() {
     const user = this.props.user || userList[userData.idUser]
     return(
-      <div className="row">
-        <Propose />
-        <Request />
+      <div>
+        <div className="row">
+          <Propose user={user}/>
+        </div>
+        <div className="row">
+          <Request user={user}/>
+        </div>
       </div>
     )
   }

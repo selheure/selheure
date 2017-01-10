@@ -23,10 +23,12 @@ class UserPage extends React.Component {
 
             <ul>
               <li>
-                <div className="center" >{ user.eMail }</div>
+                <div className="col s5 offset-s1 right-align"><span>e-mail :</span></div>
+                <div className="col s5 left-align" >{ user.eMail }</div>
               </li>
               <li>
-                <div className="center" >{ user.phone }</div>
+                <div className="col s5 offset-s1 right-align"><span>telephone :</span></div>
+                <div className="col s5 left-align" >{ user.phone }</div>
               </li>
             </ul>
 

@@ -1,10 +1,6 @@
 
 
-export const fakeHistorical = [
-  { idService: 0, type: 'Propose', service: 2, from: 'moi' },
-  { idService: 1, type: 'Recherche', service: 1, from: 'moi' },
-  { idService: 2, type: 'Declaration', service: 3, from: 'moi', for: 'pasMoi' }
-]
+export const fakeHistorical = [ ]
 
 export const userData = {
   idUser: 0

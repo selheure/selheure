@@ -1,13 +1,10 @@
 
-export const declarationList = [
-  { idService: 2, type: 'Declaration', service: 4, from: 'pasMoi', for: 'moi' }
-]
+export const declarationList = [ ]
 
 
-export const servicesList = [
-  { idService: 0, type: 'Propose', service: 2, from: 'moi' },
-  { idService: 1, type: 'Recherche', service: 1, from: 'pasMoi' }
-]
+export const servicesList = [ ]
+
+
 
 export const servicesTypes = {
   0: "Tous",

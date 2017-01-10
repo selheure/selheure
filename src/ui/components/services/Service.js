@@ -70,7 +70,7 @@ class Service extends React.Component {
     }
 
     return(
-      <div className="col s12 m10 offset-m1" style={{ 'border': '2px double', 'borderRadius': '5px' }}>
+      <div className="col s12 m10 offset-m1" style={{ 'border': '2px double', 'borderRadius': '5px', 'padding': '10px' }}>
 
         { title }
         { contenu }

@@ -1,16 +1,21 @@
 import React from 'react';
-import { Router, Route, IndexRoute, browserHistory, Link }       from 'react-router'
 
 import Select from '../generic/Select'
 
 import {
-  servicesCategory
+  servicesCategory,
+  declarationList
 } from '../../../api/servicesData'
 
 
 class Declare extends React.Component {
   constructor(props) {
     super(props)
+  }
+
+  addDeclaration(value) {
+    declarationList.push( {idService: declarationList.lenght, type: 'Declaration', service: 4, from: 'pasMoi', for: 'moi'} )
+    user.historical.push({idService: user.historical.length, type: 'Recherche', service: 2, from: 'moi'})
   }
 
   render() {
@@ -29,7 +34,7 @@ class Declare extends React.Component {
           <span>Temps de service :</span>
           <span><input type="text"></input></span>
 
-          <a className="waves-effect waves-light btn">Valider</a>
+          <a className="waves-effect waves-light btn" onClick={ this.addDeclaration.bind(this) }>Valider</a>
         </div>
       </div>
     )

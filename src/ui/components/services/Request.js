@@ -1,18 +1,24 @@
 import React from 'react';
-import { Router, Route, IndexRoute, browserHistory, Link }       from 'react-router'
 
 import Select from '../generic/Select'
 
 import {
-  servicesCategory
+  servicesCategory,
+  servicesList
 } from '../../../api/servicesData'
 
 
 class Request extends React.Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props)
+    this.state = {
+      type: 0
+    }
   }
 
-  componentWillUnmount() {
+  addRequete(value) {
+    servicesList.push({idService: servicesList.length, type: 'Recherche', service: 2, from: 'moi'})
+    user.historical.push({idService: user.historical.length, type: 'Recherche', service: 2, from: 'moi'})
   }
 
   render() {
@@ -24,7 +30,7 @@ class Request extends React.Component {
           <Select title="Type de requete :" option={servicesCategory}/>
         </div>
 
-        <a className="waves-effect waves-light btn">Valider</a>
+        <a className="waves-effect waves-light btn" onClick={ this.addRequete.bind(this) }>Valider</a>
       </div>
     )
   }

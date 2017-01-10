@@ -12,11 +12,11 @@ import {
 class Historical extends React.Component {
 
   render() {
-
+    const historical = this.props.user.historical
     return(
       <div>
-        Historical
-        <ServicesList list={ this.props.user.historical } types={ servicesTypes } category={ servicesCategory }/>
+        <h5>Historique</h5>
+        <ServicesList list={ historical } types={ servicesTypes } category={ servicesCategory }/>
       </div>
     )
   }
