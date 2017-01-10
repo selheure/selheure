@@ -3,9 +3,6 @@ import React from 'react';
 import Service from './Service'
 import Select from '../generic/Select'
 
-import {
-  servicesTypes
-} from '../../../api/servicesData'
 
 class ServicesList extends React.Component {
   constructor(props) {
@@ -23,19 +20,19 @@ class ServicesList extends React.Component {
     const index = []
 
     this.props.list.forEach(service => {
-        if( (service.type === servicesTypes[this.state.typeSelected]) || (this.state.typeSelected == 0) ) {
+        if( (service.type === this.props.types[this.state.typeSelected]) || (this.state.typeSelected == 0) ) {
           index.push(service)
         }
       })
 
     return(
       <div className="col s12 m6 offset-m3" style={{ 'border': '2px double', 'borderRadius': '5px', 'padding': '10px' }}>
-        ServicesList
-        <Select title="Type de service :" option={servicesTypes} onChange={(e) => this.onChange(e.target.value)} value={this.state.typeSelected}/>
+        <h5>Liste des services</h5>
+        <Select title="Type de service :" option={this.props.types} onChange={(e) => this.onChange(e.target.value)} value={this.state.typeSelected}/>
 
         {index.map(service =>
           <div key={ service.idService }>
-            <Service service={ service } />
+            <Service service={ service } seeTitle={ (this.state.typeSelected == 0) } category={ this.props.category }/>
           </div>
           )}
 

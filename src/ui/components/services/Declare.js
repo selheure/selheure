@@ -16,7 +16,7 @@ class Declare extends React.Component {
   render() {
     return(
       <div className="col s12 m6 offset-m3" style={{ 'border': '2px double', 'borderRadius': '5px' }}>
-        Declaration
+        <h5>Declaration</h5>
         <div className="row">
           <Select title="Type de declaration :" option={servicesCategory}/>
 
@@ -29,6 +29,7 @@ class Declare extends React.Component {
           <span>Temps de service :</span>
           <span><input type="text"></input></span>
 
+          <a className="waves-effect waves-light btn">Valider</a>
         </div>
       </div>
     )

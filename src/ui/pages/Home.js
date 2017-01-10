@@ -7,6 +7,10 @@ import {
   servicesCategory
 } from '../../api/servicesData'
 
+import {
+  userList,
+  userData
+} from '../../api/usersData'
 
 class Home extends React.Component {
   componentDidMount() {
@@ -16,9 +20,10 @@ class Home extends React.Component {
   }
 
   render() {
+    const user = this.props.user || userList[userData.idUser]
     return(
       <div className="row">
-        <ServicesList list={servicesList}/>
+        <ServicesList list={servicesList} types={ servicesTypes } category={ servicesCategory }/>
       </div>
     )
   }

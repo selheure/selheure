@@ -3,6 +3,7 @@ import Propose from '../components/services/Propose'
 import Request from '../components/services/Request'
 
 import {
+  userList,
   userData
 } from '../../api/usersData'
 
@@ -14,7 +15,7 @@ class Services extends React.Component {
   }
 
   render() {
-    const profil = this.props.user || userData
+    const user = this.props.user || userList[userData.idUser]
     return(
       <div className="row">
         <Propose />

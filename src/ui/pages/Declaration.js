@@ -1,8 +1,8 @@
 import React from 'react';
 import Declare from '../components/services/Declare'
 
-
 import {
+  userList,
   userData
 } from '../../api/usersData'
 
@@ -14,7 +14,7 @@ class Declaration extends React.Component {
   }
 
   render() {
-    const profil = this.props.user || userData
+    const user = this.props.user || userList[userData.idUser]
     return(
       <div className="row">
         <Declare />

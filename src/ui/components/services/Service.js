@@ -1,8 +1,5 @@
 import React from 'react';
 
-import {
-  servicesCategory
-} from '../../../api/servicesData'
 
 
 const ServiceRow = ({title, contenu}) => {
@@ -18,10 +15,10 @@ const ServiceRow = ({title, contenu}) => {
   )
 }
 
-const ServiceDeclare = ({service}) => {
+const ServiceDeclare = ({service, category}) => {
   return(
     <div className="row">
-      <ServiceRow title="Type de service :" contenu={ servicesCategory[service.service] }/>
+      <ServiceRow title="Type de service :" contenu={ category[service.service] }/>
       <ServiceRow title=" Par :" contenu={ service.from }/>
       <ServiceRow title=" Pour :" contenu={ service.for }/>
     </div>
@@ -29,20 +26,20 @@ const ServiceDeclare = ({service}) => {
 }
 
 
-const ServiceRequest = ({service}) => {
+const ServiceRequest = ({service, category}) => {
   return(
     <div className="row">
-      <ServiceRow title="Type de service :" contenu={ servicesCategory[service.service] }/>
-      <ServiceRow title="Proposer par :" contenu={ service.from }/>
+      <ServiceRow title="Type de service :" contenu={ category[service.service] }/>
+      <ServiceRow title="Rechercher par :" contenu={ service.from }/>
     </div>
   )
 }
 
 
-const ServicePropose = ({service}) => {
+const ServicePropose = ({service, category}) => {
   return(
     <div className="row">
-      <ServiceRow title="Type de service :" contenu={ servicesCategory[service.service] }/>
+      <ServiceRow title="Type de service :" contenu={ category[service.service] }/>
       <ServiceRow title="Proposer par :" contenu={ service.from }/>
     </div>
   )
@@ -56,21 +53,26 @@ class Service extends React.Component {
   render() {
     const service = this.props.service
 
-    let contenu
-    if ( servicesCategory[service.service] == 'Propose' ){
-      contenu = <ServicePropose service={ this.props.service }/>
+    let title
+    if ( this.props.seeTitle === true ){
+      title = <h6>{ service.type }</h6>
     }
-    else if ( servicesCategory[service.service] == 'Propose' ){
-      contenu = <ServiceRequest service={ this.props.service }/>
+
+    let contenu
+    if ( service.type === 'Propose' ){
+      contenu = <ServicePropose service={ service } category={ this.props.category }/>
+    }
+    else if ( service.type == 'Recherche' ){
+      contenu = <ServiceRequest service={ service } category={ this.props.category }/>
     }
     else {
-      contenu = <ServiceDeclare service={ this.props.service }/>
+      contenu = <ServiceDeclare service={ service } category={ this.props.category }/>
     }
 
     return(
       <div className="col s12 m10 offset-m1" style={{ 'border': '2px double', 'borderRadius': '5px' }}>
-        <h5>{ service.type }</h5>
 
+        { title }
         { contenu }
 
       </div>

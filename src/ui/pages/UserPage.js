@@ -3,6 +3,7 @@ import React from 'react';
 import Historical from '../components/user/Historical'
 
 import {
+  userList,
   userData
 } from '../../api/usersData'
 
@@ -12,7 +13,7 @@ class UserPage extends React.Component {
   }
 
   render() {
-    const profil = this.props.user || userData
+    const user = this.props.user || userList[userData.idUser]
     return(
       <div>
         <div className="row">
@@ -22,14 +23,14 @@ class UserPage extends React.Component {
 
             <ul>
               <li>
-                <div className="center" >{ profil.eMail }</div>
+                <div className="center" >{ user.eMail }</div>
               </li>
               <li>
-                <div className="center" >{ profil.phone }</div>
+                <div className="center" >{ user.phone }</div>
               </li>
             </ul>
 
-            <Historical />
+            <Historical user={ user }/>
 
           </div>
         </div>

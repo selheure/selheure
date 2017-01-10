@@ -18,12 +18,13 @@ class Request extends React.Component {
   render() {
     return(
       <div className="col m6 offset-m3 s12" style={{ 'border':  '2px double', 'borderRadius': '5px' }}>
-        Recherche
+        <h5>Recherche</h5>
 
         <div className="row">
           <Select title="Type de requete :" option={servicesCategory}/>
         </div>
 
+        <a className="waves-effect waves-light btn">Valider</a>
       </div>
     )
   }
