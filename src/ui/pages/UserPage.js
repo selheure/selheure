@@ -1,6 +1,5 @@
 import React from 'react';
 
-import UserBarre from '../components/user/UserBarre'
 import Historical from '../components/user/Historical'
 
 import {
@@ -17,7 +16,6 @@ class UserPage extends React.Component {
     return(
       <div>
         <div className="row">
-          <UserBarre profil={profil}/>
         </div>
         <div className="row">
           <div className="center">

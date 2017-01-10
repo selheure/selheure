@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link }       from 'react-router'
 
+import Compteur    from './generic/Compteur'
+
 
 class NavBar extends React.Component {
   componentDidMount() {
@@ -56,6 +58,11 @@ class NavBar extends React.Component {
                 <Link to="/userPage">
                   Profil
                 </Link>
+              </li>
+
+              <li>
+                <Compteur title="Solde: " value={ this.props.user.solde } unite=" euro"/>
+                <div className="center" >{ this.props.user.userName }</div>
               </li>
 
             </ul>

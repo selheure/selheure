@@ -29,7 +29,7 @@ class ServicesList extends React.Component {
       })
 
     return(
-      <div className="col s12 m6 offset-m3" style={{ 'border': '2px double', 'borderRadius': '5px' }}>
+      <div className="col s12 m6 offset-m3" style={{ 'border': '2px double', 'borderRadius': '5px', 'padding': '10px' }}>
         ServicesList
         <Select title="Type de service :" option={servicesTypes} onChange={(e) => this.onChange(e.target.value)} value={this.state.typeSelected}/>
 
