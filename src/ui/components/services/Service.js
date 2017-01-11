@@ -60,13 +60,13 @@ class Service extends React.Component {
 
     let contenu
     if ( service.type === 'Propose' ){
-      contenu = <ServicePropose service={ service } category={ this.props.category }/>
+      contenu = <ServicePropose service={service} category={this.props.category}/>
     }
-    else if ( service.type == 'Recherche' ){
-      contenu = <ServiceRequest service={ service } category={ this.props.category }/>
+    else if ( service.type === 'Recherche' ){
+      contenu = <ServiceRequest service={service} category={this.props.category}/>
     }
     else {
-      contenu = <ServiceDeclare service={ service } category={ this.props.category }/>
+      contenu = <ServiceDeclare service={service} category={this.props.category}/>
     }
 
     return(

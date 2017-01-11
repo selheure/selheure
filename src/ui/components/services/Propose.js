@@ -13,7 +13,7 @@ class Propose extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      type: 0
+      service: 0
     }
   }
 
@@ -24,12 +24,12 @@ class Propose extends React.Component {
   }
 
   changeCategory(value) {
-    this.setState({'type': value})
+    this.setState({'service': value})
   }
 
-  addProposition(value) {
-    servicesList.push({idService: servicesList.length, type: 'Propose', service: 2, from: 'moi'})
-    user.historical.push({idService: user.historical.length, type: 'Propose', service: 2, from: 'moi'})
+  addProposition(user) {
+    servicesList.push({ idService: servicesList.length, type: 'Propose', service: this.state.service, from: user.username })
+    user.historical.push({ idService: user.historical.length, type: 'Propose', service: this.state.service, from: user.username })
   }
 
   render() {
@@ -37,9 +37,9 @@ class Propose extends React.Component {
       <div className="col s12 m6 offset-m3" style={{ 'border': '2px double', 'borderRadius': '5px' }}>
         <h5>Proposition</h5>
         <div className="row">
-          <Select title="Type de proposition :" option={servicesCategory} onChange={this.changeCategory}/>
+          <Select title="Type de proposition :" option={servicesCategory} onChange={ this.changeCategory.bind(this) }/>
 
-          <a className="waves-effect waves-light btn" onClick={ this.addProposition.bind(this) }>Valider</a>
+          <a className="waves-effect waves-light btn" onClick={ this.addProposition.bind(this, this.props.user) }>Valider</a>
         </div>
       </div>
     )

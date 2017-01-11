@@ -62,7 +62,7 @@ class NavBar extends React.Component {
 
               <li>
                 <Compteur title="Solde: " value={ this.props.user.solde } unite=" euro"/>
-                <div className="center" >{ this.props.user.userName }</div>
+                <div className="center" >{ this.props.user.username }</div>
               </li>
 
             </ul>

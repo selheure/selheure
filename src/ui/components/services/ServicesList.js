@@ -25,16 +25,22 @@ class ServicesList extends React.Component {
         }
       })
 
+
     return(
       <div className="col s10 offset-s1" style={{ 'border': '2px double', 'borderRadius': '5px', 'padding': '10px' }}>
         <h5>Liste des services</h5>
         <Select title="Type de service :" option={this.props.types} onChange={(e) => this.onChange(e.target.value)} value={this.state.typeSelected}/>
 
-        {index.map(service =>
-          <div key={ service.idService }>
-            <Service service={ service } seeTitle={ (this.state.typeSelected == 0) } category={ this.props.category }/>
-          </div>
-          )}
+        {
+          index.map(service => {
+            console.log(service)
+            return (
+              <div key={ service.idService }>
+                <Service service={ service } seeTitle={ (this.state.typeSelected == 0) } category={ this.props.category }/>
+              </div>
+            )
+          })
+        }
 
       </div>
     )
