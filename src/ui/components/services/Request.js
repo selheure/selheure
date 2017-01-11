@@ -16,8 +16,8 @@ class Request extends React.Component {
     }
   }
 
-  changeCategory(value) {
-    this.setState({'service': value})
+  changeCategory(e) {
+    this.setState({'service': e.target.value})
   }
   addRequete(user) {
     servicesList.push({idService: servicesList.length, type: 'Recherche', service: this.state.service, from: user.username })

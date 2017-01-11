@@ -31,7 +31,7 @@ class UserPage extends React.Component {
                 <div className="col s5 left-align" >{ user.phone }</div>
               </li>
             </ul>
-
+            
             <Historical user={ user }/>
 
           </div>

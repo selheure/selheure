@@ -12,11 +12,12 @@ import $ from 'jquery'
 window.jQuery = $
 require('bootstrap')
 
-import App          from './layouts/App'
-import Home         from './pages/Home'
-import UserPage     from './pages/UserPage'
-import Services     from './pages/Services'
-import Declaration  from './pages/Declaration'
+import App                from './layouts/App'
+import Home               from './pages/Home'
+import UserPage           from './pages/UserPage'
+import Services           from './pages/Services'
+import Declaration        from './pages/Declaration'
+import WaitingValidation  from './pages/WaitingValidation'
 
 const reducer = combineReducers({
   routing: routerReducer
@@ -45,6 +46,7 @@ ReactDOM.render(
           <Route path="userPage" component={UserPage}/>
           <Route path="service" component={Services}/>
           <Route path="declaration" component={Declaration}/>
+          <Route path="validation" component={WaitingValidation}/>
         </Route>
       </Router>
       <DevTools />

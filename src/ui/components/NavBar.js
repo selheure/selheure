@@ -55,6 +55,12 @@ class NavBar extends React.Component {
               </li>
 
               <li>
+                <Link to="/validation">
+                  En attente de validation
+                </Link>
+              </li>
+
+              <li>
                 <Link to="/userPage">
                   Profil
                 </Link>

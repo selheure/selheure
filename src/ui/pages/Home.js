@@ -23,6 +23,7 @@ class Home extends React.Component {
     const user = this.props.user || userList[userData.idUser]
     return(
       <div className="row">
+        <h5>Liste des services</h5>
         <ServicesList list={servicesList} types={ servicesTypes } category={ servicesCategory }/>
       </div>
     )

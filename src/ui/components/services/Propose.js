@@ -23,8 +23,8 @@ class Propose extends React.Component {
   componentWillUnmount() {
   }
 
-  changeCategory(value) {
-    this.setState({'service': value})
+  changeCategory(e) {
+    this.setState({'service': e.target.value})
   }
 
   addProposition(user) {

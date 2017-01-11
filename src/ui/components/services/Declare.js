@@ -13,28 +13,41 @@ class Declare extends React.Component {
     super(props)
     this.state = {
       service: 0,
-      userA: 0,
-      userB: 0,
+      userA: '',
+      userB: '',
       time: 0
     }
   }
 
-  changeCategory(value) {
-    this.setState({'service': value})
+  changeCategory(e) {
+    this.setState({'service': e.target.value})
   }
-  changeFrom(value) {
-    this.setState({'userA': value})
+  changeFrom(e) {
+    this.setState({'userA': e.target.value})
   }
-  changeFor(value) {
-    this.setState({'userB': value})
+  changeFor(e) {
+    this.setState({'userB': e.target.value})
   }
-  changeTime(value) {
-    this.setState({'time': value})
+  changeTime(e) {
+    this.setState({'time': e.target.value})
   }
 
   addDeclaration(user) {
-    declarationList.push({idService: declarationList.length, type: 'Declaration', service: this.state.service, from: this.state.userA, for: this.state.userB})
-    user.historical.push({idService: user.historical.length, type: 'Declaration', service: this.state.service, from: this.state.userA, for: this.state.userB})
+
+    declarationList.push({
+      idService: declarationList.length,
+      type: 'Declaration a valider',
+      service: this.state.service,
+      userA: this.state.userA,
+      userB: this.state.userB,
+      validByA: this.state.userA === user.username ,
+      validByB: this.state.userA === user.username
+    })
+
+    // a ajouter a la validation
+    //user.historical.push({idService: user.historical.length, type: 'Declaration', service: this.state.service, from: this.state.userA, for: this.state.userB})
+
+    this.setState({service: 0,userA: '',userB: '',time: 0})
   }
 
   render() {
@@ -42,7 +55,11 @@ class Declare extends React.Component {
       <div className="col s12 m6 offset-m3" style={{ 'border': '2px double', 'borderRadius': '5px' }}>
         <h5>Declaration</h5>
         <div className="row">
-          <Select title="Type de declaration :" option={servicesCategory} onChange={this.changeCategory.bind(this)}/>
+          <Select
+            title="Type de declaration :"
+            option={servicesCategory}
+            onChange={this.changeCategory.bind(this)}
+            value={this.state.service}/>
 
           <span>Demandant le service :</span>
           <span><input type="text" onChange={this.changeFrom.bind(this)}></input></span>
