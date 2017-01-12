@@ -39,7 +39,7 @@ class Propose extends React.Component {
         <div className="row">
           <Select title="Type de proposition :" option={servicesCategory} onChange={ this.changeCategory.bind(this) }/>
 
-          <a className="waves-effect waves-light btn" onClick={ this.addProposition.bind(this, this.props.user) }>Valider</a>
+          <a className="waves-effect waves-light btn right" onClick={ this.addProposition.bind(this, this.props.user) }>Valider</a>
         </div>
       </div>
     )

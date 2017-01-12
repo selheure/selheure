@@ -33,7 +33,7 @@ class Request extends React.Component {
           <Select title="Type de requete :" option={servicesCategory} onChange={ this.changeCategory.bind(this) }/>
         </div>
 
-        <a className="waves-effect waves-light btn" onClick={ this.addRequete.bind(this, this.props.user) }>Valider</a>
+        <a className="waves-effect waves-light btn right" onClick={ this.addRequete.bind(this, this.props.user) }>Valider</a>
       </div>
     )
   }
