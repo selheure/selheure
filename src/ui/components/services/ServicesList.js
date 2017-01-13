@@ -37,7 +37,7 @@ class ServicesList extends React.Component {
         else if ( service.type === 'Declaration' ){
           contenu = <ServiceDeclare service={service} category={this.props.category}/>
         }
-        else{
+        else if ( service.type === 'Declaration a valider' ){
           contenu = <ServiceWaitValid service={service} category={this.props.category}/>
         }
 
