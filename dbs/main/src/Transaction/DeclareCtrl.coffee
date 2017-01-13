@@ -8,6 +8,12 @@ controller 'DeclareCtrl',
     $scope.announceList = []
     $scope.currencyName = config.get('currency')
 
+    ## Participation
+    if $state.$current.locals.globals.participation?
+      console.log "participation"
+      $scope.transaction.from = config.get 'collectiveUser'
+      $scope.transaction.to   = login.getName()
+
     ########### Edit
     if $state.$current.locals.globals.transaction
       transaction         = $state.$current.locals.globals.transaction
@@ -31,18 +37,12 @@ controller 'DeclareCtrl',
 
     $scope.newTransactionSubmit = ->
       transaction = angular.copy($scope.transaction)
-      ## Participation
-      if $state.$current.locals.globals.participation?
-        console.log "participation"
-        transaction.from = config.get 'collectiveUser'
-        transaction.to   = login.getName()
-      else
-        if transaction.from == 'another'
-          transaction.from = transaction.fromField
-          if login.proxys.length == 0
-            transaction.to = login.getName()
-        if transaction.to == 'another'
-          transaction.to = transaction.toField
+      if transaction.from == 'another'
+        transaction.from = transaction.fromField
+        if login.proxys.length == 0
+          transaction.to = login.getName()
+      if transaction.to == 'another'
+        transaction.to = transaction.toField
 
       delete transaction.toField
       delete transaction.fromField
@@ -67,7 +67,8 @@ controller 'DeclareCtrl',
       )
 
     $scope.$watch('transaction.from', (value)->
-      if value != login.getName()
+      if value != login.getName() and
+      $scope.transaction.to != login.getName()
         $scope.transaction.to = ''
     )
 
@@ -78,15 +79,19 @@ controller 'DeclareCtrl',
         search = value[1]
 
       if not search?
-        search = ""
-
+        return
       Announce.view({
-        view: 'demand_all'
+        view: 'by_author'
         key:  search
+        include_docs: true
       }).then(
         (data)-> #Success
-          demandList          = data
-          $scope.announceList = proposalList.concat(data)
+          console.log data
+          demandList = []
+          for announce in data
+            if announce.announce_type == 'demand'
+              demandList.push announce
+          $scope.announceList = proposalList.concat(demandList)
         ,(err)-> #Error
           console.log err
       )
@@ -99,15 +104,20 @@ controller 'DeclareCtrl',
         search = value[1]
 
       if not search?
-        search = ""
+        return
 
       Announce.view({
-        view: 'proposal_all'
+        view: 'by_author'
         key:   search
+        include_docs: true
       }).then(
         (data) -> #Success
-          proposalList        = data
-          $scope.announceList = demandList.concat(data)
+          console.log data
+          proposalList = []
+          for announce in data
+            if announce.announce_type == 'proposal'
+              proposalList.push announce
+          $scope.announceList = demandList.concat(proposalList)
         ,(err) -> #Error
           console.log err
       )

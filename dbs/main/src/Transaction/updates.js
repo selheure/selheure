@@ -27,6 +27,19 @@ exports.transaction_create = function(doc, req) {
   } else if (doc.to == req.userCtx.name || req.userCtx.roles.indexOf(doc.to) > -1) {
     doc.editableBy      = doc.to;
     doc.validatableBy   = doc.from;
+  } else {
+    throw new Error("Transaction must be declared by one of the parties")
+  }
+
+  if (doc.from == req.userCtx.name || req.userCtx.roles.indexOf(doc.from) > -1) {
+    doc.validated = true;
+  }
+  //FIXME: selheure-cric.CRIC is not correct...
+  if (doc.from == 'CRIC' || doc.from.split('.')[1] == 'CRIC' && (
+        doc.to == req.userCtx.name
+        || req.userCtx.roles.indexOf(doc.to) > -1
+      )) {
+    doc.validated = true;
   }
 
   return [doc, 'ok'];
