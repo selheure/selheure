@@ -12,6 +12,11 @@ export const servicesTypes = {
   2: "Recherche"
 }
 
+export const servicesChoice = {
+  0: "Propose",
+  1: "Recherche"
+}
+
 export const servicesCategory = {
   0: "Choisissez un service",
   1: "Sortir mon chien",

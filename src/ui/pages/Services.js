@@ -1,6 +1,5 @@
 import React from 'react';
-import Propose from '../components/services/Propose'
-import Request from '../components/services/Request'
+import Announce from '../components/services/Announce'
 
 import {
   userList,
@@ -8,21 +7,12 @@ import {
 } from '../../api/usersData'
 
 class Services extends React.Component {
-  componentDidMount() {
-  }
-
-  componentWillUnmount() {
-  }
-
   render() {
     const user = this.props.user || userList[userData.idUser]
     return(
       <div>
         <div className="row">
-          <Propose user={user}/>
-        </div>
-        <div className="row">
-          <Request user={user}/>
+          <Announce user={user}/>
         </div>
       </div>
     )
