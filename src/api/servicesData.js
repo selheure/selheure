@@ -2,7 +2,22 @@
 export const declarationList = [ ]
 
 
-export const servicesList = [ ]
+export const servicesList = [
+  {
+    idService: 0,
+    type: 'Propose',
+    service: 'Sortir mon chien',
+    from: "userName",
+    message: "hello"
+  },
+  {
+    idService: 1,
+    type: 'Recherche',
+    service: 'Laver la voiture',
+    from: "userName",
+    message: "hello"
+  }
+ ]
 
 
 

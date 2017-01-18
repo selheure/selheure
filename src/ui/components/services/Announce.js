@@ -14,17 +14,17 @@ class Announce extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      service: 0,
-      type: 0
+      service: '',
+      type: ''
     }
   }
 
   changeType(e) {
-    this.setState({'type': e.target.value})
+    this.setState({'type': servicesChoice[e.target.value]})
   }
 
   changeCategory(e) {
-    this.setState({'service': e.target.value})
+    this.setState({'service': servicesCategory[e.target.value]})
   }
 
   changeMessage(e) {
@@ -34,11 +34,12 @@ class Announce extends React.Component {
   addProposition(user) {
     const announce = {
       idService: servicesList.length,
-      type: servicesChoice[this.state.type],
+      type: this.state.type,
       service: this.state.service,
       from: user.username,
       message: this.state.message
     }
+    console.log(announce)
     servicesList.push(announce)
     user.historical.push(announce)
   }
@@ -46,7 +47,7 @@ class Announce extends React.Component {
   render() {
     return(
       <div className="col s12 m6 offset-m3" style={{ 'border': '2px double', 'borderRadius': '5px' }}>
-        <h5>{ servicesChoice[this.state.type] }</h5>
+        <h5>{ this.state.type }</h5>
         <div className="row">
           <Select title="Type d annonce :" option={servicesChoice} onChange={ this.changeType.bind(this) }/>
           <Select title="Type de proposition :" option={servicesCategory} onChange={ this.changeCategory.bind(this) }/>

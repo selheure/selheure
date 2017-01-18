@@ -3,8 +3,7 @@ import React from 'react';
 import Select from '../generic/Select'
 
 import ServiceDeclare   from './servicesView/ServiceDeclare'
-import ServicePropose   from './servicesView/ServicePropose'
-import ServiceRequest   from './servicesView/ServiceRequest'
+import Service          from './servicesView/Service'
 import ServiceWaitValid from './servicesView/ServiceWaitValid'
 
 class ServicesList extends React.Component {
@@ -28,11 +27,8 @@ class ServicesList extends React.Component {
         console.log(typeService)
       if( ( service.type === typeService ) || ( typeService === 'Tous' ) ) {
 
-        if ( service.type === 'Propose' ){
-          contenu = <ServicePropose service={service} category={this.props.category}/>
-        }
-        else if ( service.type === 'Recherche' ){
-          contenu = <ServiceRequest service={service} category={this.props.category}/>
+        if (( service.type === 'Propose' ) || ( service.type === 'Recherche' )) {
+          contenu = <Service service={service}/>
         }
         else if ( service.type === 'Declaration' ){
           contenu = <ServiceDeclare service={service} category={this.props.category}/>
@@ -44,7 +40,6 @@ class ServicesList extends React.Component {
         index.push({'key': service.idService, 'contenu': contenu })
       }
     })
-
 
     return(
       <div className="col s10 offset-s1" style={{ 'border': '2px double', 'borderRadius': '5px', 'padding': '10px' }}>
