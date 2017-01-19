@@ -24,7 +24,7 @@ class ServicesList extends React.Component {
     this.props.list.forEach(service => {
       let contenu
       const typeService = this.props.types[this.state.typeSelected]
-        console.log(typeService)
+
       if( ( service.type === typeService ) || ( typeService === 'Tous' ) ) {
 
         if (( service.type === 'Propose' ) || ( service.type === 'Recherche' )) {
@@ -34,7 +34,7 @@ class ServicesList extends React.Component {
           contenu = <ServiceDeclare service={service} category={this.props.category}/>
         }
         else if ( service.type === 'Declaration a valider' ){
-          contenu = <ServiceWaitValid service={service} category={this.props.category}/>
+          contenu = <ServiceWaitValid service={service} category={this.props.category}  user={this.props.user}/>
         }
 
         index.push({'key': service.idService, 'contenu': contenu })

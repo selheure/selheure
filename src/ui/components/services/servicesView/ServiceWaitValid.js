@@ -2,7 +2,37 @@ import React from 'react';
 
 import InfoRow from '../../generic/InfoRow'
 
-export const ServiceWaitValid = ({service, category}) => {
+const Button = ({service, user}) => {
+  let result
+  if ( user.username === service.from ) {
+    result = service.validByFrom
+  }
+  else if ( user.username === service.for ) {
+    result = service.validByFor
+  }
+
+  if (!result) {
+    return(
+      <div className="row">
+        <div className="col s4 center">
+          <a className="waves-effect waves-light btn">Valider</a>
+        </div>
+        <div className="col s4 center">
+          <a className="waves-effect waves-light btn">Ajuster</a>
+        </div>
+        <div className="col s4 center">
+          <a className="waves-effect waves-light btn">Refuser</a>
+        </div>
+      </div>
+    )
+  }
+  return (
+    <div></div>
+  )
+}
+
+export const ServiceWaitValid = ({service, category, user}) => {
+
   return(
     <div className="row">
       <InfoRow title="Category :" contenu={ category[service.service] }/>
@@ -26,17 +56,7 @@ export const ServiceWaitValid = ({service, category}) => {
 
       <InfoRow title="Solde a valider (en heure) :" contenu={ service.time }/>
 
-      <div className="row">
-        <div className="col s4">
-          <a className="waves-effect waves-light btn">Valider</a>
-        </div>
-        <div className="col s4">
-          <a className="waves-effect waves-light btn">Ajuster</a>
-        </div>
-        <div className="col s4">
-          <a className="waves-effect waves-light btn">Refuser</a>
-        </div>
-      </div>
+      <Button service={service} user={user}/>
 
 
     </div>

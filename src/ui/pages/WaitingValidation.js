@@ -20,10 +20,17 @@ class Declaration extends React.Component {
 
   render() {
     const user = this.props.user || userList[userData.idUser]
+    let tab = []
+    declarationList.forEach(service => {
+      if (( service.from === user.username ) || ( service.for === user.username ) ) {
+        tab.push(service)
+      }
+    })
+
     return(
       <div className="row">
         <h5>Attente de validation</h5>
-        <ServicesList list={declarationList} types={{0: 'Tous'}} category={servicesCategory}/>
+        <ServicesList list={tab} types={{0: 'Tous'}} category={servicesCategory} user={user}/>
       </div>
     )
   }

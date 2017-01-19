@@ -1,5 +1,36 @@
 
-export const declarationList = [ ]
+export const declarationList = [
+  {
+  idService: 0,
+  type: 'Declaration a valider',
+  service: 0,
+  from: 'nicolas',
+  for: 'justine',
+  validByFrom: true,
+  validByFor: false,
+  time: 0
+  },
+  {
+  idService: 1,
+  type: 'Declaration a valider',
+  service: 1,
+  from: 'justine',
+  for: 'nicolas',
+  validByFrom: true,
+  validByFor: false,
+  time: 0
+  },
+  {
+  idService: 2,
+  type: 'Declaration a valider',
+  service: 2,
+  from: 'justine',
+  for: 'nicolas',
+  validByFrom: false,
+  validByFor: true,
+  time: 0
+  }
+]
 
 
 export const servicesList = [
