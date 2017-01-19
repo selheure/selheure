@@ -3,7 +3,7 @@ export const declarationList = [
   {
   idService: 0,
   type: 'Declaration a valider',
-  service: 0,
+  service: 'Sortir mon chien',
   from: 'nicolas',
   for: 'justine',
   validByFrom: true,
@@ -13,7 +13,7 @@ export const declarationList = [
   {
   idService: 1,
   type: 'Declaration a valider',
-  service: 1,
+  service: 'Sortir mon chien',
   from: 'justine',
   for: 'nicolas',
   validByFrom: true,
@@ -23,7 +23,7 @@ export const declarationList = [
   {
   idService: 2,
   type: 'Declaration a valider',
-  service: 2,
+  service: 'Sortir mon chien',
   from: 'justine',
   for: 'nicolas',
   validByFrom: false,
@@ -45,7 +45,21 @@ export const servicesList = [
     idService: 1,
     type: 'Recherche',
     service: 'Laver la voiture',
-    from: "userName",
+    from: "justine",
+    message: "hello"
+  },
+  {
+    idService: 2,
+    type: 'Recherche',
+    service: 'Laver la voiture',
+    from: "nicolas",
+    message: "hello"
+  },
+  {
+    idService: 3,
+    type: 'Propose',
+    service: 'Laver la voiture',
+    from: "justine",
     message: "hello"
   }
  ]
@@ -64,7 +78,7 @@ export const servicesChoice = {
 }
 
 export const servicesCategory = {
-  0: "Choisissez un service",
+  0: "Tous",
   1: "Sortir mon chien",
   2: "Faire ma vaiselle",
   3: "Laver la voiture",

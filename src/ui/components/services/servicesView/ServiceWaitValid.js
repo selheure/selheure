@@ -35,7 +35,7 @@ export const ServiceWaitValid = ({service, category, user}) => {
 
   return(
     <div className="row">
-      <InfoRow title="Category :" contenu={ category[service.service] }/>
+      <InfoRow title="Category :" contenu={ service.service }/>
 
       <div className="row">
         <div className="col s6">
