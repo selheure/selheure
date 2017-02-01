@@ -7,33 +7,25 @@ import {
 } from '../../api/usersData'
 
 import {
-  declarationList,
-  servicesCategory
+  declarations,
+  announcesCategory
 } from '../../api/servicesData'
 
-class Declaration extends React.Component {
-  componentDidMount() {
-  }
+const Declaration = () => {
+  const user = userList[userData.idUser]
+  let tab = []
+  declarations.forEach(service => {
+    if (( service.from === user.username ) || ( service.for === user.username ) ) {
+      tab.push(service)
+    }
+  })
 
-  componentWillUnmount() {
-  }
-
-  render() {
-    const user = this.props.user || userList[userData.idUser]
-    let tab = []
-    declarationList.forEach(service => {
-      if (( service.from === user.username ) || ( service.for === user.username ) ) {
-        tab.push(service)
-      }
-    })
-
-    return(
-      <div className="row">
-        <h5>Attente de validation</h5>
-        <ServicesList list={tab} types={{0: 'Tous'}} category={servicesCategory} user={user}/>
-      </div>
-    )
-  }
+  return (
+    <div className="row">
+      <h5>Attente de validation</h5>
+      <ServicesList  type="declarations" list={tab} types={{0: 'Tous'}} category={announcesCategory} user={user}/>
+    </div>
+  )
 }
 
 export default Declaration

@@ -6,23 +6,13 @@ import {
   userData
 } from '../../api/usersData'
 
-
-
-class Declaration extends React.Component {
-  componentDidMount() {
-  }
-
-  componentWillUnmount() {
-  }
-
-  render() {
-    const user = this.props.user || userList[userData.idUser]
-    return(
-      <div className="row">
-        <Declare user={user}/>
-      </div>
-    )
-  }
+const Declaration = () => {
+  const user = userList[userData.idUser]
+  return (
+    <div className="row">
+      <Declare user={user}/>
+    </div>
+  )
 }
 
 export default Declaration

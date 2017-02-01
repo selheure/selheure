@@ -7,7 +7,6 @@ class Select extends React.Component {
       selected: 0
     }
   }
-
   render() {
     return(
       <div>

@@ -2,15 +2,22 @@ import React from 'react';
 
 import InfoRow from '../../generic/InfoRow'
 
-export const Service = ({service}) => {
-  return(
-    <div className="row">
-      <InfoRow title="type :"         contenu={ service.type }/>
-      <InfoRow title="Category :"     contenu={ service.service }/>
-      <InfoRow title="Proposer par :" contenu={ service.from }/>
-      <InfoRow title="Message :"      contenu={ service.message }/>
+export const Service = ({announce}) => (
+  <div className="row">
+    <div className="col s3">
+      { announce.type }
     </div>
-  )
-}
+    <div className="col s3">
+      { announce.service }
+    </div>
+    <div className="col s3">
+      { announce.from }
+    </div>
+    <div className="col s3">
+      { announce.message }
+    </div>
+  </div>
+)
+
 
 export default Service

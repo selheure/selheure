@@ -2,21 +2,40 @@ import React from 'react';
 import ServicesList from '../services/ServicesList'
 
 import {
-  servicesTypes
-} from '../../../api/usersData'
-import {
-  servicesCategory
+  declarations,
+  declarationsTypes,
+  announces,
+  announcesTypes,
+  announcesCategory
 } from '../../../api/servicesData'
 
 
 class Historical extends React.Component {
 
   render() {
-    const historical = this.props.user.historical
+    let declarationsTab = []
+    let announcesTab = []
+    declarations.forEach(service => {
+      if (( service.from === this.props.user.username ) || ( service.for === this.props.user.username ) ) {
+        declarationsTab.push(service)
+      }
+    })
+    announces.forEach(service => {
+      if ( service.from === this.props.user.username ) {
+        announcesTab.push(service)
+      }
+    })
+
     return(
       <div>
-        <h5>Historique</h5>
-        <ServicesList list={ historical } types={ servicesTypes } category={ servicesCategory }/>
+        <div className="row">
+          <h5>Historique Annonces</h5>
+          <ServicesList  type="announces" list={announcesTab} types={announcesTypes} category={announcesCategory} user={this.props.user}/>
+        </div>
+        <div className="row">
+          <h5>Historique Declarations</h5>
+          <ServicesList  type="declarations" list={declarationsTab} types={declarationsTypes} category={announcesCategory} user={this.props.user}/>
+        </div>
       </div>
     )
   }

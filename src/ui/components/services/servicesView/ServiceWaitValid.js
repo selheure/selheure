@@ -2,13 +2,13 @@ import React from 'react';
 
 import InfoRow from '../../generic/InfoRow'
 
-const Button = ({service, user}) => {
-  let result
-  if ( user.username === service.from ) {
-    result = service.validByFrom
+const Button = ({announce, user}) => {
+  let result=true
+  if ( user.username === announce.from ) {
+    result = announce.validByFrom
   }
-  else if ( user.username === service.for ) {
-    result = service.validByFor
+  else if ( user.username === announce.for ) {
+    result = announce.validByFor
   }
 
   if (!result) {
@@ -31,34 +31,30 @@ const Button = ({service, user}) => {
   )
 }
 
-export const ServiceWaitValid = ({service, category, user}) => {
-
+const ServiceWaitValid = ({announce, user}) => {
   return(
-    <div className="row">
-      <InfoRow title="Category :" contenu={ service.service }/>
-
+    <div>
       <div className="row">
-        <div className="col s6">
-          <InfoRow title="Effectuer par :" contenu={ service.from }/>
+        <div className="col s2">
+          { announce.service }
         </div>
-        <div className="col s6">
-          <InfoRow title="Valider :" contenu={ service.validByFrom ? 'oui' : 'non' }/>
+        <div className="col s2">
+          { announce.from }
+        </div>
+        <div className="col s2">
+          { announce.validByFrom ? 'oui' : 'non' }
+        </div>
+        <div className="col s2">
+          { announce.for }
+        </div>
+        <div className="col s2">
+          { announce.validByFor ? 'oui' : 'non' }
+        </div>
+        <div className="col s2">
+          { announce.time }
         </div>
       </div>
-      <div className="row">
-        <div className="col s6">
-          <InfoRow title="Effectuer pour :" contenu={ service.for }/>
-        </div>
-        <div className="col s6">
-          <InfoRow title="Valider :" contenu={ service.validByFor ? 'oui' : 'non' }/>
-        </div>
-      </div>
-
-      <InfoRow title="Solde a valider (en heure) :" contenu={ service.time }/>
-
-      <Button service={service} user={user}/>
-
-
+      <Button announce={announce} user={user}/>
     </div>
   )
 }

@@ -3,8 +3,8 @@ import React from 'react';
 import Select from '../generic/Select'
 
 import {
-  servicesCategory,
-  declarationList
+  announcesCategory,
+  declarations
 } from '../../../api/servicesData'
 
 
@@ -12,7 +12,7 @@ class Declare extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      service: 0,
+      service: '',
       from: '',
       for: '',
       time: 0
@@ -20,7 +20,7 @@ class Declare extends React.Component {
   }
 
   changeCategory(e) {
-    this.setState({'service': e.target.value})
+    this.setState({'service':announcesCategory[e.target.value]})
   }
 
   changeFrom(e) {
@@ -37,8 +37,8 @@ class Declare extends React.Component {
 
   addDeclaration(user) {
 
-    declarationList.push({
-      idService: declarationList.length,
+    declarations.push({
+      idService: declarations.length,
       type: 'Declaration a valider',
       service: this.state.service,
       from: this.state.from,
@@ -61,7 +61,7 @@ class Declare extends React.Component {
         <div className="row">
           <Select
             title="Type de declaration :"
-            option={servicesCategory}
+            option={announcesCategory}
             onChange={this.changeCategory.bind(this)}
             value={this.state.service}/>
 

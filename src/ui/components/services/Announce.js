@@ -3,8 +3,8 @@ import React from 'react';
 import Select from '../generic/Select'
 
 import {
-  servicesCategory,
-  servicesList,
+  announcesCategory,
+  announces,
   servicesChoice
 } from '../../../api/servicesData'
 
@@ -24,7 +24,7 @@ class Announce extends React.Component {
   }
 
   changeCategory(e) {
-    this.setState({'service': servicesCategory[e.target.value]})
+    this.setState({'service': announcesCategory[e.target.value]})
   }
 
   changeMessage(e) {
@@ -33,15 +33,14 @@ class Announce extends React.Component {
 
   addProposition(user) {
     const announce = {
-      idService: servicesList.length,
+      idService: announces.length,
       type: this.state.type,
       service: this.state.service,
       from: user.username,
       message: this.state.message
     }
     console.log(announce)
-    servicesList.push(announce)
-    user.historical.push(announce)
+    announces.push(announce)
   }
 
   render() {
@@ -50,7 +49,7 @@ class Announce extends React.Component {
         <h5>{ this.state.type }</h5>
         <div className="row">
           <Select title="Type d annonce :" option={servicesChoice} onChange={ this.changeType.bind(this) }/>
-          <Select title="Type de proposition :" option={servicesCategory} onChange={ this.changeCategory.bind(this) }/>
+          <Select title="Type de proposition :" option={announcesCategory} onChange={ this.changeCategory.bind(this) }/>
 
           <span className="col s12 m6">Message :</span>
           <span className="col s12 m6"><input type="text" onChange={ this.changeMessage.bind(this) }></input></span>

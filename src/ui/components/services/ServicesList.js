@@ -6,12 +6,52 @@ import ServiceDeclare   from './servicesView/ServiceDeclare'
 import Service          from './servicesView/Service'
 import ServiceWaitValid from './servicesView/ServiceWaitValid'
 
+const AnnounceHead = () => (
+  <div className="row">
+    <div className="col s3">
+      Type
+    </div>
+    <div className="col s3">
+      Categorie
+    </div>
+    <div className="col s3">
+      Proposer par
+    </div>
+    <div className="col s3">
+      Message
+    </div>
+  </div>
+)
+
+const DeclarationHead = () => (
+  <div className="row">
+    <div className="col s2">
+      Categorie
+    </div>
+    <div className="col s2">
+      Effectuer par
+    </div>
+    <div className="col s2">
+      Valider
+    </div>
+    <div className="col s2">
+      Effectuer pour
+    </div>
+    <div className="col s2">
+      Valider
+    </div>
+    <div className="col s2">
+      Solde
+    </div>
+  </div>
+)
+
 class ServicesList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       typeSelected: 0,
-      serviceSelected: 0
+      categorySelected: 0
     }
   }
 
@@ -23,28 +63,37 @@ class ServicesList extends React.Component {
 
   render() {
     const index = []
+    let head
 
-    this.props.list.forEach(service => {
+    if (this.props.type === "announces"){
+      head = <AnnounceHead />
+    }
+    else {
+      head = <DeclarationHead />
+    }
+
+
+    this.props.list.forEach(announce => {
       let contenu
-      const typeService = this.props.types[this.state.typeSelected]
-      const categoryService = this.props.category[this.state.serviceSelected]
+      const announceType = this.props.types[this.state.typeSelected]
+      const announceCategory = this.props.category[this.state.categorySelected]
 
-      if( ( service.type === typeService ) || ( typeService === 'Tous' ) ) {
+      if( ( announce.type === announceType ) || ( announceType === 'Tous' ) ) {
 
-        if( ( service.service === categoryService ) || ( categoryService === 'Tous' ) ) {
-          if (( service.type === 'Propose' ) || ( service.type === 'Recherche' )) {
-            contenu = <Service service={service}/>
+        if( ( announce.service === announceCategory ) || ( announceCategory === 'Tous' ) ) {
+          if (( announce.type === 'Propose' ) || ( announce.type === 'Recherche' )) {
+            contenu = <Service announce={announce}/>
+
           }
-          else if ( service.type === 'Declaration' ){
-            contenu = <ServiceDeclare service={service}/>
+          else if ( announce.type === 'Declaration' ){
+            contenu = <ServiceDeclare announce={announce}/>
           }
-          else if ( service.type === 'Declaration a valider' ){
-            contenu = <ServiceWaitValid service={service} user={this.props.user}/>
+          else if ( announce.type === 'Declaration a valider' ){
+            contenu = <ServiceWaitValid announce={announce} user={this.props.user}/>
           }
 
-          index.push({'key': service.idService, 'contenu': contenu })
+          index.push({'key': announce.idService, 'contenu': contenu })
         }
-
       }
     })
 
@@ -62,13 +111,15 @@ class ServicesList extends React.Component {
             <Select
               title="Categorie :"
               option={this.props.category}
-              onChange={(e) => this.onChange({'serviceSelected': e.target.value})}
-              value={this.state.serviceSelected}/>
+              onChange={(e) => this.onChange({'categorySelected': e.target.value})}
+              value={this.state.categorySelected}/>
           </div>
+        </div>
+        <div className="row">
+          { head }
         </div>
         {
           index.map(contenu => {
-            console.log(contenu)
             return (
               <div className="row" key={ contenu.key } style={{ 'border': '2px double', 'borderRadius': '5px', 'padding': '10px'}}>
                 { contenu.contenu }

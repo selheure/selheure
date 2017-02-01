@@ -2,9 +2,11 @@ import React from 'react';
 import ServicesList from '../components/services/ServicesList'
 
 import {
-  servicesList,
-  servicesTypes,
-  servicesCategory
+  declarations,
+  declarationsTypes,
+  announces,
+  announcesTypes,
+  announcesCategory
 } from '../../api/servicesData'
 
 import {
@@ -12,22 +14,20 @@ import {
   userData
 } from '../../api/usersData'
 
-class Home extends React.Component {
-  componentDidMount() {
-  }
-
-  componentWillUnmount() {
-  }
-
-  render() {
-    const user = this.props.user || userList[userData.idUser]
-    return(
-      <div className="row">
-        <h5>Liste des services</h5>
-        <ServicesList list={servicesList} types={ servicesTypes } category={ servicesCategory }/>
+const Home = () => {
+  const user = userList[userData.idUser]
+  return (
+    <div className="row">
+      <div className="col s6">
+        <h5>Annonces</h5>
+        <ServicesList type="announces" list={announces} types={announcesTypes} category={announcesCategory} user={user}/>
       </div>
-    )
-  }
+      <div className="col s6">
+        <h5>Declarations</h5>
+        <ServicesList type="declarations" list={declarations} types={declarationsTypes} category={announcesCategory} user={user}/>
+      </div>
+    </div>
+  )
 }
 
 export default Home

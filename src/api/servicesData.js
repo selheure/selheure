@@ -1,5 +1,5 @@
 
-export const declarationList = [
+export const declarations = [
   {
   idService: 0,
   type: 'Declaration a valider',
@@ -29,16 +29,42 @@ export const declarationList = [
   validByFrom: false,
   validByFor: true,
   time: 0
+  },
+  {
+  idService: 3,
+  type: 'Declaration a valider',
+  service: 'Sortir mon chien',
+  from: 'justine',
+  for: 'ju',
+  validByFrom: false,
+  validByFor: true,
+  time: 0
+  },
+  {
+  idService: 4,
+  type: 'Declaration a valider',
+  service: 'Sortir mon chien',
+  from: 'justine',
+  for: 'ju',
+  validByFrom: false,
+  validByFor: true,
+  time: 0
   }
 ]
 
 
-export const servicesList = [
+export const declarationsTypes = {
+  0: "Tous",
+  1: "Declaration a valider",
+  2: "Declaration"
+}
+
+export const announces = [
   {
     idService: 0,
     type: 'Propose',
     service: 'Sortir mon chien',
-    from: "userName",
+    from: "quelquun dautre",
     message: "hello"
   },
   {
@@ -66,21 +92,22 @@ export const servicesList = [
 
 
 
-export const servicesTypes = {
+export const announcesTypes = {
   0: "Tous",
   1: "Propose",
   2: "Recherche"
 }
 
-export const servicesChoice = {
-  0: "Propose",
-  1: "Recherche"
-}
 
-export const servicesCategory = {
+export const announcesCategory = {
   0: "Tous",
   1: "Sortir mon chien",
   2: "Faire ma vaiselle",
   3: "Laver la voiture",
   4: "Tondre pelouse",
+}
+
+export const servicesChoice = {
+  0: "Propose",
+  1: "Recherche"
 }
