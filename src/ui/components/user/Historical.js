@@ -1,5 +1,5 @@
 import React from 'react';
-import ServicesList from '../services/ServicesList'
+import AnnouncesList from '../announces/AnnouncesList'
 
 import {
   declarations,
@@ -30,11 +30,11 @@ class Historical extends React.Component {
       <div>
         <div className="row">
           <h5>Historique Annonces</h5>
-          <ServicesList  type="announces" list={announcesTab} types={announcesTypes} category={announcesCategory} user={this.props.user}/>
+          <AnnouncesList  type="announces" list={announcesTab} types={announcesTypes} category={announcesCategory} user={this.props.user}/>
         </div>
         <div className="row">
           <h5>Historique Declarations</h5>
-          <ServicesList  type="declarations" list={declarationsTab} types={declarationsTypes} category={announcesCategory} user={this.props.user}/>
+          <AnnouncesList  type="declarations" list={declarationsTab} types={declarationsTypes} category={announcesCategory} user={this.props.user}/>
         </div>
       </div>
     )

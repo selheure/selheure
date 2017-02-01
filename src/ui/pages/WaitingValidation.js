@@ -1,5 +1,5 @@
 import React from 'react'
-import ServicesList from '../components/services/ServicesList'
+import AnnouncesList from '../components/announces/AnnouncesList'
 
 import {
   userList,
@@ -23,7 +23,7 @@ const Declaration = () => {
   return (
     <div className="row">
       <h5>Attente de validation</h5>
-      <ServicesList  type="declarations" list={tab} types={{0: 'Tous'}} category={announcesCategory} user={user}/>
+      <AnnouncesList  type="declarations" list={tab} types={{0: 'Declaration a valider'}} category={announcesCategory} user={user}/>
     </div>
   )
 }

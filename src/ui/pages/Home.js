@@ -1,5 +1,5 @@
 import React from 'react';
-import ServicesList from '../components/services/ServicesList'
+import AnnouncesList from '../components/announces/AnnouncesList'
 
 import {
   declarations,
@@ -20,11 +20,11 @@ const Home = () => {
     <div className="row">
       <div className="col s6">
         <h5>Annonces</h5>
-        <ServicesList type="announces" list={announces} types={announcesTypes} category={announcesCategory} user={user}/>
+        <AnnouncesList type="announces" list={announces} types={announcesTypes} category={announcesCategory} user={user}/>
       </div>
       <div className="col s6">
         <h5>Declarations</h5>
-        <ServicesList type="declarations" list={declarations} types={declarationsTypes} category={announcesCategory} user={user}/>
+        <AnnouncesList type="declarations" list={declarations} types={declarationsTypes} category={announcesCategory}/>
       </div>
     </div>
   )

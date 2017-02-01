@@ -15,7 +15,7 @@ require('bootstrap')
 import App                from './layouts/App'
 import Home               from './pages/Home'
 import UserPage           from './pages/UserPage'
-import Services           from './pages/Services'
+import Announce           from './pages/Announce'
 import Declaration        from './pages/Declaration'
 import WaitingValidation  from './pages/WaitingValidation'
 
@@ -43,10 +43,10 @@ ReactDOM.render(
       <Router history={history}>
         <Route path="/" component={App}>
           <IndexRoute   component={Home}/>
-          <Route path="userPage" component={UserPage}/>
-          <Route path="service" component={Services}/>
+          <Route path="userPage"    component={UserPage}/>
+          <Route path="announces"   component={Announce}/>
           <Route path="declaration" component={Declaration}/>
-          <Route path="validation" component={WaitingValidation}/>
+          <Route path="validation"  component={WaitingValidation}/>
         </Route>
       </Router>
       <DevTools />

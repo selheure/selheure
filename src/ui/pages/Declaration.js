@@ -1,5 +1,5 @@
 import React from 'react';
-import Declare from '../components/services/Declare'
+import DeclareForm from '../components/announces/DeclareForm'
 
 import {
   userList,
@@ -10,7 +10,7 @@ const Declaration = () => {
   const user = userList[userData.idUser]
   return (
     <div className="row">
-      <Declare user={user}/>
+      <DeclareForm user={user}/>
     </div>
   )
 }

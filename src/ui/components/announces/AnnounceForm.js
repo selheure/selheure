@@ -9,8 +9,7 @@ import {
 } from '../../../api/servicesData'
 
 
-
-class Announce extends React.Component {
+class AnnounceForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -22,11 +21,9 @@ class Announce extends React.Component {
   changeType(e) {
     this.setState({'type': servicesChoice[e.target.value]})
   }
-
   changeCategory(e) {
     this.setState({'service': announcesCategory[e.target.value]})
   }
-
   changeMessage(e) {
     this.setState({'message': e.target.value})
   }
@@ -61,4 +58,4 @@ class Announce extends React.Component {
   }
 }
 
-export default Announce
+export default AnnounceForm

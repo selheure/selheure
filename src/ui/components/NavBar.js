@@ -43,8 +43,8 @@ class NavBar extends React.Component {
               </li>
 
               <li>
-                <Link to="/service">
-                  Creer service
+                <Link to="/announces">
+                  Creer annonce
                 </Link>
               </li>
 

@@ -2,9 +2,8 @@ import React from 'react';
 
 import Select from '../generic/Select'
 
-import ServiceDeclare   from './servicesView/ServiceDeclare'
-import Service          from './servicesView/Service'
-import ServiceWaitValid from './servicesView/ServiceWaitValid'
+import DeclarationView       from './ListComponents/DeclarationView'
+import AnnounceView          from './ListComponents/AnnounceView'
 
 const AnnounceHead = () => (
   <div className="row">
@@ -46,7 +45,7 @@ const DeclarationHead = () => (
   </div>
 )
 
-class ServicesList extends React.Component {
+class AnnouncesList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -71,8 +70,6 @@ class ServicesList extends React.Component {
     else {
       head = <DeclarationHead />
     }
-
-
     this.props.list.forEach(announce => {
       let contenu
       const announceType = this.props.types[this.state.typeSelected]
@@ -81,22 +78,19 @@ class ServicesList extends React.Component {
       if( ( announce.type === announceType ) || ( announceType === 'Tous' ) ) {
 
         if( ( announce.service === announceCategory ) || ( announceCategory === 'Tous' ) ) {
+
           if (( announce.type === 'Propose' ) || ( announce.type === 'Recherche' )) {
-            contenu = <Service announce={announce}/>
+            contenu = <AnnounceView announce={announce} user={this.props.user}/>
 
           }
-          else if ( announce.type === 'Declaration' ){
-            contenu = <ServiceDeclare announce={announce}/>
-          }
-          else if ( announce.type === 'Declaration a valider' ){
-            contenu = <ServiceWaitValid announce={announce} user={this.props.user}/>
+          else if (( announce.type === 'Declaration' ) || ( announce.type === 'Declaration a valider' )) {
+            contenu = <DeclarationView announce={announce} user={this.props.user}/>
           }
 
           index.push({'key': announce.idService, 'contenu': contenu })
         }
       }
     })
-
     return(
       <div className="col s10 offset-s1" style={{ 'border': '2px double', 'borderRadius': '5px', 'padding': '10px' }}>
         <div className="row">
@@ -127,11 +121,9 @@ class ServicesList extends React.Component {
             )
           })
         }
-
       </div>
     )
   }
-
 }
 
-export default ServicesList
+export default AnnouncesList

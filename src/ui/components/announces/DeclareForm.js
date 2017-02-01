@@ -8,7 +8,7 @@ import {
 } from '../../../api/servicesData'
 
 
-class Declare extends React.Component {
+class DeclareForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -98,4 +98,4 @@ class Declare extends React.Component {
   }
 }
 
-export default Declare
+export default DeclareForm
