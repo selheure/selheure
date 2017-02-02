@@ -18,6 +18,7 @@ import UserPage           from './pages/UserPage'
 import Announce           from './pages/Announce'
 import Declaration        from './pages/Declaration'
 import WaitingValidation  from './pages/WaitingValidation'
+import DeclarationsList  from './pages/DeclarationsList'
 
 const reducer = combineReducers({
   routing: routerReducer
@@ -47,6 +48,7 @@ ReactDOM.render(
           <Route path="announces"   component={Announce}/>
           <Route path="declaration" component={Declaration}/>
           <Route path="validation"  component={WaitingValidation}/>
+          <Route path="declarations"  component={DeclarationsList}/>
         </Route>
       </Router>
       <DevTools />

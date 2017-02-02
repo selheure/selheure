@@ -15,14 +15,14 @@ class Historical extends React.Component {
   render() {
     let declarationsTab = []
     let announcesTab = []
-    declarations.forEach(service => {
-      if (( service.from === this.props.user.username ) || ( service.for === this.props.user.username ) ) {
-        declarationsTab.push(service)
+    declarations.forEach(announce => {
+      if (( announce.from === this.props.user.username ) || ( announce.for === this.props.user.username ) ) {
+        declarationsTab.push(announce)
       }
     })
-    announces.forEach(service => {
-      if ( service.from === this.props.user.username ) {
-        announcesTab.push(service)
+    announces.forEach(announce => {
+      if ( announce.from === this.props.user.username ) {
+        announcesTab.push(announce)
       }
     })
 
@@ -30,11 +30,11 @@ class Historical extends React.Component {
       <div>
         <div className="row">
           <h5>Historique Annonces</h5>
-          <AnnouncesList  type="announces" list={announcesTab} types={announcesTypes} category={announcesCategory} user={this.props.user}/>
+          <AnnouncesList genre="announces" list={announcesTab} types={announcesTypes} user={this.props.user}/>
         </div>
         <div className="row">
           <h5>Historique Declarations</h5>
-          <AnnouncesList  type="declarations" list={declarationsTab} types={declarationsTypes} category={announcesCategory} user={this.props.user}/>
+          <AnnouncesList genre="declarations" list={declarationsTab} types={declarationsTypes} user={this.props.user}/>
         </div>
       </div>
     )

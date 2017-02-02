@@ -1,5 +1,9 @@
 import React from 'react';
 
+import {
+  announcesCategory
+} from '../../../../api/servicesData'
+
 const Button = ({announce, user}) => {
   let result=true
   if (user) {
@@ -31,30 +35,33 @@ const Button = ({announce, user}) => {
   )
 }
 
-const DeclarationView = ({announce, user}) => (
-  <div>
-    <div className="row">
-      <div className="col s2">
-        { announce.service }
+const DeclarationView = ({announce, user}) => {
+  const tab = announcesCategory['categories']
+  return (
+    <div>
+      <div className="row">
+        <div className="col s2">
+          { tab[announce.category] }
+        </div>
+        <div className="col s2">
+          { announce.from }
+        </div>
+        <div className="col s2">
+          { announce.validByFrom ? 'oui' : 'non' }
+        </div>
+        <div className="col s2">
+          { announce.for }
+        </div>
+        <div className="col s2">
+          { announce.validByFor ? 'oui' : 'non' }
+        </div>
+        <div className="col s2">
+          { announce.time }
+        </div>
       </div>
-      <div className="col s2">
-        { announce.from }
-      </div>
-      <div className="col s2">
-        { announce.validByFrom ? 'oui' : 'non' }
-      </div>
-      <div className="col s2">
-        { announce.for }
-      </div>
-      <div className="col s2">
-        { announce.validByFor ? 'oui' : 'non' }
-      </div>
-      <div className="col s2">
-        { announce.time }
-      </div>
+      <Button announce={announce} user={user}/>
     </div>
-    <Button announce={announce} user={user}/>
-  </div>
-)
+  )
+}
 
 export default DeclarationView

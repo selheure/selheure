@@ -7,8 +7,7 @@ import {
 } from '../../api/usersData'
 
 import {
-  declarations,
-  announcesCategory
+  declarations
 } from '../../api/servicesData'
 
 const Declaration = () => {
@@ -23,7 +22,7 @@ const Declaration = () => {
   return (
     <div className="row">
       <h5>Attente de validation</h5>
-      <AnnouncesList  type="declarations" list={tab} types={{0: 'Declaration a valider'}} category={announcesCategory} user={user}/>
+      <AnnouncesList  genre="declarations" list={tab} types={{0: 'Declaration a valider'}} user={user}/>
     </div>
   )
 }

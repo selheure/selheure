@@ -5,6 +5,10 @@ import Select from '../generic/Select'
 import DeclarationView       from './ListComponents/DeclarationView'
 import AnnounceView          from './ListComponents/AnnounceView'
 
+import {
+  announcesCategory
+} from '../../../api/servicesData'
+
 const AnnounceHead = () => (
   <div className="row">
     <div className="col s3">
@@ -49,8 +53,9 @@ class AnnouncesList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      typeSelected: 0,
-      categorySelected: 0
+      typeSelected: "0",
+      categorySelected: "1",
+      subCat : "1"
     }
   }
 
@@ -59,58 +64,68 @@ class AnnouncesList extends React.Component {
     this.setState(value)
   }
 
-
   render() {
-    const index = []
-    let head
+    const subTab = announcesCategory['sub_categories']
+    const subTab2 = subTab[this.state.categorySelected]
+    const announceType = this.state.typeSelected
+    const announceCategory = this.state.categorySelected
 
-    if (this.props.type === "announces"){
-      head = <AnnounceHead />
+    const index = []
+    let HeadBar
+    let contenu
+
+    if (this.props.genre === "announces"){
+        HeadBar = () => (<AnnounceHead />)
+
+        this.props.list.forEach(announce => {
+          if (( announce.type === announceType ) && ( announce.category === announceCategory )) {
+              contenu = <AnnounceView announce={announce} user={this.props.user}/>
+              index.push({'key': announce._id, 'contenu': contenu })
+          }
+        })
+
     }
     else {
-      head = <DeclarationHead />
+      HeadBar = () => (<DeclarationHead />)
+
+        this.props.list.forEach(announce => {
+          if ( announce.type === announceType ) {
+            if( announce.category === announceCategory )  {
+              contenu = <DeclarationView announce={announce} user={this.props.user}/>
+              index.push({'key': announce._id, 'contenu': contenu })
+            }
+          }
+        })
+
     }
-    this.props.list.forEach(announce => {
-      let contenu
-      const announceType = this.props.types[this.state.typeSelected]
-      const announceCategory = this.props.category[this.state.categorySelected]
 
-      if( ( announce.type === announceType ) || ( announceType === 'Tous' ) ) {
-
-        if( ( announce.service === announceCategory ) || ( announceCategory === 'Tous' ) ) {
-
-          if (( announce.type === 'Propose' ) || ( announce.type === 'Recherche' )) {
-            contenu = <AnnounceView announce={announce} user={this.props.user}/>
-
-          }
-          else if (( announce.type === 'Declaration' ) || ( announce.type === 'Declaration a valider' )) {
-            contenu = <DeclarationView announce={announce} user={this.props.user}/>
-          }
-
-          index.push({'key': announce.idService, 'contenu': contenu })
-        }
-      }
-    })
     return(
-      <div className="col s10 offset-s1" style={{ 'border': '2px double', 'borderRadius': '5px', 'padding': '10px' }}>
+      <div className="col s10 offset-s1" style={{ 'border': '2px double', 'borderRadius': '5px', 'padding': '5px' }}>
         <div className="row">
-          <div className="col s6">
+          <div className="col s4">
             <Select
               title="Type de service :"
               option={this.props.types}
               onChange={(e) => this.onChange({'typeSelected': e.target.value})}
               value={this.state.typeSelected}/>
           </div>
-          <div className="col s6">
+          <div className="col s4">
             <Select
               title="Categorie :"
-              option={this.props.category}
+              option={announcesCategory['categories']}
               onChange={(e) => this.onChange({'categorySelected': e.target.value})}
               value={this.state.categorySelected}/>
           </div>
+          <div className="col s4">
+            <Select
+              title="Sous cat. :"
+              option={subTab2}
+              onChange={(e) => this.onChange({'subCat': e.target.value})}
+              value={this.state.subCat}/>
+          </div>
         </div>
         <div className="row">
-          { head }
+          <HeadBar />
         </div>
         {
           index.map(contenu => {

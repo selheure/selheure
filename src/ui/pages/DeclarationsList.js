@@ -2,8 +2,8 @@ import React from 'react';
 import AnnouncesList from '../components/announces/AnnouncesList'
 
 import {
-  announces,
-  announcesTypes
+  declarations,
+  declarationsTypes
 } from '../../api/servicesData'
 
 import {
@@ -11,16 +11,16 @@ import {
   userData
 } from '../../api/usersData'
 
-const Home = () => {
+const DeclarationsList = () => {
   const user = userList[userData.idUser]
   return (
     <div className="row">
       <div className="col s12">
-        <h5>Annonces</h5>
-        <AnnouncesList genre="announces" list={announces} types={announcesTypes} user={user}/>
+        <h5>Declarations</h5>
+        <AnnouncesList genre="declarations" list={declarations} types={declarationsTypes} user={user}/>
       </div>
     </div>
   )
 }
 
-export default Home
+export default DeclarationsList

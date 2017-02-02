@@ -5,7 +5,7 @@ import Select from '../generic/Select'
 import {
   announcesCategory,
   announces,
-  servicesChoice
+  announcesTypes
 } from '../../../api/servicesData'
 
 
@@ -13,16 +13,20 @@ class AnnounceForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      service: '',
-      type: ''
+      category: "1",
+      subCategory: "1",
+      type: "0"
     }
   }
 
   changeType(e) {
-    this.setState({'type': servicesChoice[e.target.value]})
+    this.setState({'type': e.target.value})
   }
   changeCategory(e) {
-    this.setState({'service': announcesCategory[e.target.value]})
+    this.setState({'category': e.target.value})
+  }
+  changeSubCategory(e) {
+    this.setState({'subCategory': e.target.value})
   }
   changeMessage(e) {
     this.setState({'message': e.target.value})
@@ -30,9 +34,9 @@ class AnnounceForm extends React.Component {
 
   addProposition(user) {
     const announce = {
-      idService: announces.length,
+      _id: announces.length,
       type: this.state.type,
-      service: this.state.service,
+      category: this.state.category,
       from: user.username,
       message: this.state.message
     }
@@ -41,12 +45,14 @@ class AnnounceForm extends React.Component {
   }
 
   render() {
+    const subTab = announcesCategory['sub_categories']
+    const subTab2 = subTab[this.state.category]
     return(
       <div className="col s12 m6 offset-m3" style={{ 'border': '2px double', 'borderRadius': '5px' }}>
-        <h5>{ this.state.type }</h5>
+        <h5>{ announcesTypes[this.state.type] }</h5>
         <div className="row">
-          <Select title="Type d annonce :" option={servicesChoice} onChange={ this.changeType.bind(this) }/>
-          <Select title="Type de proposition :" option={announcesCategory} onChange={ this.changeCategory.bind(this) }/>
+          <Select title="Type d annonce :" option={announcesTypes} onChange={ this.changeType.bind(this) }/>
+          <Select title="Type de proposition :" option={announcesCategory['categories']} onChange={ this.changeCategory.bind(this) }/>
 
           <span className="col s12 m6">Message :</span>
           <span className="col s12 m6"><input type="text" onChange={ this.changeMessage.bind(this) }></input></span>

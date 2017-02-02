@@ -1,5 +1,11 @@
 import React from 'react';
 
+import {
+  announcesCategory,
+  announcesTypes
+
+} from '../../../../api/servicesData'
+
 const Button = ({announce, user}) => {
 
   if (user) {
@@ -16,24 +22,27 @@ const Button = ({announce, user}) => {
   )
 }
 
-const AnnounceView = ({announce, user}) => (
-  <div>
-    <div className="row">
-      <div className="col s3">
-        { announce.type }
+const AnnounceView = ({announce, user}) => {
+  const tab = announcesCategory['categories']
+  return (
+    <div>
+      <div className="row">
+        <div className="col s3">
+          { announcesTypes[announce.type] }
+        </div>
+        <div className="col s3">
+          { tab[announce.category] }
+        </div>
+        <div className="col s3">
+          { announce.from }
+        </div>
+        <div className="col s3">
+          { announce.message }
+        </div>
       </div>
-      <div className="col s3">
-        { announce.service }
-      </div>
-      <div className="col s3">
-        { announce.from }
-      </div>
-      <div className="col s3">
-        { announce.message }
-      </div>
+      <Button announce={announce} user={user}/>
     </div>
-    <Button announce={announce} user={user}/>
-  </div>
-)
+  )
+}
 
 export default AnnounceView

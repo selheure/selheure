@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Historical from '../components/user/Historical'
+import UserInfo   from '../components/user/UserInfo'
 
 import {
   userList,
@@ -16,17 +17,7 @@ const UserPage = () => {
       <div className="row">
         <div className="center">
 
-          <ul>
-            <li>
-              <div className="col s5 offset-s1 right-align"><span>e-mail :</span></div>
-              <div className="col s5 left-align" >{ user.eMail }</div>
-            </li>
-            <li>
-              <div className="col s5 offset-s1 right-align"><span>telephone :</span></div>
-              <div className="col s5 left-align" >{ user.phone }</div>
-            </li>
-          </ul>
-
+          <UserInfo user={ user }/>
           <Historical user={ user }/>
 
         </div>

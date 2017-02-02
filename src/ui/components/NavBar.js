@@ -41,7 +41,11 @@ class NavBar extends React.Component {
                   Liste des services
                 </Link>
               </li>
-
+              <li>
+                <Link to="/declarations">
+                  Liste des declarations
+                </Link>
+              </li>
               <li>
                 <Link to="/announces">
                   Creer annonce
