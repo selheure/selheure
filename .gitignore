@@ -1,8 +1,1 @@
-/**/static/vendor/
-/**/packages/
-/**/node_modules/
-/**/static/js/*
-.Thumb.db
-DS_Store
-*.*~
-.kansorc
+node_modules/
