@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link }       from 'react-router'
 
-import Compteur    from './generic/Compteur'
+import Compteur    from '../../components/Compteur'
 
 
 class NavBar extends React.Component {
@@ -42,8 +42,8 @@ class NavBar extends React.Component {
                 </Link>
               </li>
               <li>
-                <Link to="/declarations">
-                  Liste des declarations
+                <Link to="/echanges">
+                  Liste des échanges
                 </Link>
               </li>
               <li>

@@ -1,5 +1,5 @@
 import React from 'react';
-import AnnouncesList from '../components/announces/AnnouncesList'
+//import AnnouncesList from '../components/announces/AnnouncesList'
 
 import {
   announces,
@@ -17,7 +17,7 @@ const Home = () => {
     <div className="row">
       <div className="col s12">
         <h5>Annonces</h5>
-        <AnnouncesList genre="announces" list={announces} types={announcesTypes} user={user}/>
+        {/*<AnnouncesList genre="announces" list={announces} types={announcesTypes} user={user}/>*/}
       </div>
     </div>
   )

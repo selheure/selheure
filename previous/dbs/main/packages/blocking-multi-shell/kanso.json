@@ -1,0 +1,10 @@
+{
+    "name" : "blocking-multi-shell",
+    "version" : "0.0.3",
+    "categories" : ["build-tools"],
+    "description" : "Perform shell commands just before preprocessing phase of push. Based on the \"multi-shell\" package (which is based on \"shell\" package) with the only difference that a failure of one command makes the push fail (and the other commands are not executed).",
+    "url": "https://github.com/kanso/shell",
+    "preprocessors": {
+        "compile": "shell"
+    }
+}

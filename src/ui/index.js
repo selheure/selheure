@@ -14,11 +14,11 @@ require('bootstrap')
 
 import App                from './layouts/App'
 import Home               from './pages/Home'
-import UserPage           from './pages/UserPage'
-import Announce           from './pages/Announce'
-import Declaration        from './pages/Declaration'
-import WaitingValidation  from './pages/WaitingValidation'
-import DeclarationsList  from './pages/DeclarationsList'
+// import UserPage           from './pages/UserPage'
+// import Announce           from './pages/Announce'
+// import Declaration        from './pages/Declaration'
+// import WaitingValidation  from './pages/WaitingValidation'
+import ExchangeListContainer from '../modules/exchanges/containers/ExchangeListContainer'
 
 const reducer = combineReducers({
   routing: routerReducer
@@ -44,11 +44,11 @@ ReactDOM.render(
       <Router history={history}>
         <Route path="/" component={App}>
           <IndexRoute   component={Home}/>
-          <Route path="userPage"    component={UserPage}/>
+          {/*<Route path="userPage"    component={UserPage}/>
           <Route path="announces"   component={Announce}/>
           <Route path="declaration" component={Declaration}/>
-          <Route path="validation"  component={WaitingValidation}/>
-          <Route path="declarations"  component={DeclarationsList}/>
+          <Route path="validation"  component={WaitingValidation}/>*/}
+          <Route path="echanges"   component={ExchangeListContainer}/>
         </Route>
       </Router>
       <DevTools />
